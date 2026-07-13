@@ -1,0 +1,17 @@
+# Data (too large / research data)
+/data/
+
+# Literature (copyrighted PDFs)
+/literature/
+
+# R
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+*_cache/
+*.utf8.md
+*.knit.md
+
+# macOS
+.DS_Store
