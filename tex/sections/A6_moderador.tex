@@ -1,0 +1,121 @@
+\section{Construcción del margen previo y definiciones alternativas}
+\label{anexo:moderador}
+
+El contraste de heterogeneidad del cuerpo divide a las incumbentes según el
+margen con que operaban antes de la entrada. Este anexo detalla cómo se
+construye esa medida y por qué se descartan dos definiciones más simples.
+
+\subsection{Por qué una posición relativa y no el margen en niveles}
+
+El objeto que interesa es el poder de mercado local de la estación, que la
+\Cref{prop:margen} identifica con el margen de equilibrio $\mu_i = c\,\bar{d}_i$.
+El margen en niveles, sin embargo, no es comparable entre estaciones: depende
+del combustible, del momento y del mercado en que la estación opera.
+
+La medida empleada es por eso la posición relativa de la estación dentro de la
+distribución de precios de su propia comuna en cada mes. Dos propiedades la
+hacen apropiada. La primera es que dentro de una comuna y un mes todas las
+estaciones enfrentan el mismo costo mayorista, dado que el MEPCO es una
+referencia nacional; como el margen porcentual $(p - m)/p$ es estrictamente
+creciente en $p$ cuando $p > m > 0$, el orden de los precios coincide
+exactamente con el orden de los márgenes. La posición relativa mide entonces el
+margen sin necesidad de calcularlo. La segunda es que, al ser un percentil, es
+adimensional, lo que permite promediarla entre combustibles cuyos niveles de
+precio difieren.
+
+Hay además una razón teórica para preferir la comparación \emph{dentro} de la
+comuna. Por la \Cref{prop:margen}, el margen ordena estaciones por aislamiento
+espacial solo si el costo de desplazamiento $c$ es común entre ellas. Ese
+supuesto es insostenible entre Santiago y una ruta interurbana, pero razonable
+dentro de una misma comuna. Comparar posiciones dentro de comuna, y no niveles
+entre comunas, es lo que hace que la medida siga leyéndose como aislamiento.
+
+Se exige que la comuna tenga al menos cuatro estaciones en el mes para que el
+percentil signifique algo. La restricción tiene un costo: descarta el $23\%$ de
+las estaciones de la muestra, con mayor incidencia entre los controles, de modo
+que la muestra de este ejercicio es menor que la de la especificación principal.
+
+\subsection{Ponderación entre combustibles}
+
+Una estación vende cuatro combustibles y su poder de mercado no se expresa por
+igual en todos. La medida agrega las cuatro posiciones con ponderadores iguales
+a la participación de cada combustible en el volumen nacional de ventas que
+reporta \textcite{FNE2025informe} para 2017, renormalizados de modo que sumen
+uno: $19{,}6\%$ la gasolina de 93 octanos, $11{,}9\%$ la de 95, $4{,}0\%$ la de
+97 y $64{,}4\%$ el diésel.
+
+Ponderar por volumen y no por igual evita que la gasolina de 97 octanos, que es
+apenas el $4\%$ del mercado, pese lo mismo que el diésel, que es casi dos
+tercios. La contrapartida es que los ponderadores provienen de ventas
+nacionales, que incluyen canales distintos del minorista —el diésel tiene usos
+industriales y de generación eléctrica que no pasan por estaciones de
+servicio—, de modo que probablemente sobrerrepresentan el diésel respecto de lo
+que vende una estación típica. No existe una desagregación pública por canal que
+permita corregirlo.
+
+\subsection{Por qué se excluye el combustible analizado}
+
+El precio observado de una estación puede descomponerse en un componente
+persistente, que refleja su aislamiento y es el que interesa, y uno transitorio.
+Al seleccionar el tercil superior se seleccionan estaciones que son caras por
+ambas razones a la vez. Las que lo son por una perturbación transitoria
+favorable revierten después, con entrada o sin ella, de modo que el grupo alto
+exhibiría una caída posterior aunque el tratamiento no existiera. Es la forma
+que adopta aquí la reversión a la media.
+
+Dos rasgos del diseño la contienen. El primero es que la posición se promedia
+sobre toda la ventana previa —cuarenta y ocho meses en la mediana— y no se
+toma de un mes aislado, lo que reduce el peso del componente transitorio. El
+segundo, y el decisivo, es que el moderador excluye el combustible que se está
+analizando: al estimar el efecto sobre el precio del diésel, el moderador se
+construye únicamente con las tres gasolinas. La perturbación transitoria que
+afectó al diésel de esa estación en la ventana previa no participa entonces de
+la clasificación.
+
+Conviene ser preciso sobre el alcance de esta corrección. Elimina el canal en
+que la clasificación y el resultado comparten literalmente la misma variable,
+pero no aquel en que una perturbación común a la estación mueve todos sus
+combustibles a la vez. La correlación entre las posiciones de la gasolina de 93
+octanos y del diésel es de $0{,}59$ a nivel de estación y mes, de modo que queda
+contaminación residual. La verificación que cierra el argumento es empírica y no
+de diseño: las trayectorias previas de ambos grupos son planas, con valores $p$
+entre $0{,}18$ y $0{,}92$, lo que es incompatible con una reversión que ya
+estuviera en curso antes de la entrada.
+
+\subsection{Comparación con definiciones alternativas}
+
+La \Cref{tab:moderador} reporta la diferencia entre grupos bajo tres
+definiciones del moderador, estimadas sobre la misma especificación: el rango del
+propio combustible, que es la versión más simple; el compuesto ponderado que
+incluye los cuatro combustibles; y el compuesto que excluye el analizado, que es
+el utilizado.
+
+\begin{table}[H]
+\centering
+\caption{Diferencia entre grupos según la definición del margen previo}
+\label{tab:moderador}
+\tabla{tab_het_moderador}
+\end{table}
+
+La comparación entrega tres lecciones.
+
+Primero, agregar combustibles mejora la medida. El paso de la definición A a la
+C aumenta la magnitud del contraste y reduce su error estándar en la gasolina de
+95 octanos y en el diésel. Promediar cuatro posiciones atenúa el error de
+medición del moderador, y una variable de partición menos ruidosa separa mejor a
+los grupos.
+
+Segundo, la brecha entre B y C cuantifica el canal mecánico. En el diésel, cuyo
+ponderador propio es de $0{,}64$, la definición B arroja una diferencia de
+$-0{,}686$ y la C una de $-0{,}562$: cerca de un quinto del contraste bajo B
+proviene de incluir el propio combustible en el moderador. Adoptar B produciría
+un resultado más nítido a costa de reintroducir justamente el sesgo que se busca
+evitar.
+
+Tercero, el caso de la gasolina de 97 octanos es ilustrativo. Bajo la definición
+A, que usa su propio rango, el contraste es de $-0{,}357$ y significativo al
+$5\%$; bajo la definición C cae a $-0{,}220$ y deja de serlo. La 97 es el
+combustible de menor volumen y precio más volátil, es decir, aquel en que el
+componente transitorio pesa más, y es por lo tanto donde la definición ingenua
+produce el resultado más engañoso. Es la razón concreta por la que este trabajo
+no la utiliza.

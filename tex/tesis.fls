@@ -346,10 +346,6 @@ INPUT ../results/figures/het_rank_precio.pdf
 INPUT ../results/tables/tab_fe_ladder.tex
 INPUT ../results/tables/tab_fe_ladder.tex
 INPUT ../results/tables/tab_fe_ladder.tex
-INPUT ../results/figures/anticipacion.pdf
-INPUT ../results/figures/anticipacion.pdf
-INPUT ../results/figures/anticipacion.pdf
-INPUT ../results/figures/anticipacion.pdf
 INPUT ./sections/05_conclusion.tex
 INPUT ./sections/05_conclusion.tex
 INPUT sections/05_conclusion.tex
@@ -403,6 +399,12 @@ INPUT ../results/figures/mercado_max_media_min_pdi.pdf
 INPUT ../results/figures/mercado_max_media_min_pdi.pdf
 INPUT ../results/figures/mercado_max_media_min_pdi.pdf
 INPUT ../results/figures/mercado_max_media_min_pdi.pdf
+INPUT ./sections/A6_moderador.tex
+INPUT ./sections/A6_moderador.tex
+INPUT sections/A6_moderador.tex
+INPUT ../results/tables/tab_het_moderador.tex
+INPUT ../results/tables/tab_het_moderador.tex
+INPUT ../results/tables/tab_het_moderador.tex
 INPUT tesis.aux
 INPUT ./tesis.out
 INPUT ./tesis.out

@@ -40,8 +40,10 @@ source("r_code/00_estilo.R")
 FIG <- "results/figures"
 TAB <- "results/tables"
 
-PRE <- 12L
-POST <- 12L
+# bins de seis meses sobre una ventana de +-4, el mismo formato de reporte de la
+# especificacion principal
+BIN_M <- 6L
+NBIN  <- 4L
 FOCAL_FROM <- 2014L
 RTREAT <- 2       # treatment radius (km), same as the main specification
 MIN_N <- 4L      # min stations in a comuna-month for its rank to mean anything
@@ -106,56 +108,82 @@ d <- d[!(role_entry == "treated" & year(g_entry) < FOCAL_FROM)]
 d <- d[role_entry == "treated" | base_2012 == TRUE]
 d[, treated := as.integer(role_entry == "treated")]
 d[, et := miym - mi(g_entry)]
-d[, rel := fifelse(treated == 1L, pmax(-PRE, pmin(POST, et)), -1L)]
+d[, rel := fifelse(treated == 1L,
+                   pmax(-NBIN, pmin(NBIN, as.integer(floor(et / BIN_M)))), -1L)]
 d[, post := fifelse(treated == 1L & !is.na(g_entry) & ym >= g_entry, 1L, 0L)]
 
 # ==============================================================================
 # 2. moderator: price rank inside the comuna, frozen on the pre-entry window
 # ==============================================================================
 
-rank_local <- function(geo) {
-  r <- panel[!is.na(p93), .(station_key, miym, p93, geo = get(geo))]
-  r[, n_geo := .N, by = .(geo, miym)]
+# the moderator is a weighted average of the station's price rank inside its
+# comuna across fuels, LEAVING OUT the fuel being analysed.
+#
+# why a rank. within a comuna and a month every station faces the same mepco
+# cost, and the markup (p - m)/p is strictly increasing in p, so the rank of the
+# price IS the rank of the markup. the rank is also unit free, which is what
+# makes averaging across fuels coherent.
+#
+# why weighted by national volumes. a station's overall market power should
+# weigh each fuel by how much of it is actually sold, not equally: the 97 is
+# 3,3% of national volume and the diesel 52,5%.
+#
+# why leave one out. if the moderator contained the same fuel as the outcome,
+# the split would be partly on transitory shocks to that very price, and those
+# revert: the high group would drift down afterwards with or without entry.
+# excluding the outcome's own fuel removes that channel entirely.
+
+# national volume shares, FNE Rol N°2538-19 par. 8 (year 2017), renormalised
+W <- c(p93 = 16.0, p95 = 9.7, p97 = 3.3, pdi = 52.5)
+W <- W / sum(W)
+
+rank_fuel <- function(fv) {
+  r <- panel[!is.na(get(fv)), .(station_key, miym, y = get(fv), comuna)]
+  r[, n_geo := .N, by = .(comuna, miym)]
   r <- r[n_geo >= MIN_N]
-  # percentile rank: 0 = cheapest of its market, 1 = most expensive
-  r[, rk := (frank(p93, ties.method = "average") - 1) / (.N - 1),
-    by = .(geo, miym)]
-  r[, .(station_key, miym, rk)]
+  r[, rk := (frank(y, ties.method = "average") - 1) / (.N - 1),
+    by = .(comuna, miym)]
+  setnames(r[, .(station_key, miym, rk)], "rk", paste0("rk_", fv))
+}
+rk <- Reduce(function(a, b) merge(a, b, by = c("station_key", "miym"), all = TRUE),
+             lapply(names(W), rank_fuel))
+
+pre <- merge(d[post == 0L, .(station_key, miym, treated)], rk,
+             by = c("station_key", "miym"), all.x = TRUE)
+mod <- pre[, c(lapply(.SD, mean, na.rm = TRUE), .(treated = first(treated))),
+           by = station_key, .SDcols = paste0("rk_", names(W))]
+
+# weighted composite over all fuels, kept only for the comparison of the annex
+mm <- as.matrix(mod[, paste0("rk_", names(W)), with = FALSE])
+mod[, comp_todos := rowSums(sweep(mm, 2, W, "*"), na.rm = TRUE) /
+      rowSums(!is.na(mm) * matrix(W, nrow = .N, ncol = length(W), byrow = TRUE))]
+
+# and one leave-one-out composite per fuel, which is the moderator used
+for (f in names(W)) {
+  otros <- setdiff(names(W), f)
+  m <- as.matrix(mod[, paste0("rk_", otros), with = FALSE])
+  w <- W[otros]
+  mod[[paste0("loo_", f)]] <-
+    rowSums(sweep(m, 2, w, "*"), na.rm = TRUE) /
+    rowSums(!is.na(m) * matrix(w, nrow = nrow(m), ncol = length(w), byrow = TRUE))
 }
 
-rk_com <- rank_local("comuna")
-rk_reg <- rank_local("region")   # kept as a robustness moderator in the csv
+# the fuel each outcome must leave out
+excluir <- c(p93 = "p93", p95 = "p95", p97 = "p97", pdi = "pdi",
+             m93 = "p93", m97 = "p97", mdi = "pdi")
 
-pre <- d[post == 0L, .(station_key, miym, treated)]
-pre <- merge(pre, rk_com, by = c("station_key", "miym"), all.x = TRUE)
-setnames(pre, "rk", "rk_com")
-pre <- merge(pre, rk_reg, by = c("station_key", "miym"), all.x = TRUE)
-setnames(pre, "rk", "rk_reg")
+cat("\n=== PONDERADORES (participacion nacional en volumen, FNE) ===\n")
+print(round(W, 3))
 
-mod <- pre[, .(rk_com = mean(rk_com, na.rm = TRUE),
-               rk_reg = mean(rk_reg, na.rm = TRUE),
-               treated = first(treated)), by = station_key]
-mod <- mod[!is.na(rk_com)]
+d <- merge(d, mod[, !c("treated"), with = FALSE], by = "station_key", all.x = TRUE)
 
 # the cutoff comes from the TREATED distribution, because the object of interest
-# is heterogeneity among treated stations; controls are placed by the same
-# cutoff so "high" means the same thing in both arms
-q <- quantile(mod[treated == 1L, rk_com], CORTE, na.rm = TRUE)
-mod[, alto := as.integer(rk_com > q)]
-mod[, grupo := factor(lbl[alto + 1L], levels = lbl)]
+# is heterogeneity among treated stations
+grupo_de <- function(x, muestra_trat) {
+  q <- quantile(x[muestra_trat], CORTE, na.rm = TRUE)
+  as.integer(x > q)
+}
 
-cat("\n=== CORTE ===\n")
-cat("percentil", CORTE, "del rank comunal entre tratadas:", round(q, 3), "\n")
-
-cat("\n=== COMPOSICION: estaciones por grupo ===\n")
-comp <- mod[, .N, by = .(grupo, treated)]
-comp <- dcast(comp, grupo ~ treated, value.var = "N")
-setnames(comp, c("grupo", "control", "tratadas"))
-print(comp)
-fwrite(comp, file.path(TAB, "het_composicion.csv"))
-
-d <- merge(d, mod[, .(station_key, rk_com, rk_reg, alto, grupo)],
-           by = "station_key", all.x = TRUE)
 
 # ==============================================================================
 # 3. att by group, the difference between them, and the event study
@@ -170,7 +198,9 @@ estimar <- function(fv) {
   lhs <- if (en_log) sprintf("log(%s)", fv) else fv
   sc  <- if (en_log) 100 else 1
 
-  dd <- d[!is.na(get(fv)) & !is.na(alto)]
+  vmod <- paste0("loo_", excluir[[fv]])
+  dd <- d[!is.na(get(fv)) & !is.na(get(vmod))]
+  dd[, alto := grupo_de(get(vmod), treated == 1L)]
   dd[, `:=`(post_bajo = post * (alto == 0L), post_alto = post * alto,
             trat_bajo = treated * (alto == 0L), trat_alto = treated * alto)]
 
@@ -290,7 +320,7 @@ ncomp_pre <- merge(d[post == 0L, .(station_key, miym)], ncomp_mes,
   , .(ncomp = mean(ncomp)), by = station_key]
 
 cat("\n=== CORRELACION rank comunal vs n competidores (tratadas, pre-entrada) ===\n")
-cc <- merge(mod[treated == 1L, .(station_key, rk_com)], ncomp_pre,
+cc <- merge(mod[treated == 1L, .(station_key, rk_com = comp_todos)], ncomp_pre,
             by = "station_key")
 cat(round(cc[, cor(rk_com, ncomp)], 3), "\n")
 
@@ -301,7 +331,9 @@ rob_ncomp <- rbindlist(lapply(c(names(precios), names(margenes)), function(fv) {
   en_log <- substr(fv, 1, 1) == "p"
   lhs <- if (en_log) sprintf("log(%s)", fv) else fv
   sc  <- if (en_log) 100 else 1
-  dd <- d[!is.na(get(fv)) & !is.na(alto) & !is.na(ncomp_z)]
+  vmod <- paste0("loo_", excluir[[fv]])
+  dd <- d[!is.na(get(fv)) & !is.na(get(vmod)) & !is.na(ncomp_z)]
+  dd[, alto := grupo_de(get(vmod), treated == 1L)]
   m <- feols(as.formula(sprintf("%s ~ post + post:alto + post:ncomp_z | %s",
                                 lhs, FE)), data = dd, cluster = ~comuna)
   ct <- coeftable(m)
@@ -321,61 +353,79 @@ print(merge(dif[, .(outcome, dif_base = dif, p_base = p)],
             by = "outcome")[, lapply(.SD, function(z)
               if (is.numeric(z)) round(z, 3) else z)])
 
-rob_minn <- rbindlist(lapply(c(4L, 8L, 12L), function(mn) {
-  r <- panel[!is.na(p93), .(station_key, miym, p93, geo = comuna)]
-  r[, n_geo := .N, by = .(geo, miym)]
-  r <- r[n_geo >= mn]
-  r[, rk := (frank(p93, ties.method = "average") - 1) / (.N - 1),
-    by = .(geo, miym)]
-  mm <- merge(d[post == 0L, .(station_key, miym, treated)],
-              r[, .(station_key, miym, rk)], by = c("station_key", "miym"))[
-    , .(rk = mean(rk), treated = first(treated)), by = station_key]
-  qq <- quantile(mm[treated == 1L, rk], CORTE, na.rm = TRUE)
-  mm[, alto2 := as.integer(rk > qq)]
-  dd0 <- merge(d, mm[, .(station_key, alto2)], by = "station_key")
-  rbindlist(lapply(c("p93", "pdi"), function(fv) {
-    dd <- dd0[!is.na(get(fv)) & !is.na(alto2)]
-    ct <- coeftable(feols(as.formula(sprintf("log(%s) ~ post + post:alto2 | %s",
-                                             fv, FE)),
-                          data = dd, cluster = ~comuna))
-    data.table(min_n = mn, outcome = fv, n_est = uniqueN(dd$station_key),
-               dif = ct["post:alto2", 1] * 100, se = ct["post:alto2", 2] * 100,
-               p = ct["post:alto2", 4])
+# ------------------------------------------------------------------------------
+# (b) comparacion de definiciones del moderador, para el anexo:
+#     A. rank del propio combustible (la version mas simple y mas expuesta)
+#     B. compuesto ponderado con los cuatro combustibles
+#     C. leave-one-out, que es el usado
+# la brecha entre B y C mide cuanto del contraste proviene del canal mecanico
+# que C elimina, ya que B incluye el propio combustible en su moderador
+# ------------------------------------------------------------------------------
+
+defs <- list(A = "propio", B = "comp_todos", C = "loo")
+
+rob_mod <- rbindlist(lapply(names(defs), function(k) {
+  rbindlist(lapply(c("p93", "p95", "p97", "pdi"), function(fv) {
+    vmod <- switch(k,
+                   A = paste0("rk_", fv),
+                   B = "comp_todos",
+                   C = paste0("loo_", excluir[[fv]]))
+    dd <- d[!is.na(get(fv)) & !is.na(get(vmod))]
+    dd[, alto := grupo_de(get(vmod), treated == 1L)]
+    ct <- coeftable(feols(as.formula(sprintf("log(%s) ~ post + post:alto | %s",
+                                             fv, FE)), dd, cluster = ~comuna))
+    data.table(def = k, outcome = fv, dif = ct["post:alto", 1] * 100,
+               se = ct["post:alto", 2] * 100, p = ct["post:alto", 4],
+               n_est = uniqueN(dd$station_key))
   }))
 }))
-fwrite(rob_minn, file.path(TAB, "het_robustez_minn.csv"))
+fwrite(rob_mod, file.path(TAB, "het_robustez_moderador.csv"))
 
-cat("\n=== ROBUSTEZ (b): sensibilidad al minimo de estaciones por comuna-mes ===\n")
-print(rob_minn[, lapply(.SD, function(z) if (is.numeric(z)) round(z, 3) else z)])
+cat("\n=== ROBUSTEZ (b): diferencia segun la definicion del moderador ===\n")
+print(dcast(rob_mod, outcome ~ def, value.var = c("dif", "p"))[
+  , lapply(.SD, function(z) if (is.numeric(z)) round(z, 3) else z)])
+
+lbl_def <- c(A = "A. Rank del propio combustible",
+             B = "B. Compuesto ponderado, cuatro combustibles",
+             C = "C. Leave-one-out (utilizado)")
+wm <- dcast(rob_mod, def ~ outcome, value.var = c("dif", "se", "p"))
+tab_mod <- data.table(`Definición del moderador` = unname(lbl_def[wm$def]))
+for (fv in c("p93", "p95", "p97", "pdi")) {
+  tab_mod[[c(p93 = "Gasolina 93", p95 = "Gasolina 95",
+             p97 = "Gasolina 97", pdi = "Diésel")[[fv]]]] <-
+    celda_tex(wm[[paste0("dif_", fv)]], wm[[paste0("se_", fv)]],
+              wm[[paste0("p_", fv)]], 3)
+}
+guardar_tabla_tex(tab_mod, "tab_het_moderador.tex")
 
 # ==============================================================================
 # 5. latex table and figures
 # ==============================================================================
 
-cols <- c(p93 = "Precio 93 (\\%)", p95 = "Precio 95 (\\%)",
-          pdi = "Precio diésel (\\%)", m93 = "Margen 93 (\\$/L)",
-          mdi = "Margen diésel (\\$/L)")
+# la tabla va transpuesta: con los resultados en las filas y los grupos en las
+# columnas caben cuatro columnas en vez de seis, y la comparacion entre grupos
+# queda dentro de cada fila, que es como efectivamente se lee
+filas <- c(p93 = "Precio gasolina 93 (\\%)", p95 = "Precio gasolina 95 (\\%)",
+           pdi = "Precio diésel (\\%)", m93 = "Margen gasolina 93 (\\$/L)",
+           mdi = "Margen diésel (\\$/L)")
 
-w <- dcast(att, grupo ~ outcome, value.var = c("att", "se", "p"))
-setorder(w, grupo)
-out <- data.table(Grupo = as.character(w$grupo))
-for (fv in names(cols)) {
-  out[[cols[[fv]]]] <- celda_tex(w[[paste0("att_", fv)]],
-                                 w[[paste0("se_", fv)]],
-                                 w[[paste0("p_", fv)]],
-                                 if (substr(fv, 1, 1) == "p") 3 else 2)
-}
-wd <- dcast(dif, . ~ outcome, value.var = c("dif", "se", "p"))
-out <- rbind(out, c(list(Grupo = "Diferencia"),
-                    setNames(lapply(names(cols), function(fv)
-                      celda_tex(wd[[paste0("dif_", fv)]],
-                                wd[[paste0("se_", fv)]],
-                                wd[[paste0("p_", fv)]],
-                                if (substr(fv, 1, 1) == "p") 3 else 2)),
-                      unname(cols))))
-guardar_tabla_tex(out, "tab_het_rank.tex", regla_antes_de = "Diferencia")
+wa <- dcast(att, outcome ~ grupo, value.var = c("att", "se", "p"))
+w  <- merge(wa, dif[, .(outcome, dif, se_dif = se, p_dif = p)], by = "outcome")
+w  <- w[match(names(filas), outcome)]
+dg <- fifelse(substr(w$outcome, 1, 1) == "p", 3L, 2L)
 
-pal <- c(AZUL_CL, NARANJO_OSC)
+out <- data.table(
+  Resultado = unname(filas[w$outcome]),
+  `Margen bajo o medio` = celda_tex(w[[paste0("att_", lbl[1])]],
+                                    w[[paste0("se_", lbl[1])]],
+                                    w[[paste0("p_", lbl[1])]], dg),
+  `Margen alto` = celda_tex(w[[paste0("att_", lbl[2])]],
+                            w[[paste0("se_", lbl[2])]],
+                            w[[paste0("p_", lbl[2])]], dg),
+  `Diferencia` = celda_tex(w$dif, w$se_dif, w$p_dif, dg))
+guardar_tabla_tex(out, "tab_het_rank.tex")
+
+pal <- c(AZUL, NARANJO)
 
 for (tipo in c("precio", "margen")) {
   vars <- if (tipo == "precio") precios else margenes
@@ -383,13 +433,19 @@ for (tipo in c("precio", "margen")) {
   dd[, combustible := factor(outcome, levels = names(vars), labels = vars)]
   dd[, grupo := factor(grupo, levels = lbl)]
   p <- ggplot(dd, aes(event_time, estimate, color = grupo, fill = grupo)) +
-    geom_ribbon(aes(ymin = ci_low, ymax = ci_high), alpha = 0.12, color = NA) +
-    geom_line(linewidth = 0.55) + geom_point(size = 0.8) +
+    geom_errorbar(aes(ymin = ci_low, ymax = ci_high), width = 0.16,
+                  position = position_dodge(width = 0.3)) +
+    geom_line(linewidth = 0.55, position = position_dodge(width = 0.3)) +
+    geom_point(size = 1.4, position = position_dodge(width = 0.3)) +
     geom_hline(yintercept = 0, linetype = "dotted") +
     geom_vline(xintercept = -0.5, linetype = "dashed", color = "grey55") +
     facet_wrap(~combustible, scales = "free_y") +
     scale_color_manual(values = pal) + scale_fill_manual(values = pal) +
-    labs(x = "Meses desde la entrada (extremos agrupados en ±12)",
+    scale_x_continuous(breaks = -NBIN:NBIN,
+                       labels = c(sprintf("\u2264\u2212%d", NBIN),
+                                  as.character(-(NBIN - 1):(NBIN - 1)),
+                                  sprintf("\u2265%d", NBIN))) +
+    labs(x = "Bins de seis meses desde la entrada (extremos agrupados)",
          y = if (tipo == "precio") "Efecto sobre el precio (%)"
              else "Efecto sobre el margen ($/L)",
          color = NULL, fill = NULL,

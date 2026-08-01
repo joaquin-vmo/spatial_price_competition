@@ -84,47 +84,6 @@
       \verb https://www.jstor.org/stable/26921832
       \endverb
     \endentry
-    \entry{CALLAWAYLI2019}{article}{}{}
-      \name{author}{2}{}{%
-        {{un=0,uniquepart=base,hash=4a5a67b3788b4a3653a14d9ab03fba0e}{%
-           family={Callaway},
-           familyi={C\bibinitperiod},
-           given={Brantly},
-           giveni={B\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=a99a584749829612e877ec074f612439}{%
-           family={Li},
-           familyi={L\bibinitperiod},
-           given={Tong},
-           giveni={T\bibinitperiod},
-           givenun=0}}%
-      }
-      \strng{namehash}{bda978f09e843bc9253a8f4bb77542d2}
-      \strng{fullhash}{bda978f09e843bc9253a8f4bb77542d2}
-      \strng{fullhashraw}{bda978f09e843bc9253a8f4bb77542d2}
-      \strng{bibnamehash}{bda978f09e843bc9253a8f4bb77542d2}
-      \strng{authorbibnamehash}{bda978f09e843bc9253a8f4bb77542d2}
-      \strng{authornamehash}{bda978f09e843bc9253a8f4bb77542d2}
-      \strng{authorfullhash}{bda978f09e843bc9253a8f4bb77542d2}
-      \strng{authorfullhashraw}{bda978f09e843bc9253a8f4bb77542d2}
-      \field{sortinit}{C}
-      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Quantitative Economics}
-      \field{number}{4}
-      \field{title}{Quantile treatment effects in difference in differences models with panel data}
-      \field{volume}{10}
-      \field{year}{2019}
-      \field{pages}{1579\bibrangedash 1618}
-      \range{pages}{40}
-      \verb{doi}
-      \verb 10.3982/QE1396
-      \endverb
-    \endentry
     \entry{FNE2021informe}{report}{}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=b4b1fd7e10d4bdd1573138f987384ee0}{%
@@ -491,47 +450,6 @@
       \endverb
       \verb{url}
       \verb https://www.jstor.org/stable/26921832
-      \endverb
-    \endentry
-    \entry{CALLAWAYLI2019}{article}{}{}
-      \name{author}{2}{}{%
-        {{un=0,uniquepart=base,hash=4a5a67b3788b4a3653a14d9ab03fba0e}{%
-           family={Callaway},
-           familyi={C\bibinitperiod},
-           given={Brantly},
-           giveni={B\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=a99a584749829612e877ec074f612439}{%
-           family={Li},
-           familyi={L\bibinitperiod},
-           given={Tong},
-           giveni={T\bibinitperiod},
-           givenun=0}}%
-      }
-      \strng{namehash}{bda978f09e843bc9253a8f4bb77542d2}
-      \strng{fullhash}{bda978f09e843bc9253a8f4bb77542d2}
-      \strng{fullhashraw}{bda978f09e843bc9253a8f4bb77542d2}
-      \strng{bibnamehash}{bda978f09e843bc9253a8f4bb77542d2}
-      \strng{authorbibnamehash}{bda978f09e843bc9253a8f4bb77542d2}
-      \strng{authornamehash}{bda978f09e843bc9253a8f4bb77542d2}
-      \strng{authorfullhash}{bda978f09e843bc9253a8f4bb77542d2}
-      \strng{authorfullhashraw}{bda978f09e843bc9253a8f4bb77542d2}
-      \field{sortinit}{C}
-      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Quantitative Economics}
-      \field{number}{4}
-      \field{title}{Quantile treatment effects in difference in differences models with panel data}
-      \field{volume}{10}
-      \field{year}{2019}
-      \field{pages}{1579\bibrangedash 1618}
-      \range{pages}{40}
-      \verb{doi}
-      \verb 10.3982/QE1396
       \endverb
     \endentry
     \entry{FNE2021informe}{report}{}{}

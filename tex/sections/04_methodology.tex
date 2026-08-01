@@ -141,7 +141,39 @@ por qué su estimación atenúa.
 
 \textcite{KOH2022} plantean que la respuesta a la competencia depende del margen con que la incumbente operaba antes de la entrada, una estación con márgenes holgados puede bajar precios, mientras que una que ya opera con márgenes estrechos carece de espacio para hacerlo y responde por otras vías, como reducir su probabilidad de seguir operando. Los autores no pueden contrastar esta hipótesis directamente, ya que no observan el precio mayorista y, por lo tanto, tampoco los márgenes de las estaciones, deben aproximarlos distinguiendo entre áreas metropolitanas y no metropolitanas, limitación que ellos mismos reconocen.
 
-La disponibilidad del MEPCO permite contrastarla de manera directa. La \Cref{hip:margen} formula la misma predicción a partir de la \Cref{prop:margen}.  Para contrastarla, cada estación se clasifica según su posición en la distribución de precios de su propia comuna antes de la entrada. Dentro de una comuna y un mes el costo mayorista es idéntico para todas las estaciones, de modo que el orden de los precios es el orden de los márgenes. El moderador se mide como el promedio de esa posición sobre la ventana previa a la entrada, nunca de manera contemporánea, y el mismo corte se aplica a las estaciones de control. Ambas precauciones son necesarias: un moderador medido después de la entrada sería un resultado del tratamiento, y seleccionar estaciones por su margen alto en un solo mes produciría una caída posterior por reversión a la media aunque no entrara nadie.
+La disponibilidad del MEPCO permite contrastarla de manera directa. La \Cref{hip:margen} formula la misma predicción a partir de la \Cref{prop:margen}. Para contrastarla hace falta una medida del margen con que cada estación operaba antes de la entrada, y esa medida debe cumplir dos condiciones.
+
+La primera es que sea comparable entre estaciones que enfrentan costos y
+mercados distintos. Se construye entonces como la \emph{posición relativa} de la
+estación dentro de la distribución de precios de su propia comuna en cada mes.
+Dentro de una comuna y un mes el costo mayorista es idéntico para todas las
+estaciones y el margen porcentual es estrictamente creciente en el precio, de
+modo que el orden de los precios es exactamente el orden de los márgenes. La
+posición así definida es además adimensional, lo que permite promediarla entre
+combustibles.
+
+La segunda es que no esté construida sobre la misma variable que el resultado.
+La medida es entonces un \emph{promedio ponderado} de la posición de la estación
+en cada combustible, con ponderadores iguales a la participación de cada uno en
+el volumen nacional de ventas —$19{,}6\%$ la gasolina de 93 octanos, $11{,}9\%$
+la de 95, $4{,}0\%$ la de 97 y $64{,}4\%$ el diésel, según
+\textcite{FNE2025informe}— y \emph{excluyendo el combustible que se analiza en
+cada caso}. Al estimar el efecto sobre el precio del diésel, por ejemplo, el
+moderador se construye solo con las tres gasolinas.
+
+La exclusión no es un refinamiento menor. El precio observado de una estación
+tiene un componente persistente, que es el que interesa, y uno transitorio. Si
+el moderador incluyera el propio combustible, el tercil superior quedaría
+poblado en parte por estaciones que simplemente recibieron perturbaciones
+positivas en la ventana previa, y esas perturbaciones revierten: el grupo alto
+caería después con o sin entrada. Excluir el combustible analizado elimina ese
+canal. El Anexo~\ref{anexo:moderador} compara esta definición con dos
+alternativas más simples y cuantifica cuánto del contraste proviene de él.
+
+Finalmente, la posición se mide siempre como el promedio sobre la ventana previa
+a la entrada y nunca de manera contemporánea, ya que una medición posterior
+sería un resultado del tratamiento y no una característica previa de la
+estación.
 
 \begin{table}[H]
 \centering
@@ -150,7 +182,16 @@ La disponibilidad del MEPCO permite contrastarla de manera directa. La \Cref{hip
 \tabla{tab_het_rank}
 \end{table}
 
-La \Cref{tab:het} y la \Cref{fig:het} confirman la predicción. El efecto sobre las estaciones del tercil superior de su comuna triplica al de las restantes, y la fila de diferencia es significativa al $5\%$ en la gasolina de 93 octanos y al $1\%$ en el diésel. Las trayectorias previas de ambos grupos son planas, lo que descarta que el resultado sea reversión a la media.
+La \Cref{tab:het} y la \Cref{fig:het} confirman la predicción. El efecto sobre
+las estaciones del tercil superior de su comuna duplica o triplica al de las
+restantes en los cinco resultados, y la fila de diferencia —que proviene de
+reparametrizar el mismo modelo, de modo que su error estándar es el del
+contraste y no el de una comparación visual de intervalos— es significativa al
+$1\%$ en el precio del diésel y en su margen, y al $10\%$ en el precio de la
+gasolina de 95 octanos. En los demás combustibles el contraste mantiene el signo
+y una magnitud comparable sin alcanzar significancia convencional, de modo que en
+ellos el resultado debe leerse como indicativo. Las trayectorias previas de ambos
+grupos son planas, lo que descarta que el resultado sea reversión a la media.
 
 \begin{figure}[H]
 \centering
@@ -180,55 +221,3 @@ La \Cref{tab:escalera} estima \eqref{eq:did} sobre la misma muestra y con el mis
 
 La especificación de sección cruzada arroja un efecto cercano al triple del que entrega la especificación preferida. Esa brecha es la medida de cuánto de la asociación bruta entre entrada y precios bajos proviene de dónde eligen instalarse las entrantes, y no de lo que su entrada provoca. El efecto fijo de estación es el que la elimina.
 
-\paragraph{Anticipación}
-
-La objeción más creíble al diseño es la anticipación. La construcción de una
-estación de servicio es visible durante meses, de modo que una incumbente podría
-comenzar a ajustar sus precios antes de la apertura. Si así fuera, el salto
-estimado sería solo la cola de una respuesta iniciada antes, y los bins de seis
-meses de la especificación principal no permitirían verlo.
-
-La \Cref{fig:anticipacion} lleva el estudio de eventos a resolución semanal en
-torno a la semana exacta de apertura de la entrante, con veintiséis semanas a
-cada lado. Donde la figura principal tiene un solo bin previo, esta tiene
-veinticinco coeficientes.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{anticipacion.pdf}
-\caption{Trayectoria semanal en torno a la apertura de la entrante}
-\label{fig:anticipacion}
-\end{figure}
-
-No hay movimiento previo. El test conjunto sobre las veinticinco semanas
-anteriores no rechaza —$p = 0{,}85$ en la gasolina de 93 octanos y $p = 0{,}57$
-en el diésel— y la pendiente de la trayectoria previa, que es el contraste con
-potencia frente a una deriva suave, es de seis diezmilésimas de punto porcentual
-por semana en la 93 y de tres milésimas en el diésel, ninguna distinguible de
-cero. Conviene notar, además, que la anticipación es una amenaza de dirección
-conocida: de existir, los precios ya estarían más bajos en el período de
-referencia y el efecto estimado sería una cota inferior en magnitud.
-
-\paragraph{Predictibilidad del momento de entrada}
-
-La verificación más directa del supuesto consiste en preguntar si las
-condiciones locales predicen \emph{cuándo} llega la entrada. Se estima un modelo
-de duración en tiempo discreto sobre el conjunto de incumbentes en riesgo, con
-el margen del mercado local, su variación sobre el año previo, el nivel de
-precios local y el número de competidores, todos medidos con rezago. El
-ejercicio se hace sobre dos muestras: todos los incumbentes en riesgo, donde
-las condiciones locales sí deberían predecir la entrada porque ahí opera la
-selección de ubicación; y solo aquellos que efectivamente reciben una entrada,
-donde el supuesto exige que no la predigan.
-
-El resultado separa con nitidez ambos canales. Las variables de rentabilidad
-—margen local, su variación y el nivel de precios— no predicen ni la incidencia
-ni el momento: el test conjunto arroja $p = 0{,}96$ en la primera muestra y
-$p = 0{,}44$ en la segunda. Lo único que predice la entrada es el número de
-competidores, en ambas muestras. Es decir, las entrantes se orientan por la
-densidad del mercado, tal como anticipa la \Cref{prop:libre}, y no por el margen
-que las incumbentes venían capturando, que es el canal que sesgaría la
-estimación de precios. Queda como limitación reconocida que la densificación de
-un mercado podría venir acompañada de crecimiento de la demanda local, algo que
-los datos disponibles no permiten descartar; la sección de limitaciones vuelve
-sobre este punto.

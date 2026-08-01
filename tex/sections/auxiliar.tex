@@ -1,0 +1,52 @@
+\paragraph{Anticipación}
+
+La objeción más creíble al diseño es la anticipación. La construcción de una
+estación de servicio es visible durante meses, de modo que una incumbente podría
+comenzar a ajustar sus precios antes de la apertura. Si así fuera, el salto
+estimado sería solo la cola de una respuesta iniciada antes, y los bins de seis
+meses de la especificación principal no permitirían verlo.
+
+La \Cref{fig:anticipacion} lleva el estudio de eventos a resolución semanal en
+torno a la semana exacta de apertura de la entrante, con veintiséis semanas a
+cada lado. Donde la figura principal tiene un solo bin previo, esta tiene
+veinticinco coeficientes.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{anticipacion.pdf}
+\caption{Trayectoria semanal en torno a la apertura de la entrante}
+\label{fig:anticipacion}
+\end{figure}
+
+No hay movimiento previo. El test conjunto sobre las veinticinco semanas
+anteriores no rechaza —$p = 0{,}85$ en la gasolina de 93 octanos y $p = 0{,}57$
+en el diésel— y la pendiente de la trayectoria previa, que es el contraste con
+potencia frente a una deriva suave, es de seis diezmilésimas de punto porcentual
+por semana en la 93 y de tres milésimas en el diésel, ninguna distinguible de
+cero. Conviene notar, además, que la anticipación es una amenaza de dirección
+conocida: de existir, los precios ya estarían más bajos en el período de
+referencia y el efecto estimado sería una cota inferior en magnitud.
+
+\paragraph{Predictibilidad del momento de entrada}
+
+La verificación más directa del supuesto consiste en preguntar si las
+condiciones locales predicen \emph{cuándo} llega la entrada. Se estima un modelo
+de duración en tiempo discreto sobre el conjunto de incumbentes en riesgo, con
+el margen del mercado local, su variación sobre el año previo, el nivel de
+precios local y el número de competidores, todos medidos con rezago. El
+ejercicio se hace sobre dos muestras: todos los incumbentes en riesgo, donde
+las condiciones locales sí deberían predecir la entrada porque ahí opera la
+selección de ubicación; y solo aquellos que efectivamente reciben una entrada,
+donde el supuesto exige que no la predigan.
+
+El resultado separa con nitidez ambos canales. Las variables de rentabilidad
+—margen local, su variación y el nivel de precios— no predicen ni la incidencia
+ni el momento: el test conjunto arroja $p = 0{,}96$ en la primera muestra y
+$p = 0{,}44$ en la segunda. Lo único que predice la entrada es el número de
+competidores, en ambas muestras. Es decir, las entrantes se orientan por la
+densidad del mercado, tal como anticipa la \Cref{prop:libre}, y no por el margen
+que las incumbentes venían capturando, que es el canal que sesgaría la
+estimación de precios. Queda como limitación reconocida que la densificación de
+un mercado podría venir acompañada de crecimiento de la demanda local, algo que
+los datos disponibles no permiten descartar; la sección de limitaciones vuelve
+sobre este punto.
