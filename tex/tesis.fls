@@ -346,9 +346,6 @@ INPUT ../results/figures/het_rank_precio.pdf
 INPUT ../results/tables/tab_fe_ladder.tex
 INPUT ../results/tables/tab_fe_ladder.tex
 INPUT ../results/tables/tab_fe_ladder.tex
-INPUT ../results/tables/tab_seleccion.tex
-INPUT ../results/tables/tab_seleccion.tex
-INPUT ../results/tables/tab_seleccion.tex
 INPUT ../results/figures/anticipacion.pdf
 INPUT ../results/figures/anticipacion.pdf
 INPUT ../results/figures/anticipacion.pdf

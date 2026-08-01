@@ -47,16 +47,18 @@ RTREAT <- 2       # treatment radius (km), same as the main specification
 MIN_N <- 4L      # min stations in a comuna-month for its rank to mean anything
 CORTE <- 2 / 3   # top tercile of the treated distribution is the "high" group
 
-precios  <- c(p93 = "gasolina 93", p95 = "gasolina 95",
-              p97 = "gasolina 97", pdi = "diesel")
-margenes <- c(m93 = "gasolina 93", m97 = "gasolina 97", mdi = "diesel")
+precios  <- c(p93 = "Gasolina 93", p95 = "Gasolina 95",
+              p97 = "Gasolina 97", pdi = "Diésel")
+margenes <- c(m93 = "Gasolina 93", m97 = "Gasolina 97", mdi = "Diésel")
 
 # brand x year is in the main specification: with three franchises holding ~80%
 # of chilean stations, a chain-level national move is a confounder that station
 # and region x year effects do not absorb
 FE <- "station_key + ym + region^year + distribuidor^year"
 
-lbl <- c("margen bajo o medio en su comuna", "margen alto en su comuna")
+# etiquetas cortas para la tabla y la leyenda; el texto explica que el tercil se
+# define dentro de la comuna, de modo que repetirlo en cada fila solo desborda
+lbl <- c("Margen bajo o medio", "Margen alto")
 
 tidy_coefs <- function(m) {
   ct <- coeftable(m)
@@ -69,10 +71,17 @@ celda_tex <- function(est, se, p, dig = 3) {
   sprintf("$%.*f%s$ ($%.*f$)", dig, est, st, dig, se)
 }
 
-guardar_tabla_tex <- function(d, archivo) {
+# la envoltura en \small es necesaria: con cinco columnas de estimador y error
+# estandar la tabla no cabe a tamano normal en el ancho de texto
+guardar_tabla_tex <- function(d, archivo, regla_antes_de = NULL) {
   cuerpo <- apply(d, 1, function(r) paste(paste(r, collapse = " & "), "\\\\"))
+  if (!is.null(regla_antes_de)) {
+    k <- which(d[[1]] == regla_antes_de)
+    if (length(k)) cuerpo[k] <- paste("\\midrule", cuerpo[k])
+  }
   writeLines(
-    c(sprintf("\\begin{tabular}{l%s}", strrep("c", ncol(d) - 1L)), "\\toprule",
+    c("\\small", sprintf("\\begin{tabular}{l%s}", strrep("c", ncol(d) - 1L)),
+      "\\toprule",
       paste(paste(names(d), collapse = " & "), "\\\\"), "\\midrule",
       cuerpo, "\\bottomrule", "\\end{tabular}"),
     file.path(TAB, archivo)
@@ -364,7 +373,7 @@ out <- rbind(out, c(list(Grupo = "Diferencia"),
                                 wd[[paste0("p_", fv)]],
                                 if (substr(fv, 1, 1) == "p") 3 else 2)),
                       unname(cols))))
-guardar_tabla_tex(out, "tab_het_rank.tex")
+guardar_tabla_tex(out, "tab_het_rank.tex", regla_antes_de = "Diferencia")
 
 pal <- c(AZUL_CL, NARANJO_OSC)
 
@@ -380,13 +389,13 @@ for (tipo in c("precio", "margen")) {
     geom_vline(xintercept = -0.5, linetype = "dashed", color = "grey55") +
     facet_wrap(~combustible, scales = "free_y") +
     scale_color_manual(values = pal) + scale_fill_manual(values = pal) +
-    labs(x = "meses desde la entrada (extremos agrupados en +-12)",
-         y = if (tipo == "precio") "efecto sobre el precio (%)"
-             else "efecto sobre el margen ($/L)",
+    labs(x = "Meses desde la entrada (extremos agrupados en ±12)",
+         y = if (tipo == "precio") "Efecto sobre el precio (%)"
+             else "Efecto sobre el margen ($/L)",
          color = NULL, fill = NULL,
-         title = "el efecto de la entrada cae sobre quien tenia margen que ceder",
-         subtitle = paste("grupos por rank de precio en la comuna antes de la",
-                          "entrada; control nunca tratadas; ee cluster comuna")) +
+         title = "El efecto de la entrada cae sobre quien tenía margen que ceder",
+         subtitle = paste("Grupos según la posición de la estación en la",
+                          "distribución de precios de su comuna antes de la entrada")) +
     tema()
   guardar(p, file.path(FIG, sprintf("het_rank_%s.pdf", tipo)),
           9.5, if (tipo == "precio") 5.8 else 4.2)

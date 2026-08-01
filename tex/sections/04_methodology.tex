@@ -141,10 +141,7 @@ por qué su estimación atenúa.
 
 \textcite{KOH2022} plantean que la respuesta a la competencia depende del margen con que la incumbente operaba antes de la entrada, una estación con márgenes holgados puede bajar precios, mientras que una que ya opera con márgenes estrechos carece de espacio para hacerlo y responde por otras vías, como reducir su probabilidad de seguir operando. Los autores no pueden contrastar esta hipótesis directamente, ya que no observan el precio mayorista y, por lo tanto, tampoco los márgenes de las estaciones, deben aproximarlos distinguiendo entre áreas metropolitanas y no metropolitanas, limitación que ellos mismos reconocen.
 
-La disponibilidad del MEPCO permite contrastarla de manera directa. La \Cref{hip:margen} formula la misma predicción a partir de la \Cref{prop:margen}, como el margen es un estadístico suficiente del aislamiento local de la estación, una incumbente con margen previo alto es una incumbente con vecinas lejanas, y por lo tanto con más que perder ante una entrada cercana.
-
-Para contrastarla, cada estación se clasifica según su posición en la
-distribución de precios de su propia comuna antes de la entrada. Dentro de una comuna y un mes el costo mayorista es idéntico para todas las estaciones, de modo que el orden de los precios es el orden de los márgenes. El moderador se mide como el promedio de esa posición sobre la ventana previa a la entrada, nunca de manera contemporánea, y el mismo corte se aplica a las estaciones de control. Ambas precauciones son necesarias: un moderador medido después de la entrada sería un resultado del tratamiento, y seleccionar estaciones por su margen alto en un solo mes produciría una caída posterior por reversión a la media aunque no entrara nadie.
+La disponibilidad del MEPCO permite contrastarla de manera directa. La \Cref{hip:margen} formula la misma predicción a partir de la \Cref{prop:margen}.  Para contrastarla, cada estación se clasifica según su posición en la distribución de precios de su propia comuna antes de la entrada. Dentro de una comuna y un mes el costo mayorista es idéntico para todas las estaciones, de modo que el orden de los precios es el orden de los márgenes. El moderador se mide como el promedio de esa posición sobre la ventana previa a la entrada, nunca de manera contemporánea, y el mismo corte se aplica a las estaciones de control. Ambas precauciones son necesarias: un moderador medido después de la entrada sería un resultado del tratamiento, y seleccionar estaciones por su margen alto en un solo mes produciría una caída posterior por reversión a la media aunque no entrara nadie.
 
 \begin{table}[H]
 \centering
@@ -162,64 +159,17 @@ La \Cref{tab:het} y la \Cref{fig:het} confirman la predicción. El efecto sobre 
 \label{fig:het}
 \end{figure}
 
-El resultado tiene una lectura que va más allá de la heterogeneidad. Lo que
-disciplina el precio no es la mera presencia de competidores, sino el margen que
-la incumbente venía capturando, que es la medida de su poder de mercado local.
-
-\paragraph{Dónde del mercado cae el precio}
-
-Los ejercicios anteriores estiman el efecto sobre el precio de cada incumbente.
-Una pregunta distinta, y de interés directo para el bienestar del consumidor, es
-en qué parte de la distribución de precios del mercado local se produce la baja.
-El Anexo~\ref{anexo:mercado} la aborda cambiando la unidad de observación al
-mercado y estimando el efecto sobre su precio máximo, medio y mínimo.
-
-El resultado es que la entrada comprime la distribución desde abajo. Dentro de un
-kilómetro, el precio mínimo del mercado cae alrededor de cinco pesos y medio por
-litro tanto en la gasolina de 93 octanos como en el diésel, mientras que el
-máximo no se mueve de manera distinguible de cero. La estación que ya era la más
-barata responde bajando aún más y la más cara no reacciona, de modo que la
-ganancia de la competencia se concentra en los consumidores que comparan precios
-antes de comprar. La implicancia distributiva de este hallazgo se retoma en las
-conclusiones.
+El resultado tiene una lectura que va más allá de la heterogeneidad. Lo que disciplina el precio no es la mera presencia de competidores, sino el margen que la incumbente venía capturando, que es la medida de su poder de mercado local.
 
 \subsection{Validez del supuesto de identificación}
 
-El supuesto que sostiene el diseño no es que la entrada sea exógena, sino que
-lo sea el \emph{momento} en que se materializa, condicional en los efectos fijos
-de \eqref{eq:es}. Esta subsección reúne la evidencia sobre esa afirmación. Los
-contrastes de tendencias previas, que son la verificación indirecta habitual,
-se presentan en el Anexo~\ref{anexo:control} junto con la comparación de grupos
-de control.
+El supuesto que sostiene el diseño no es que la entrada sea exógena, sino que lo sea el momento en que se materializa, condicional en los efectos fijos de \eqref{eq:es}. Esta subsección reúne la evidencia sobre esa afirmación. Los contrastes de tendencias previas, que son la verificación indirecta habitual, se presentan en el Anexo~\ref{anexo:control} junto con la comparación de grupos de control.
 
-\paragraph{Qué exige y qué no exige el supuesto}
+Conviene delimitar la afirmación antes de someterla a prueba, porque la mitad de las objeciones habituales apuntan a algo que el diseño no necesita. Como las cadenas eligen deliberadamente dónde instalarse, resulta inverosímil que la ubicación sea independiente de las condiciones del mercado local. Lo que se supone es que, condicional en el efecto fijo de estación y en los efectos de tiempo, la fecha precisa de apertura no responde a la evolución de los precios de las incumbentes.
 
-Conviene delimitar la afirmación antes de someterla a prueba, porque la mitad
-de las objeciones habituales apuntan a algo que el diseño no necesita.
-\textcite{ARCIDIACONO2020} son explícitos al respecto: como las cadenas eligen
-deliberadamente dónde instalarse, resulta inverosímil que la ubicación sea
-independiente de las condiciones del mercado local. Lo que se supone es que,
-condicional en el efecto fijo de estación y en los efectos de tiempo, la fecha
-precisa de apertura no responde a la evolución de los precios de las
-incumbentes.
+Esta separación tiene un fundamento institucional en el caso chileno. La decisión de instalar una estación es endógena, pero entre esa decisión y la apertura media un rezago largo, variable y de naturaleza administrativa: adquisición o arriendo del terreno, permiso de edificación, exigencias del plan regulador comunal, autorización de la Superintendencia de Electricidad y Combustibles y recepción de obras. La \textcite{FNE2021informe} documenta que la escasez de terrenos aptos, precisamente por las exigencias de los planos reguladores en las zonas urbanas más saturadas, constituye la principal barrera a la entrada del mercado. Es ese rezago el que hace que el momento de apertura sea, desde la perspectiva de la incumbente, un evento cuya fecha no está ligada a su propia conducta de precios.
 
-Esta separación tiene un fundamento institucional en el caso chileno. La
-decisión de instalar una estación es endógena, pero entre esa decisión y la
-apertura media un rezago largo, variable y de naturaleza administrativa:
-adquisición o arriendo del terreno, permiso de edificación, exigencias del plan
-regulador comunal, autorización de la Superintendencia de Electricidad y
-Combustibles y recepción de obras. La \textcite{FNE2021informe} documenta que la
-escasez de terrenos aptos, precisamente por las exigencias de los planos
-reguladores en las zonas urbanas más saturadas, constituye la principal barrera
-a la entrada del mercado. Es ese rezago el que hace que el momento de apertura
-sea, desde la perspectiva de la incumbente, un evento cuya fecha no está ligada
-a su propia conducta de precios.
-
-\paragraph{La selección de ubicación existe y el diseño la absorbe}
-
-La \Cref{tab:escalera} estima \eqref{eq:did} sobre la misma muestra y con el
-mismo regresor, variando únicamente los efectos fijos. La comparación es la de
-la tabla 6 de \textcite{ARCIDIACONO2020}.
+La \Cref{tab:escalera} estima \eqref{eq:did} sobre la misma muestra y con el mismo regresor, variando únicamente los efectos fijos. La comparación es la de la tabla 6 de \textcite{ARCIDIACONO2020}.
 
 \begin{table}[H]
 \centering
@@ -228,33 +178,7 @@ la tabla 6 de \textcite{ARCIDIACONO2020}.
 \tabla{tab_fe_ladder}
 \end{table}
 
-La especificación de sección cruzada arroja un efecto cercano al triple del que
-entrega la especificación preferida. Esa brecha no es ruido: es la medida de
-cuánto de la asociación bruta entre entrada y precios bajos proviene de dónde
-eligen instalarse las entrantes, y no de lo que su entrada provoca. El efecto
-fijo de estación es el que la elimina.
-
-La \Cref{tab:seleccion} caracteriza esa selección de manera directa, siguiendo
-la tabla 7 de \textcite{ARCIDIACONO2020}. Se extraen los efectos fijos de
-estación de la especificación principal —el nivel de precio de cada estación,
-neto de los efectos de tiempo— y se los regresa contra la distancia a la
-entrada más cercana.
-
-\begin{table}[H]
-\centering
-\caption{Nivel de precio de la estación según su distancia a la entrada más cercana}
-\label{tab:seleccion}
-\tabla{tab_seleccion}
-\end{table}
-
-Las estaciones situadas cerca de una entrada tienen niveles de precio
-sistemáticamente menores que las situadas a más de diez kilómetros de cualquier
-evento, del orden de un punto porcentual. La dirección coincide con la que
-\textcite{ARCIDIACONO2020} encuentran para Walmart, que se instala junto a
-supermercados baratos. Este resultado no contradice el supuesto: lo ilustra. La
-selección sobre ubicación es real y medible, y es exactamente lo que el efecto
-fijo de estación remueve; el supuesto solo pide que no haya, además, selección
-sobre el momento.
+La especificación de sección cruzada arroja un efecto cercano al triple del que entrega la especificación preferida. Esa brecha es la medida de cuánto de la asociación bruta entre entrada y precios bajos proviene de dónde eligen instalarse las entrantes, y no de lo que su entrada provoca. El efecto fijo de estación es el que la elimina.
 
 \paragraph{Anticipación}
 

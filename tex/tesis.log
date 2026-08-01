@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.22)  1 AUG 2026 00:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.22)  1 AUG 2026 00:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -801,65 +801,65 @@ File: ../results/figures/atenuacion_distancia.pdf Graphic file (type pdf)
 Package pdftex.def Info: ../results/figures/atenuacion_distancia.pdf  used on input line 132.
 (pdftex.def)             Requested size: 426.79135pt x 256.08234pt.
  [13 <../results/figures/formato_fischer.pdf>] [14 <../results/figures/atenuacion_distancia.pdf>] (../results/tables/tab_het_rank.tex)
-Overfull \hbox (292.47pt too wide) in paragraph at lines 1--154
+Overfull \hbox (170.88672pt too wide) in paragraph at lines 2--151
  [][] 
  []
 
 <../results/figures/het_rank_precio.pdf, id=422, 686.565pt x 419.166pt>
 File: ../results/figures/het_rank_precio.pdf Graphic file (type pdf)
 <use ../results/figures/het_rank_precio.pdf>
-Package pdftex.def Info: ../results/figures/het_rank_precio.pdf  used on input line 160.
+Package pdftex.def Info: ../results/figures/het_rank_precio.pdf  used on input line 157.
 (pdftex.def)             Requested size: 426.79135pt x 260.5646pt.
 [15 <../results/figures/het_rank_precio.pdf>] (../results/tables/tab_fe_ladder.tex)
-Overfull \hbox (160.03395pt too wide) in paragraph at lines 1--229
+Overfull \hbox (160.03395pt too wide) in paragraph at lines 1--179
  [][] 
  []
 
-[16] (../results/tables/tab_seleccion.tex)
-<../results/figures/anticipacion.pdf, id=459, 686.565pt x 332.44202pt>
+[16]
+<../results/figures/anticipacion.pdf, id=452, 686.565pt x 332.44202pt>
 File: ../results/figures/anticipacion.pdf Graphic file (type pdf)
 <use ../results/figures/anticipacion.pdf>
-Package pdftex.def Info: ../results/figures/anticipacion.pdf  used on input line 274.
+Package pdftex.def Info: ../results/figures/anticipacion.pdf  used on input line 198.
 (pdftex.def)             Requested size: 426.79135pt x 206.65468pt.
- [17]) (./sections/05_conclusion.tex [18 <../results/figures/anticipacion.pdf>] [19] [20]) [21] [22] (./sections/A1_modelo_espacial.tex [23] [24] [25]) [26] (./sections/A2_construccion_datos.tex [27] [28] [29]) (./sections/A3_grupos_control.tex (../results/tables/tab_balance_control.tex)
+) (./sections/05_conclusion.tex [17 <../results/figures/anticipacion.pdf>] [18] [19]) [20] [21] (./sections/A1_modelo_espacial.tex [22] [23] [24]) [25] (./sections/A2_construccion_datos.tex [26] [27] [28]) (./sections/A3_grupos_control.tex (../results/tables/tab_balance_control.tex)
 Overfull \hbox (91.2968pt too wide) in paragraph at lines 1--45
  [][] 
  []
 
-[30] (../results/tables/tab_pretend_control.tex)
+[29] (../results/tables/tab_pretend_control.tex)
 Overfull \hbox (916.7453pt too wide) in paragraph at lines 1--97
  [][] 
  []
 
-[31]
-<../results/figures/es_control_comparacion.pdf, id=635, 686.565pt x 404.712pt>
+[30]
+<../results/figures/es_control_comparacion.pdf, id=621, 686.565pt x 404.712pt>
 File: ../results/figures/es_control_comparacion.pdf Graphic file (type pdf)
 <use ../results/figures/es_control_comparacion.pdf>
 Package pdftex.def Info: ../results/figures/es_control_comparacion.pdf  used on input line 131.
 (pdftex.def)             Requested size: 426.79135pt x 251.5796pt.
- [32]) (./sections/A4_robustez.tex (../results/tables/tab_sunab.tex) [33 <../results/figures/es_control_comparacion.pdf>]
-<../results/figures/sunab_vs_twfe.pdf, id=663, 686.565pt x 419.166pt>
+ [31]) (./sections/A4_robustez.tex (../results/tables/tab_sunab.tex) [32 <../results/figures/es_control_comparacion.pdf>]
+<../results/figures/sunab_vs_twfe.pdf, id=650, 686.565pt x 419.166pt>
 File: ../results/figures/sunab_vs_twfe.pdf Graphic file (type pdf)
 <use ../results/figures/sunab_vs_twfe.pdf>
 Package pdftex.def Info: ../results/figures/sunab_vs_twfe.pdf  used on input line 33.
 (pdftex.def)             Requested size: 426.79135pt x 260.5646pt.
-<../results/figures/persistencia.pdf, id=666, 686.565pt x 332.44202pt>
+<../results/figures/persistencia.pdf, id=653, 686.565pt x 332.44202pt>
 File: ../results/figures/persistencia.pdf Graphic file (type pdf)
 <use ../results/figures/persistencia.pdf>
 Package pdftex.def Info: ../results/figures/persistencia.pdf  used on input line 55.
 (pdftex.def)             Requested size: 426.79135pt x 206.65468pt.
- [34 <../results/figures/sunab_vs_twfe.pdf>]) (./sections/A5_mercado.tex [35 <../results/figures/persistencia.pdf>]
-<../results/figures/mercado_max_media_min_p93.pdf, id=707, 686.565pt x 361.35pt>
+ [33 <../results/figures/sunab_vs_twfe.pdf>]) (./sections/A5_mercado.tex [34 <../results/figures/persistencia.pdf>]
+<../results/figures/mercado_max_media_min_p93.pdf, id=694, 686.565pt x 361.35pt>
 File: ../results/figures/mercado_max_media_min_p93.pdf Graphic file (type pdf)
 <use ../results/figures/mercado_max_media_min_p93.pdf>
 Package pdftex.def Info: ../results/figures/mercado_max_media_min_p93.pdf  used on input line 44.
 (pdftex.def)             Requested size: 426.79135pt x 224.62465pt.
-<../results/figures/mercado_max_media_min_pdi.pdf, id=708, 686.565pt x 361.35pt>
+<../results/figures/mercado_max_media_min_pdi.pdf, id=695, 686.565pt x 361.35pt>
 File: ../results/figures/mercado_max_media_min_pdi.pdf Graphic file (type pdf)
 <use ../results/figures/mercado_max_media_min_pdi.pdf>
 Package pdftex.def Info: ../results/figures/mercado_max_media_min_pdi.pdf  used on input line 51.
 (pdftex.def)             Requested size: 426.79135pt x 224.62465pt.
- [36 <../results/figures/mercado_max_media_min_p93.pdf>]) [37 <../results/figures/mercado_max_media_min_pdi.pdf>] (./tesis.aux
+ [35 <../results/figures/mercado_max_media_min_p93.pdf>]) [36 <../results/figures/mercado_max_media_min_pdi.pdf>] (./tesis.aux
 LaTeX Info: Redefining \sptext on input line 17.
 LaTeX Info: Redefining \. on input line 17.
 LaTeX Info: Redefining \% on input line 17.
@@ -875,18 +875,18 @@ Package logreq Info: Writing requests to 'tesis.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 24308 strings out of 467525
- 440139 string characters out of 5418982
- 1381659 words of memory out of 5000000
- 52735 multiletter control sequences out of 15000+600000
+ 24292 strings out of 467525
+ 439799 string characters out of 5418982
+ 1381500 words of memory out of 5000000
+ 52727 multiletter control sequences out of 15000+600000
  656537 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,11n,84p,1248b,2813s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on tesis.pdf (37 pages, 644766 bytes).
+Output written on tesis.pdf (36 pages, 644038 bytes).
 PDF statistics:
- 833 PDF objects out of 1000 (max. 8388607)
- 708 compressed objects within 8 object streams
- 180 named destinations out of 1000 (max. 500000)
+ 816 PDF objects out of 1000 (max. 8388607)
+ 693 compressed objects within 7 object streams
+ 175 named destinations out of 1000 (max. 500000)
  383 words of extra memory for PDF output out of 10000 (max. 10000000)
 
