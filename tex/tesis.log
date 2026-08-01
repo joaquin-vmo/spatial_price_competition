@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.22)  1 AUG 2026 00:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.22)  1 AUG 2026 00:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -746,48 +746,56 @@ Package biblatex Info: ... file 'tesis.bbl' found.
  (./tesis.bbl)
 Package biblatex Info: Reference section=0 on input line 85.
 Package biblatex Info: Reference segment=0 on input line 85.
- (./sections/01_introduction.tex [1
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 88.
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+)
+Underfull \hbox (badness 10000) in paragraph at lines 88--88
+[][]\T1/ppl/m/n/10 Facultad de Eco-no-mía y Ne-go-cios, Uni-ver-si-dad de Chi-le. Co-rreo:
+ []
 
-{/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/base/8r.enc}]) (./sections/02_revision_literatura.tex) (./sections/03_description.tex [2]
+(./sections/01_introduction.tex [1
+
+{/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/base/8r.enc}]) (./sections/02_revision_literatura.tex [2]) (./sections/03_description.tex
 LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 9.
  (/usr/local/texlive/2026/texmf-dist/tex/latex/psnfss/ts1ppl.fd
 File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
 ) [3] [4] [5]) (./sections/04_methodology.tex [6] [7] (../results/tables/tab_desc_resumen.tex)
-<../results/figures/desc_entradas_por_anio.pdf, id=282, 686.565pt x 361.35pt>
+<../results/figures/desc_entradas_por_anio.pdf, id=283, 686.565pt x 361.35pt>
 File: ../results/figures/desc_entradas_por_anio.pdf Graphic file (type pdf)
 <use ../results/figures/desc_entradas_por_anio.pdf>
 Package pdftex.def Info: ../results/figures/desc_entradas_por_anio.pdf  used on input line 34.
 (pdftex.def)             Requested size: 426.79135pt x 224.62465pt.
  [8]
-<../results/figures/desc_precio_promedio.pdf, id=293, 650.43pt x 361.35pt>
+<../results/figures/desc_precio_promedio.pdf, id=294, 650.43pt x 361.35pt>
 File: ../results/figures/desc_precio_promedio.pdf Graphic file (type pdf)
 <use ../results/figures/desc_precio_promedio.pdf>
 Package pdftex.def Info: ../results/figures/desc_precio_promedio.pdf  used on input line 43.
 (pdftex.def)             Requested size: 384.1096pt x 213.39867pt.
-<../results/figures/desc_margen_promedio.pdf, id=294, 650.43pt x 361.35pt>
+<../results/figures/desc_margen_promedio.pdf, id=295, 650.43pt x 361.35pt>
 File: ../results/figures/desc_margen_promedio.pdf Graphic file (type pdf)
 <use ../results/figures/desc_margen_promedio.pdf>
 Package pdftex.def Info: ../results/figures/desc_margen_promedio.pdf  used on input line 50.
 (pdftex.def)             Requested size: 384.1096pt x 213.39867pt.
  [9 <../results/figures/desc_entradas_por_anio.pdf> <../results/figures/desc_precio_promedio.pdf>]
-<../results/figures/desc_mercado_local.pdf, id=317, 794.97pt x 361.35pt>
+<../results/figures/desc_mercado_local.pdf, id=318, 794.97pt x 361.35pt>
 File: ../results/figures/desc_mercado_local.pdf Graphic file (type pdf)
 <use ../results/figures/desc_mercado_local.pdf>
 Package pdftex.def Info: ../results/figures/desc_mercado_local.pdf  used on input line 59.
 (pdftex.def)             Requested size: 426.79135pt x 194.00128pt.
  [10 <../results/figures/desc_margen_promedio.pdf> <../results/figures/desc_mercado_local.pdf>] (../results/tables/tab_att_control.tex) [11]
-<../results/figures/es_control_nunca.pdf, id=363, 650.43pt x 361.35pt>
+<../results/figures/es_control_nunca.pdf, id=364, 650.43pt x 361.35pt>
 File: ../results/figures/es_control_nunca.pdf Graphic file (type pdf)
 <use ../results/figures/es_control_nunca.pdf>
 Package pdftex.def Info: ../results/figures/es_control_nunca.pdf  used on input line 110.
 (pdftex.def)             Requested size: 426.79135pt x 237.1133pt.
-<../results/figures/formato_fischer.pdf, id=365, 794.97pt x 433.62pt>
+<../results/figures/formato_fischer.pdf, id=366, 794.97pt x 433.62pt>
 File: ../results/figures/formato_fischer.pdf Graphic file (type pdf)
 <use ../results/figures/formato_fischer.pdf>
 Package pdftex.def Info: ../results/figures/formato_fischer.pdf  used on input line 118.
 (pdftex.def)             Requested size: 426.79135pt x 232.80154pt.
  [12 <../results/figures/es_control_nunca.pdf>]
-<../results/figures/atenuacion_distancia.pdf, id=386, 650.43pt x 390.25798pt>
+<../results/figures/atenuacion_distancia.pdf, id=387, 650.43pt x 390.25798pt>
 File: ../results/figures/atenuacion_distancia.pdf Graphic file (type pdf)
 <use ../results/figures/atenuacion_distancia.pdf>
 Package pdftex.def Info: ../results/figures/atenuacion_distancia.pdf  used on input line 132.
@@ -797,7 +805,7 @@ Overfull \hbox (292.47pt too wide) in paragraph at lines 1--154
  [][] 
  []
 
-<../results/figures/het_rank_precio.pdf, id=421, 686.565pt x 419.166pt>
+<../results/figures/het_rank_precio.pdf, id=422, 686.565pt x 419.166pt>
 File: ../results/figures/het_rank_precio.pdf Graphic file (type pdf)
 <use ../results/figures/het_rank_precio.pdf>
 Package pdftex.def Info: ../results/figures/het_rank_precio.pdf  used on input line 160.
@@ -808,16 +816,12 @@ Overfull \hbox (160.03395pt too wide) in paragraph at lines 1--229
  []
 
 [16] (../results/tables/tab_seleccion.tex)
-<../results/figures/anticipacion.pdf, id=458, 686.565pt x 332.44202pt>
+<../results/figures/anticipacion.pdf, id=459, 686.565pt x 332.44202pt>
 File: ../results/figures/anticipacion.pdf Graphic file (type pdf)
 <use ../results/figures/anticipacion.pdf>
 Package pdftex.def Info: ../results/figures/anticipacion.pdf  used on input line 274.
 (pdftex.def)             Requested size: 426.79135pt x 206.65468pt.
- [17]) (./sections/05_conclusion.tex [18 <../results/figures/anticipacion.pdf>] [19] [20]) [21] [22] (./sections/A1_modelo_espacial.tex [23] [24] [25]) [26] (./sections/A2_construccion_datos.tex
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 24.
- (/usr/local/texlive/2026/texmf-dist/tex/latex/psnfss/t1pcr.fd
-File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-) [27] [28] [29]) (./sections/A3_grupos_control.tex (../results/tables/tab_balance_control.tex)
+ [17]) (./sections/05_conclusion.tex [18 <../results/figures/anticipacion.pdf>] [19] [20]) [21] [22] (./sections/A1_modelo_espacial.tex [23] [24] [25]) [26] (./sections/A2_construccion_datos.tex [27] [28] [29]) (./sections/A3_grupos_control.tex (../results/tables/tab_balance_control.tex)
 Overfull \hbox (91.2968pt too wide) in paragraph at lines 1--45
  [][] 
  []
@@ -871,15 +875,15 @@ Package logreq Info: Writing requests to 'tesis.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 24306 strings out of 467525
- 440120 string characters out of 5418982
- 1381547 words of memory out of 5000000
- 52734 multiletter control sequences out of 15000+600000
- 655916 words of font info for 94 fonts, out of 8000000 for 9000
+ 24308 strings out of 467525
+ 440139 string characters out of 5418982
+ 1381659 words of memory out of 5000000
+ 52735 multiletter control sequences out of 15000+600000
+ 656537 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,10n,84p,1248b,2813s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,11n,84p,1248b,2813s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on tesis.pdf (37 pages, 639469 bytes).
+Output written on tesis.pdf (37 pages, 644766 bytes).
 PDF statistics:
  833 PDF objects out of 1000 (max. 8388607)
  708 compressed objects within 8 object streams

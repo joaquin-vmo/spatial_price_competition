@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber tesis"] 1785557004.61211 "tesis.bcf" "tesis.bbl" "tesis" 1785557561.87525 0
+["biber tesis"] 1785557004.61211 "tesis.bcf" "tesis.bbl" "tesis" 1785557894.33895 0
   "bibliografia.bib" 1785552437.35419 8560 45177b08e5c01bd2132dac9a8fc2956e ""
-  "tesis.bcf" 1785557561.79519 141073 af13cab58d4be6f7d62d9c2b7f505c1f "pdflatex"
+  "tesis.bcf" 1785557894.25897 141073 af13cab58d4be6f7d62d9c2b7f505c1f "pdflatex"
   (generated)
   "tesis.bbl"
   "tesis.blg"
   (rewritten before read)
-["pdflatex"] 1785557560.14579 "/Users/joaquin/Desktop/spatial_price_competition/tex/tesis.tex" "tesis.pdf" "tesis" 1785557561.87556 0
+["pdflatex"] 1785557892.65942 "/Users/joaquin/Desktop/spatial_price_competition/tex/tesis.tex" "tesis.pdf" "tesis" 1785557894.33928 0
   "../results/figures/anticipacion.pdf" 1785551452.62614 18977 90ddea0ef4f989692e7fd4686b8a61b0 ""
   "../results/figures/atenuacion_distancia.pdf" 1785557305.31198 22212 a19d912603d6e26638698b1c1dcb1235 ""
   "../results/figures/desc_entradas_por_anio.pdf" 1785554483.01129 19377 9766ae0444298ff769b9d2ff4663f026 ""
@@ -29,7 +29,7 @@
   "../results/tables/tab_pretend_control.tex" 1785556549.0196 757 450108af508de76ba7db741012c3ee6c ""
   "../results/tables/tab_seleccion.tex" 1785551453.55789 426 4d4c71a832ad99c3a0a0d8c1168809c9 ""
   "../results/tables/tab_sunab.tex" 1785556601.42777 370 b23f2f03dc2e21b1f8c65ef23d10d35e ""
-  "/Users/joaquin/Desktop/spatial_price_competition/tex/tesis.tex" 1785556367.04493 3729 cf3537f935d8c095906d60823d01a900 ""
+  "/Users/joaquin/Desktop/spatial_price_competition/tex/tesis.tex" 1785557890.56944 3936 daea04f8ec652ad416eb80dd5d9befcd ""
   "/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2026/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/adobe/courier/pcrr8r.tfm" 1136768653 1292 bd42be2f344128bff6d35d98474adfe3 ""
@@ -177,11 +177,11 @@
   "sections/A3_grupos_control.tex" 1785555488.88778 7488 b22578bf67362a909e1e0dff5fdc2af5 ""
   "sections/A4_robustez.tex" 1785553660.83949 3822 6e6f08f8ee6d7f58bc2118d1167c2b52 ""
   "sections/A5_mercado.tex" 1785556344.17031 4302 9e1780ce61c7d76535b4b66758e49cbf ""
-  "tesis.aux" 1785557561.78806 33485 177c7bc58669a35e429e2a3223820b82 "pdflatex"
+  "tesis.aux" 1785557894.25277 33485 ef70fb82bf164997edd8db73dc11ff7d "pdflatex"
   "tesis.bbl" 1785557007.05596 39676 8cb3aad0969a54ec1612370c3fba9df5 "biber tesis"
-  "tesis.out" 1785557561.79417 7996 8f9636d94c4deff6efd1a5768dd0da3c "pdflatex"
-  "tesis.run.xml" 1785557561.79599 2368 af8643fa711d951294af5a65e16b3cf3 "pdflatex"
-  "tesis.tex" 1785556367.04493 3729 cf3537f935d8c095906d60823d01a900 ""
+  "tesis.out" 1785557894.25792 7996 8f9636d94c4deff6efd1a5768dd0da3c "pdflatex"
+  "tesis.run.xml" 1785557894.2596 2368 af8643fa711d951294af5a65e16b3cf3 "pdflatex"
+  "tesis.tex" 1785557890.56944 3936 daea04f8ec652ad416eb80dd5d9befcd ""
   (generated)
   "tesis.aux"
   "tesis.bcf"
