@@ -1,0 +1,310 @@
+\section{Estrategia Empírica}
+
+\subsection{Datos}
+
+\paragraph{Fuentes}
+
+La investigación combina dos fuentes, todas de acceso público. La primera es el registro histórico de precios de la Comisión Nacional de Energía (CNE). Cada observación corresponde a una actualización de precio informada por una EDS para un combustible determinado, con su fecha, y viene acompañada de la identificación de la estación, su distribuidor, sus coordenadas geográficas y su comuna y región. Como las EDS están obligadas por norma a informar cada variación de precio, el registro constituye un censo de la evolución de precios del mercado y no una muestra. La serie utilizada cubre desde enero de 2012 hasta julio de 2026.\footnote{Adicionalmente la CNE dispone información de servicios complementarios que ofrece cada EDS: tienda de conveniencia, lavado, baño público, farmacia, surtidor de camiones, entre otros. Estos atributos se emplean únicamente con fines descriptivos y de balance, ya que solo se dispone de la última actualización de cada estación y no de su evolución en el tiempo.}
+
+La segunda es la serie semanal del precio mayorista con MEPCO, publicada por el Ministerio de Hacienda. Cubre desde el 7 de agosto de 2014 hasta el 2 de julio de 2026 y consta de 622 semanas consecutivas sin interrupciones, todas con vigencia a partir del día jueves, tal como establece la ley \parencite{LEY20765}. La serie está disponible para las gasolinas de 93 y 97 octanos y para el diésel, no existe una referencia MEPCO para la gasolina de 95 octanos, que por ello queda fuera de todo análisis de márgenes.
+
+\paragraph{Construcción del panel}
+
+El registro de la CNE genera una fila cada vez que una estación informa un precio, de modo que las observaciones son irregulares en el tiempo y no constituyen un panel. Su transformación en un panel balanceado descansa en tres decisiones, cuyo detalle e implementación se documentan en el Anexo~\ref{anexo:datos}. La unidad de análisis es la estación física y no el identificador administrativo, porque un mismo local puede aparecer en el registro bajo más de un código. Los identificadores que corresponden a un mismo local se fusionan en una sola unidad, de no hacerlo, un cambio de operador se contaría como una salida seguida de una entrada, y un registro duplicado inflaría el conteo de competidores cercanos.
+
+El panel se construye a frecuencia semanal sobre la grilla de jueves del MEPCO, y de ahí se colapsa a frecuencia mensual. La semana no es una elección arbitraria, es la cadencia efectiva con que las estaciones reportan y es también la frecuencia nativa del precio mayorista. En esa grilla, el $81{,}1\%$ de las celdas corresponde a un precio efectivamente informado esa semana y el resto a un precio vigente arrastrado desde el último reporte, con un tope que impide arrastrarlo a través de períodos en que la estación no operaba. El margen bruto se define como el precio de venta menos el precio mayorista con MEPCO vigente esa semana, conforme a la \Cref{prop:margen}. Al ser el MEPCO una referencia nacional, el costo se adjudica por combustible y semana, no por estación.
+
+El resultado es un panel semanal de 4.663.553 observaciones sobre 2.030 estaciones y 758 semanas, y su colapso mensual de 283.695 observaciones sobre 175 meses.
+
+\paragraph{Definición de los eventos y de los grupos de comparación} Una entrada se define como el primer mes en que una estación física aparece en el registro, sujeto a tres restricciones que determinan qué eventos pueden usarse como tratamiento y que el Anexo~\ref{anexo:datos} detalla. Con estas restricciones, una incumbente se clasifica como tratada si experimenta una entrada dentro de un radio de 2 kilómetros mientras ya está operando. Las restantes conforman el grupo de comparación y se subdividen en un anillo, entre 2 y 5 kilómetros del evento más cercano, y un grupo lejano, a más de 5 kilómetros de toda entrada. La \Cref{tab:resumen} resume la composición resultante de la muestra.\footnote{Las salidas requieren una advertencia. El cambio de régimen de reporte de la CNE entre los archivos antiguos y los actuales deja una cicatriz en los datos que impide fechar con confianza el cierre de una estación en torno al quiebre, el Anexo~\ref{anexo:datos} documenta su origen y su magnitud. La limitación no afecta al diseño, que se construye exclusivamente sobre entradas.}
+
+\begin{table}[H]
+\centering
+\caption{Composición de la muestra}
+\label{tab:resumen}
+\tabla{tab_desc_resumen}
+\end{table}
+
+La tabla y las figuras que siguen tienen por objeto mostrar que el panel reúne las condiciones que el diseño de identificación requiere, tales como número suficiente de eventos, dispersos en el tiempo, con grupos de comparación bien poblados y con variables de resultado que se comportan de manera estable.
+
+La \Cref{fig:entradas} presenta las entradas por año y por marca de la estación entrante, desde 2014, que es el período en que rige el MEPCO y del que provienen las cohortes de tratamiento. Los eventos se distribuyen a lo largo de toda la serie. Destaca que la bandera blanca es el principal entrante del mercado, con 184 de las 482 entradas, por sobre Copec con 140.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{desc_entradas_por_anio.pdf}
+\caption{Entradas por año y marca de la estación entrante}
+\label{fig:entradas}
+\end{figure}
+
+La \Cref{fig:precio} muestra la evolución del precio promedio nacional por combustible. Las cuatro series se mueven juntas y están dominadas por el costo mayorista, que es común a todas las estaciones: es precisamente esa componente la que el margen descuenta. La \Cref{fig:margen} presenta el margen bruto promedio a partir de agosto de 2014. A diferencia del precio, el margen se mueve en un rango acotado, lo que confirma que descontar el MEPCO aísla una variable de nivel comparable a lo largo del tiempo y no una tendencia macroeconómica.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{desc_precio_promedio.pdf}
+\caption{Precio promedio nacional por combustible}
+\label{fig:precio}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{desc_margen_promedio.pdf}
+\caption{Margen bruto promedio sobre el precio mayorista con MEPCO}
+\label{fig:margen}
+\end{figure}
+
+Por último, la \Cref{fig:mercado} describe el mercado local en el momento en que ocurre cada entrada. El $72{,}6\%$ de las entradas tiene al menos una estación vecina dentro de 2 kilómetros, con un promedio de 3,4 vecinos y una mediana de 2. Dos rasgos importan para la interpretación. Primero, los mercados afectados son efectivamente locales y poblados, de modo que la entrada constituye un cambio apreciable en la estructura competitiva y no una perturbación marginal. Segundo, solo el $19\%$ de las estaciones vecinas comparte marca con la entrante, lo que indica que la entrada típica es la llegada de un competidor y no la expansión de la red de una misma cadena.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{desc_mercado_local.pdf}
+\caption{Composición de marca del mercado local al momento de la entrada}
+\label{fig:mercado}
+\end{figure}
+
+\subsection{Identificación}
+
+La estrategia sigue de cerca a \textcite{FISCHER2025}, cuyo objeto de estudio el efecto de la entrada de una estación sobre los precios de las incumbentes de su mercado local es el mismo de este trabajo. Se estima un estudio de eventos sobre el panel mensual de estaciones,
+%
+\begin{equation}
+    y_{it} = \alpha_i + \lambda_t + \gamma_{r(i)a(t)} + \delta_{m(i)a(t)}
+             + \sum_{\substack{\tau=-4 \\ \tau \neq -1}}^{4}
+               \beta_\tau \, D^{\tau}_{it} + \varepsilon_{it},
+    \label{eq:es}
+\end{equation}
+%
+donde $y_{it}$ es el precio en logaritmo o el margen de la estación $i$ en el mes $t$, $\alpha_i$ es un efecto fijo de estación; $\lambda_t$ uno de mes, $\gamma_{r(i)a(t)}$ uno de región por año y $\delta_{m(i)a(t)}$ uno de marca por año. El indicador $D^{\tau}_{it}$ vale uno si la estación $i$ es tratada y el mes $t$ cae en el $\tau$-ésimo bin de seis meses respecto de la entrada que la trata. Los bins se agrupan en los extremos, de modo que $\tau \le -4$ y $\tau \ge 4$ acumulan todo lo que ocurre más allá de la ventana, y $\tau = -1$ es la categoría omitida. La ventana de cuatro bins previos y cinco posteriores, así como el agrupamiento de los extremos, replican el formato de reporte de \textcite{FISCHER2025}. Los errores estándar se agrupan a nivel de comuna.
+
+El efecto promedio se obtiene de la versión estática de \eqref{eq:es},
+%
+\begin{equation}
+    y_{it} = \alpha_i + \lambda_t + \gamma_{r(i)a(t)} + \delta_{m(i)a(t)}
+             + \beta \, \mathrm{Post}_{it} + \varepsilon_{it},
+    \label{eq:did}
+\end{equation}
+%
+donde $\mathrm{Post}_{it}$ vale uno para una estación tratada desde el mes de la entrada en adelante.
+
+Dos elementos de \eqref{eq:es} merecen justificación. El efecto fijo de estación absorbe todo atributo invariante del local tales como su ubicación, tamaño, y posición relativa dentro del mercado local, de modo que la identificación proviene únicament  de la variación dentro de cada estación. El efecto fijo de marca por año, que \textcite{FISCHER2025} no incorpora, responde a un rasgo propio del caso
+chileno documentado en la sección anterior.\footnote{Bajo el modelo de consignación el precio de venta al público lo determina la compañía mayorista, y con tres cadenas que concentran cerca del $80\%$ de las EDS, un movimiento nacional de cualquiera de ellas es un confusor que ni el efecto fijo de estación ni el de región por año absorben.}
+
+El supuesto de identificación es que el momento en que la entrada se materializa es exógeno desde la perspectiva de la incumbente, condicional en los efectos fijos de \eqref{eq:es}. Es el supuesto de \textcite{ARCIDIACONO2020}, adoptado también por \textcite{FISCHER2025} y por \textcite{KOH2022}. No exige que la ubicación de la entrada sea exógena (de hecho, no lo es) sino solo que, dado que una entrada va a ocurrir en un mercado, la fecha precisa  en que ocurre no responda a la evolución de los precios de las incumbentes. Este supuesto se defiende por las regulaciones que conlleva abrir una nueva estación y se justifica empíricamente más adelante.
+
+\textcite{FISCHER2025} comparan las incumbentes tratadas contra el conjunto de estaciones no tratadas, sin construir un anillo de control. Este trabajo adopta el mismo criterio, y la \Cref{tab:control} justifica la elección estimando \eqref{eq:did} bajo las tres definiciones posibles del grupo de comparación: el anillo de estaciones entre 2 y 5 kilómetros del evento, las estaciones lejanas a más de 5 kilómetros de toda entrada, y la unión de ambas, que es el conjunto de las nunca tratadas.
+
+\subsubsection{Efectos sobre precios y márgenes}
+
+\begin{table}[H]
+\centering
+\caption{Efecto de la entrada sobre el precio, según el grupo de comparación}
+\label{tab:control}
+\tabla{tab_att_control}
+\end{table}
+
+Las tres definiciones de control entregan básicamente el mismo resultado. Para elegir el grupo de control hay que considerar los criterios de (i) número de estaciones control, (ii) ausencia de spillovers. Por lo que tanto controles lejanos como nunca-tratadas sirven, se elige nunca-tratadas. El Anexo~\ref{anexo:control} desarrolla esta comparación con el balance de covariables y los tests de tendencias previas de cada grupo.
+
+La \Cref{fig:es} presenta el estudio de eventos de \eqref{eq:es} bajo la
+especificación principal. Las trayectorias son planas antes de la entrada y caen de manera abrupta en el bin de la entrada, sin revertirse en los cinco bins posteriores, es decir, a lo largo de dos años y medio. La persistencia importa, un efecto que se disipara sería compatible con una reacción transitoria de posicionamiento, mientras que uno persistente indica un cambio en el equilibrio del mercado local, que es lo que predice la \Cref{prop:entrada}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{es_control_nunca.pdf}
+\caption{Efecto de la entrada sobre el precio de las incumbentes}
+\label{fig:es}
+\end{figure}
+La \Cref{fig:ff} presenta los resultados de precios y márgenes para los bienes disponibles en las bases del MEPCO. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{formato_fischer.pdf}
+\caption{Efecto de la entrada sobre el precio y el margen, por combustible}
+\label{fig:ff}
+\end{figure}
+
+En el caso de la gasolina de 97 octanos se exhibe un efecto sistemáticamente menor y menos precisa, a un kilómetro no alcanza significancia convencional ni en precios ni en márgenes, y solo la logra al ampliar el radio a dos. La lectura que se desprende de esto es que a diferencia de la gasolina de 93 octanos la 97 es el combustible premium del mercado. Representa apenas el $3{,}3\%$ de las ventas nacionales de combustibles líquidos frente al $16\%$ de la 93 \parencite{FNE2025informe}, y sus consumidores plausiblemente presentan una demanda menos elástica al precio. Si la demanda que enfrenta la incumbente en ese producto es menos sensible, la llegada de un competidor genera menos presión para ajustarlo. El resultado es entonces informativo, pero conviene no apoyar en él ninguna conclusión que los otros dos combustibles no sostengan por sí solos.
+
+La \Cref{hip:distancia} predice que el efecto decrece con la distancia entre la entrante y la incumbente y se anula a partir de un umbral. La
+\Cref{fig:atenuacion} lo contrasta asignando cada estación al anillo de un kilómetro correspondiente a su primera entrada cercana y estimando el efecto por anillo.
+
+\subsubsection{Atenuación por distancia}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{atenuacion_distancia.pdf}
+\caption{Atenuación del efecto de la entrada con la distancia}
+\label{fig:atenuacion}
+\end{figure}
+
+El perfil decae desde el anillo más cercano y deja de ser distinguible de cero entre los tres y los cuatro kilómetros. Por un lado, el resultado valida la predicción del modelo, y el umbral coincide con la delimitación de mercado geográfico que la \textcite{FNE2021informe} emplea en sus investigaciones. Por otro, es informativo a la hora de decidir utilizar o no controles dentro de los anillos entre 3 a 5km. Si el efecto sigue vivo a dos o tres kilómetros, el anillo de control necesariamente contiene estaciones parcialmente tratadas, lo que explica
+por qué su estimación atenúa.
+
+\subsubsection{Heterogeneidad según el margen previo}
+
+\textcite{KOH2022} plantean que la respuesta a la competencia depende del margen con que la incumbente operaba antes de la entrada, una estación con márgenes holgados puede bajar precios, mientras que una que ya opera con márgenes estrechos carece de espacio para hacerlo y responde por otras vías, como reducir su probabilidad de seguir operando. Los autores no pueden contrastar esta hipótesis directamente, ya que no observan el precio mayorista y, por lo tanto, tampoco los márgenes de las estaciones, deben aproximarlos distinguiendo entre áreas metropolitanas y no metropolitanas, limitación que ellos mismos reconocen.
+
+La disponibilidad del MEPCO permite contrastarla de manera directa. La \Cref{hip:margen} formula la misma predicción a partir de la \Cref{prop:margen}, como el margen es un estadístico suficiente del aislamiento local de la estación, una incumbente con margen previo alto es una incumbente con vecinas lejanas, y por lo tanto con más que perder ante una entrada cercana.
+
+Para contrastarla, cada estación se clasifica según su posición en la
+distribución de precios de su propia comuna antes de la entrada. Dentro de una comuna y un mes el costo mayorista es idéntico para todas las estaciones, de modo que el orden de los precios es el orden de los márgenes. El moderador se mide como el promedio de esa posición sobre la ventana previa a la entrada, nunca de manera contemporánea, y el mismo corte se aplica a las estaciones de control. Ambas precauciones son necesarias: un moderador medido después de la entrada sería un resultado del tratamiento, y seleccionar estaciones por su margen alto en un solo mes produciría una caída posterior por reversión a la media aunque no entrara nadie.
+
+\begin{table}[H]
+\centering
+\caption{Efecto de la entrada según el margen previo de la incumbente}
+\label{tab:het}
+\tabla{tab_het_rank}
+\end{table}
+
+La \Cref{tab:het} y la \Cref{fig:het} confirman la predicción. El efecto sobre las estaciones del tercil superior de su comuna triplica al de las restantes, y la fila de diferencia es significativa al $5\%$ en la gasolina de 93 octanos y al $1\%$ en el diésel. Las trayectorias previas de ambos grupos son planas, lo que descarta que el resultado sea reversión a la media.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{het_rank_precio.pdf}
+\caption{Efecto de la entrada según el margen previo de la incumbente}
+\label{fig:het}
+\end{figure}
+
+El resultado tiene una lectura que va más allá de la heterogeneidad. Lo que
+disciplina el precio no es la mera presencia de competidores, sino el margen que
+la incumbente venía capturando, que es la medida de su poder de mercado local.
+
+\paragraph{Dónde del mercado cae el precio}
+
+Los ejercicios anteriores estiman el efecto sobre el precio de cada incumbente.
+Una pregunta distinta, y de interés directo para el bienestar del consumidor, es
+en qué parte de la distribución de precios del mercado local se produce la baja.
+El Anexo~\ref{anexo:mercado} la aborda cambiando la unidad de observación al
+mercado y estimando el efecto sobre su precio máximo, medio y mínimo.
+
+El resultado es que la entrada comprime la distribución desde abajo. Dentro de un
+kilómetro, el precio mínimo del mercado cae alrededor de cinco pesos y medio por
+litro tanto en la gasolina de 93 octanos como en el diésel, mientras que el
+máximo no se mueve de manera distinguible de cero. La estación que ya era la más
+barata responde bajando aún más y la más cara no reacciona, de modo que la
+ganancia de la competencia se concentra en los consumidores que comparan precios
+antes de comprar. La implicancia distributiva de este hallazgo se retoma en las
+conclusiones.
+
+\subsection{Validez del supuesto de identificación}
+
+El supuesto que sostiene el diseño no es que la entrada sea exógena, sino que
+lo sea el \emph{momento} en que se materializa, condicional en los efectos fijos
+de \eqref{eq:es}. Esta subsección reúne la evidencia sobre esa afirmación. Los
+contrastes de tendencias previas, que son la verificación indirecta habitual,
+se presentan en el Anexo~\ref{anexo:control} junto con la comparación de grupos
+de control.
+
+\paragraph{Qué exige y qué no exige el supuesto}
+
+Conviene delimitar la afirmación antes de someterla a prueba, porque la mitad
+de las objeciones habituales apuntan a algo que el diseño no necesita.
+\textcite{ARCIDIACONO2020} son explícitos al respecto: como las cadenas eligen
+deliberadamente dónde instalarse, resulta inverosímil que la ubicación sea
+independiente de las condiciones del mercado local. Lo que se supone es que,
+condicional en el efecto fijo de estación y en los efectos de tiempo, la fecha
+precisa de apertura no responde a la evolución de los precios de las
+incumbentes.
+
+Esta separación tiene un fundamento institucional en el caso chileno. La
+decisión de instalar una estación es endógena, pero entre esa decisión y la
+apertura media un rezago largo, variable y de naturaleza administrativa:
+adquisición o arriendo del terreno, permiso de edificación, exigencias del plan
+regulador comunal, autorización de la Superintendencia de Electricidad y
+Combustibles y recepción de obras. La \textcite{FNE2021informe} documenta que la
+escasez de terrenos aptos, precisamente por las exigencias de los planos
+reguladores en las zonas urbanas más saturadas, constituye la principal barrera
+a la entrada del mercado. Es ese rezago el que hace que el momento de apertura
+sea, desde la perspectiva de la incumbente, un evento cuya fecha no está ligada
+a su propia conducta de precios.
+
+\paragraph{La selección de ubicación existe y el diseño la absorbe}
+
+La \Cref{tab:escalera} estima \eqref{eq:did} sobre la misma muestra y con el
+mismo regresor, variando únicamente los efectos fijos. La comparación es la de
+la tabla 6 de \textcite{ARCIDIACONO2020}.
+
+\begin{table}[H]
+\centering
+\caption{Efecto estimado según los efectos fijos incluidos}
+\label{tab:escalera}
+\tabla{tab_fe_ladder}
+\end{table}
+
+La especificación de sección cruzada arroja un efecto cercano al triple del que
+entrega la especificación preferida. Esa brecha no es ruido: es la medida de
+cuánto de la asociación bruta entre entrada y precios bajos proviene de dónde
+eligen instalarse las entrantes, y no de lo que su entrada provoca. El efecto
+fijo de estación es el que la elimina.
+
+La \Cref{tab:seleccion} caracteriza esa selección de manera directa, siguiendo
+la tabla 7 de \textcite{ARCIDIACONO2020}. Se extraen los efectos fijos de
+estación de la especificación principal —el nivel de precio de cada estación,
+neto de los efectos de tiempo— y se los regresa contra la distancia a la
+entrada más cercana.
+
+\begin{table}[H]
+\centering
+\caption{Nivel de precio de la estación según su distancia a la entrada más cercana}
+\label{tab:seleccion}
+\tabla{tab_seleccion}
+\end{table}
+
+Las estaciones situadas cerca de una entrada tienen niveles de precio
+sistemáticamente menores que las situadas a más de diez kilómetros de cualquier
+evento, del orden de un punto porcentual. La dirección coincide con la que
+\textcite{ARCIDIACONO2020} encuentran para Walmart, que se instala junto a
+supermercados baratos. Este resultado no contradice el supuesto: lo ilustra. La
+selección sobre ubicación es real y medible, y es exactamente lo que el efecto
+fijo de estación remueve; el supuesto solo pide que no haya, además, selección
+sobre el momento.
+
+\paragraph{Anticipación}
+
+La objeción más creíble al diseño es la anticipación. La construcción de una
+estación de servicio es visible durante meses, de modo que una incumbente podría
+comenzar a ajustar sus precios antes de la apertura. Si así fuera, el salto
+estimado sería solo la cola de una respuesta iniciada antes, y los bins de seis
+meses de la especificación principal no permitirían verlo.
+
+La \Cref{fig:anticipacion} lleva el estudio de eventos a resolución semanal en
+torno a la semana exacta de apertura de la entrante, con veintiséis semanas a
+cada lado. Donde la figura principal tiene un solo bin previo, esta tiene
+veinticinco coeficientes.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{anticipacion.pdf}
+\caption{Trayectoria semanal en torno a la apertura de la entrante}
+\label{fig:anticipacion}
+\end{figure}
+
+No hay movimiento previo. El test conjunto sobre las veinticinco semanas
+anteriores no rechaza —$p = 0{,}85$ en la gasolina de 93 octanos y $p = 0{,}57$
+en el diésel— y la pendiente de la trayectoria previa, que es el contraste con
+potencia frente a una deriva suave, es de seis diezmilésimas de punto porcentual
+por semana en la 93 y de tres milésimas en el diésel, ninguna distinguible de
+cero. Conviene notar, además, que la anticipación es una amenaza de dirección
+conocida: de existir, los precios ya estarían más bajos en el período de
+referencia y el efecto estimado sería una cota inferior en magnitud.
+
+\paragraph{Predictibilidad del momento de entrada}
+
+La verificación más directa del supuesto consiste en preguntar si las
+condiciones locales predicen \emph{cuándo} llega la entrada. Se estima un modelo
+de duración en tiempo discreto sobre el conjunto de incumbentes en riesgo, con
+el margen del mercado local, su variación sobre el año previo, el nivel de
+precios local y el número de competidores, todos medidos con rezago. El
+ejercicio se hace sobre dos muestras: todos los incumbentes en riesgo, donde
+las condiciones locales sí deberían predecir la entrada porque ahí opera la
+selección de ubicación; y solo aquellos que efectivamente reciben una entrada,
+donde el supuesto exige que no la predigan.
+
+El resultado separa con nitidez ambos canales. Las variables de rentabilidad
+—margen local, su variación y el nivel de precios— no predicen ni la incidencia
+ni el momento: el test conjunto arroja $p = 0{,}96$ en la primera muestra y
+$p = 0{,}44$ en la segunda. Lo único que predice la entrada es el número de
+competidores, en ambas muestras. Es decir, las entrantes se orientan por la
+densidad del mercado, tal como anticipa la \Cref{prop:libre}, y no por el margen
+que las incumbentes venían capturando, que es el canal que sesgaría la
+estimación de precios. Queda como limitación reconocida que la densificación de
+un mercado podría venir acompañada de crecimiento de la demanda local, algo que
+los datos disponibles no permiten descartar; la sección de limitaciones vuelve
+sobre este punto.

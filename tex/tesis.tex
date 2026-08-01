@@ -1,0 +1,123 @@
+\documentclass[12pt,a4paper,oneside]{article}
+
+\usepackage[spanish]{babel}
+% 'es-tabla' choca con biblatex-apa
+\addto\captionsspanish{\renewcommand{\tablename}{Tabla}}
+\usepackage{caption} % define \@makecaption limpiamente (babel-spanish no lo hace)
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{palatino}
+
+\usepackage{csquotes}
+
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{graphicx}
+\usepackage{booktabs}   % \toprule, \midrule y \bottomrule de las tablas generadas en R
+\usepackage{float}
+% las figuras y tablas las genera el codigo R en results/, fuera de tex/
+\graphicspath{{../results/figures/}}
+\newcommand{\tabla}[1]{\input{../results/tables/#1.tex}}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+% entornos para los resultados del modelo teorico; las demostraciones van al anexo
+\theoremstyle{plain}
+\newtheorem{proposicion}{Proposición}
+\theoremstyle{definition}
+\newtheorem{corolario}{Corolario}
+\newtheorem{hipotesis}{Hipótesis}
+\renewcommand\proofname{Demostración}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=Blue,
+    citecolor=Blue,
+    urlcolor=
+}
+\usepackage{cleveref}
+
+% cleveref necesita saber como nombrar los entornos definidos arriba
+% cleveref no toma las conjunciones de babel-spanish por si solo, y las define
+% recien al abrir el documento, de ahi el \AtBeginDocument
+\AtBeginDocument{%
+  \renewcommand{\crefpairconjunction}{ y }%
+  \renewcommand{\creflastconjunction}{ y }%
+  \renewcommand{\crefrangeconjunction}{ a }%
+}
+
+\crefname{table}{tabla}{tablas}
+\Crefname{table}{Tabla}{Tablas}
+\crefname{figure}{figura}{figuras}
+\Crefname{figure}{Figura}{Figuras}
+\crefname{section}{sección}{secciones}
+\Crefname{section}{Sección}{Secciones}
+\crefname{equation}{ecuación}{ecuaciones}
+\Crefname{equation}{Ecuación}{Ecuaciones}
+\crefname{proposicion}{proposición}{proposiciones}
+\Crefname{proposicion}{Proposición}{Proposiciones}
+\crefname{corolario}{corolario}{corolarios}
+\Crefname{corolario}{Corolario}{Corolarios}
+\crefname{hipotesis}{hipótesis}{hipótesis}
+\Crefname{hipotesis}{Hipótesis}{Hipótesis}
+
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3.5cm,
+    right=2.5cm,
+    headsep=10mm,
+    footskip=12mm
+]{geometry}
+
+\usepackage[backend=biber, style=apa]{biblatex}
+\addbibresource{bibliografia.bib}
+
+\title{Medición del efecto disciplinador de la entrada de un nuevo competidor en el mercado de combustible minorista en Chile}
+\author{Joaquín Martínez}
+\date{\today}
+
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\noindent
+La sana competencia en el mercado minorista de combustible es crítica para el bienestar de los hogares y las cadenas productivas. Este trabajo estima el efecto disciplanador sobre los precios que induce la entrada de una nueva estación de servicio en un mercado local. Utilizando bases de datos administrativas, oficiales y públicamente disponibles se aproximan los márgenes de venta. Mediante un estudio de eventos se captura la respuesta en precios y márgenes frente a la entrada de un nuevo competidor en el mercado local. Se encuentra un efecto causal alrededor del $4\%$ en gasolina de 93 octanos y diesel. Adicionalmente, la respuesta es mayor en estaciones que ex-ante presentan los mayores márgenes con respecto a su comuna. 
+\end{abstract}
+
+\input{sections/01_introduction.tex}
+
+\input{sections/02_revision_literatura.tex}
+
+\input{sections/03_description.tex}
+
+\input{sections/04_methodology.tex}
+
+\input{sections/05_conclusion.tex}
+
+\newpage
+
+\printbibliography
+
+\newpage
+
+\appendix
+
+\input{sections/A1_modelo_espacial.tex}
+
+\input{sections/A2_construccion_datos.tex}
+
+\input{sections/A3_grupos_control.tex}
+
+\input{sections/A4_robustez.tex}
+
+\input{sections/A5_mercado.tex}
+
+
+\end{document}

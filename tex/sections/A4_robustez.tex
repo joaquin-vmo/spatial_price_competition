@@ -1,0 +1,78 @@
+\section{Robustez del estimador y persistencia del tratamiento}
+\label{anexo:robustez}
+
+\subsection{Estimador escalonado}
+
+El diseño tiene veinticinco cohortes semestrales de entrada repartidas sobre
+doce años. En ese contexto el estimador de diferencias en diferencias con
+efectos fijos bidireccionales es un promedio ponderado de comparaciones entre
+cohortes en el que unidades ya tratadas actúan como control de unidades tratadas
+más tarde, y las ponderaciones pueden ser negativas cuando el efecto del
+tratamiento varía entre cohortes \parencite{SUNABRAHAM2021}. Es el problema que
+la literatura reciente ha documentado para diseños escalonados.
+
+La \Cref{tab:sunab} reestima el efecto promedio con el estimador ponderado por
+interacción de \textcite{SUNABRAHAM2021}, sobre la misma muestra y con los
+mismos efectos fijos, de modo que la única diferencia entre columnas es el
+estimador.
+
+\begin{table}[H]
+\centering
+\caption{Efecto promedio de la entrada: Sun y Abraham frente a TWFE}
+\label{tab:sunab}
+\tabla{tab_sunab}
+\end{table}
+
+Las dos columnas son prácticamente idénticas en los cuatro combustibles, y las
+diferencias entre ellas son muy inferiores a los errores estándar. La
+\Cref{fig:sunab} muestra que la coincidencia se extiende a toda la trayectoria
+del estudio de eventos y no solo al promedio.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{sunab_vs_twfe.pdf}
+\caption{Trayectoria estimada por Sun y Abraham frente a TWFE}
+\label{fig:sunab}
+\end{figure}
+
+El resultado no es sorprendente y tiene una explicación conocida: el sesgo por
+heterogeneidad de efectos entre cohortes se vuelve pequeño cuando la mayoría de
+las unidades de comparación nunca son tratadas, ya que en ese caso las
+comparaciones problemáticas —entre una cohorte tratada y otra ya tratada—
+reciben poco peso. Este diseño está en esa situación, con cerca de seiscientas
+estaciones nunca tratadas frente a algo más de setecientas tratadas.
+
+\subsection{Persistencia del tratamiento}
+
+El diseño trata a la entrada como un aumento discreto y duradero del número de
+competidores del mercado local. La \Cref{fig:persistencia} verifica ambos
+supuestos con dos estudios de eventos que replican la figura 2 de
+\textcite{FISCHER2025}, usando como resultado el propio conteo de estaciones y
+no el precio.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{persistencia.pdf}
+\caption{Efecto de la entrada sobre el número de estaciones del mercado local}
+\label{fig:persistencia}
+\end{figure}
+
+El panel izquierdo cuenta todas las estaciones activas dentro de 2 kilómetros
+de la incumbente, incluida la entrante. El conteo salta prácticamente en una
+unidad en el semestre de la entrada y se mantiene elevado durante los semestres
+siguientes: el tratamiento ocurre y perdura. El salto no es exactamente igual a
+uno porque no todas las estaciones informan precios cada mes, de modo que el
+conteo mide presencia efectiva en el registro y no capacidad instalada.
+
+El panel derecho es el sustantivo. Cuenta solo las estaciones que ya operaban
+antes de la entrada, es decir, excluye a la entrante. Esa serie permanece plana:
+la entrada no desplaza a las incumbentes del mercado, al menos dentro del
+horizonte analizado. La verificación importa porque, de haber desplazamiento, el
+efecto estimado sobre los precios sería en parte un efecto de composición
+—cambiaría el conjunto de estaciones sobre el que se promedia— y no una
+respuesta competitiva de las estaciones que permanecen.
+
+Se observa una leve caída de ambas series en el último bin, que agrupa todo lo
+ocurrido más allá de dos años. Es consistente con la atrición natural del
+registro a horizontes largos y no altera la lectura de los primeros cuatro
+semestres, que es el horizonte sobre el que se interpreta el efecto.

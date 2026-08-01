@@ -1,0 +1,80 @@
+\section{Efecto sobre la distribución de precios del mercado local}
+\label{anexo:mercado}
+
+El cuerpo estima el efecto de la entrada sobre el precio de cada incumbente. Ese
+ejercicio responde cuánto baja el precio, pero no dónde del mercado local se
+produce la baja, y esa segunda pregunta es la que determina quién se beneficia.
+Si la entrada arrastra hacia abajo tanto a la estación más cara como a la más
+barata, la ganancia se reparte entre todos los consumidores; si comprime el
+mercado desde abajo, se concentra en quienes comparan precios antes de comprar.
+
+\subsection{Diseño}
+
+La unidad de observación cambia: es el mercado y no la estación. Un mercado se
+define como el círculo de radio dado alrededor de una incumbente focal, y las
+variables de resultado son el precio máximo, el promedio y el mínimo entre todas
+las estaciones activas dentro de él. Se estima la misma especificación de
+\eqref{eq:did}, con efecto fijo de mercado en lugar de estación.
+
+Dos decisiones merecen mención. La primera es que el precio de la entrante
+\emph{sí} entra en los agregados desde el mes en que abre. \textcite{FISCHER2025}
+excluyen a las entrantes del análisis a nivel de estación, pero advierten que sus
+precios importan para la elección del consumidor y las incorporan justamente en
+este ejercicio; el criterio se replica aquí. Omitirlas sesgaría el resultado
+precisamente donde interesa, ya que en Chile la entrante típica es de bandera
+blanca y tiende a fijar precios bajos.
+
+La segunda es que se exige al mercado tener al menos dos estaciones, medidas
+\emph{antes} del tratamiento. Si la restricción se aplicara con el conteo
+contemporáneo, seleccionaría sobre la propia entrada, que es lo que altera ese
+conteo.
+
+Se excluye de este ejercicio el efecto fijo de marca por año que sí lleva la
+especificación principal: el resultado pertenece al mercado y no a la estación
+focal, de modo que la marca de esta última no es el control apropiado.
+
+\subsection{Resultados}
+
+La \Cref{fig:mercado93} y la \Cref{fig:mercadodi} presentan los tres agregados
+para la gasolina de 93 octanos y para el diésel, en las dos definiciones de
+mercado.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{mercado_max_media_min_p93.pdf}
+\caption{Efecto de la entrada sobre el precio máximo, medio y mínimo del mercado: gasolina de 93 octanos}
+\label{fig:mercado93}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{mercado_max_media_min_pdi.pdf}
+\caption{Efecto de la entrada sobre el precio máximo, medio y mínimo del mercado: diésel}
+\label{fig:mercadodi}
+\end{figure}
+
+El patrón es inequívoco y se repite en ambos combustibles: la entrada comprime
+la distribución de precios del mercado desde abajo. Dentro de un kilómetro, el
+precio mínimo cae 5,5 pesos por litro en la gasolina de 93 octanos y 5,4 en el
+diésel, mientras que el máximo no se mueve de manera distinguible de cero. El
+promedio, que es el objeto que estima la especificación principal, se ubica entre
+ambos.
+
+La lectura económica es directa. La estación que ya era la más barata del mercado
+responde a la entrada bajando aún más, mientras que la más cara no reacciona.
+Esto es consistente con un mercado en que conviven consumidores con distinto
+grado de información o distinto costo de búsqueda: quien compara precios se
+beneficia de una caída varias veces mayor que quien compra en la estación más
+próxima sin comparar. Es también coherente con los resultados de heterogeneidad
+del cuerpo, aunque se trate de objetos distintos —allí los cuantiles son de la
+distribución de márgenes entre estaciones, aquí de los estadísticos de orden
+dentro de cada mercado local— y con lo que encuentran \textcite{FISCHER2025} para
+Alemania.
+
+Conviene señalar una limitación de precisión. El error estándar del efecto sobre
+el precio máximo es grande, de modo que la afirmación de que el máximo no
+responde es un no rechazo y no una estimación precisa de cero. Establecer con
+propiedad que la entrada desplaza la distribución en el sentido de dominancia
+estocástica de primer orden exigiría los contrastes formales sobre la
+distribución completa que se discuten en las extensiones de las conclusiones, y
+que la muestra chilena no permite sostener.

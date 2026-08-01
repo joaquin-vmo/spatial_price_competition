@@ -1,0 +1,142 @@
+\section{Elección del grupo de comparación}
+\label{anexo:control}
+
+Este anexo desarrolla la comparación entre las tres definiciones posibles del
+grupo de control que la subsección de Identificación resume. La conclusión es
+que las nunca tratadas —el criterio de \textcite{FISCHER2025}— no es superior en
+todos los frentes, sino la única definición que no reprueba de manera marcada en
+ninguno.
+
+Las tres definiciones son: el \emph{anillo}, formado por las incumbentes
+situadas entre 2 y 5 kilómetros del evento; el grupo \emph{lejano}, formado por
+las estaciones que nunca estuvieron a menos de 5 kilómetros de una entrada; y
+las \emph{nunca tratadas}, que es la unión de las dos anteriores y equivale al
+conjunto de estaciones que nunca reciben una entrada dentro del radio de
+tratamiento. Las tres se estiman sobre la misma muestra de tratadas y con la
+misma especificación, de modo que la única diferencia es contra quién se las
+compara.
+
+Conviene tener presente desde el inicio que las nunca tratadas no son un cuarto
+grupo independiente sino la suma de los otros dos. Cualquier característica en
+que aparezcan como intermedias lo son por construcción, al ser un promedio
+ponderado de un grupo próximo a las tratadas y otro alejado, y no por una
+propiedad sustantiva propia.
+
+\subsection{Magnitud y precisión}
+
+La \Cref{tab:control} del cuerpo muestra que las tres definiciones entregan
+estimaciones muy próximas entre sí. Ese hecho es, por sí mismo, el resultado más
+importante de este anexo: la conclusión no depende de la elección, de modo que
+esta no es un grado de libertad del que dependa el signo o el orden de magnitud
+del efecto.
+
+Donde sí difieren es en precisión. Las nunca tratadas más que duplican el tamaño
+del anillo y superan al grupo lejano, y en consecuencia entregan el error
+estándar más bajo en los cuatro combustibles cuando el resultado es el precio, y
+en dos de los tres cuando es el margen. La \Cref{tab:balance} reporta el número
+de estaciones de cada grupo junto con sus características promedio antes del
+tratamiento.
+
+\begin{table}[H]
+\centering
+\caption{Balance de covariables y tamaño de cada grupo de comparación}
+\label{tab:balance}
+\tabla{tab_balance_control}
+\end{table}
+
+\subsection{Comparabilidad y contaminación}
+
+La \Cref{tab:balance} deja ver por qué ninguno de los dos subconjuntos domina al
+otro.
+
+El anillo es el más parecido a las tratadas en cuatro de las cinco dimensiones
+observadas. Comparte con ellas el entorno urbano y opera en mercados de densidad
+comparable: 6,2 competidores dentro de 2 kilómetros contra 8,9 de las tratadas,
+mientras que las lejanas apenas alcanzan 2,1. La brecha de margen es de 9,9
+pesos por litro, frente a 38,8 del grupo lejano. Pero el anillo es también el
+grupo contaminado: el ejercicio de atenuación por distancia del cuerpo muestra
+que el efecto de la entrada sigue siendo distinto de cero en la banda de 2 a 3
+kilómetros, que es precisamente su borde interior. Un control parcialmente
+tratado atenúa la estimación hacia cero.
+
+El grupo lejano es la imagen inversa. Está limpio de contaminación por
+construcción, ya que ninguna de sus estaciones estuvo jamás a menos de 5
+kilómetros de una entrada, pero es el peor balanceado en todas las dimensiones
+salvo una. Sus mercados son estructuralmente más ralos, su margen promedio
+supera en un $55\%$ al de las tratadas, y solo el $9\%$ de sus estaciones está
+en la Región Metropolitana contra el $30\%$ de las tratadas. Usarlo en exclusiva
+expone la estimación a que una diferencia de tendencia entre mercados urbanos y
+rurales se confunda con el efecto de la entrada.
+
+La excepción es la composición regional, y ahí el orden se invierte. El anillo se
+desvía veintidós puntos por encima de las tratadas en participación
+metropolitana y el grupo lejano veinte puntos por debajo, de modo que al unirlos
+ambos sesgos se cancelan y las nunca tratadas quedan a un punto de las tratadas.
+Es la ilustración más clara del punto anterior: la ventaja es aritmética, no
+sustantiva, pero no por ello menos real para el diseño.
+
+En las demás dimensiones las nunca tratadas heredan una parte de cada problema y
+ninguna en su forma extrema. Conviene notar que la contaminación que hereda del
+anillo opera en una dirección conocida: atenúa el efecto hacia cero, de modo que
+la estimación resultante debe leerse como una cota inferior en magnitud y no
+como un valor que podría estar inflado.
+
+\subsection{Tendencias previas}
+
+La \Cref{tab:pretend} reporta, para cada grupo y combustible, dos contrastes
+sobre el período previo a la entrada. El primero es el test conjunto de que todos
+los coeficientes anteriores a $\tau = -1$ son nulos. El segundo es la pendiente
+de la trayectoria previa, junto con la deriva que esa pendiente acumularía en
+doce meses expresada como fracción del efecto estimado.
+
+\begin{table}[H]
+\centering
+\caption{Contrastes de tendencias previas por grupo de comparación}
+\label{tab:pretend}
+\tabla{tab_pretend_control}
+\end{table}
+
+La distinción entre ambos contrastes no es un tecnicismo. El test conjunto
+evalúa la hipótesis nula contra alternativas arbitrarias y tiene, por esa misma
+razón, poca potencia frente a una deriva lineal suave, que es justamente la
+forma que importaría. El contraste de pendiente es el que tiene potencia contra
+esa alternativa, y la razón entre la deriva acumulada y el efecto estimado es la
+que permite juzgar si una pendiente estadísticamente indistinguible de cero es,
+aun así, lo bastante grande como para explicar una fracción relevante del
+resultado.
+
+Bajo el contraste de pendiente ninguna de las tres definiciones se aproxima a la
+significancia convencional: los valores $p$ van de $0{,}58$ a $0{,}97$. Las
+derivas acumuladas, en cambio, no son despreciables en todos los casos, y su
+lectura exige atender al signo. En once de las doce combinaciones de grupo y
+combustible la deriva previa es de signo contrario al efecto estimado, es decir,
+los precios de las tratadas venían subiendo respecto de los controles antes de
+la entrada. Una pre-tendencia de ese signo no puede generar el resultado: opera
+en contra de encontrarlo, y hace que la estimación sea conservadora.
+
+La magnitud sí distingue entre grupos. En el grupo lejano la deriva alcanza el
+$71\%$ del efecto estimado en la gasolina de 95 octanos y el $48\%$ en la de 97,
+mientras que en las nunca tratadas no supera el $38\%$ y en el anillo el $41\%$.
+Es un argumento adicional, y del mismo signo que los anteriores, contra usar el
+grupo lejano en exclusiva.
+
+\subsection{Síntesis}
+
+La \Cref{fig:comparacion} superpone las tres trayectorias estimadas sobre la
+misma muestra de tratadas. Se distinguen apenas entre sí, tanto antes como
+después de la entrada.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{es_control_comparacion.pdf}
+\caption{Estudio de eventos bajo las tres definiciones del grupo de comparación}
+\label{fig:comparacion}
+\end{figure}
+
+Los criterios se resumen así. En precisión gana el conjunto de las nunca
+tratadas; en comparabilidad gana el anillo, salvo en composición regional; en
+ausencia de contaminación gana el grupo lejano. Las nunca tratadas es la única
+alternativa que no queda en último lugar en ninguno de los tres, y es además el
+criterio que emplea \textcite{FISCHER2025} en un diseño de las mismas
+características, lo que hace que la elección tenga precedente y no dependa del
+juicio del autor.

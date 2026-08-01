@@ -1,0 +1,164 @@
+\section{Construcción del panel de precios}
+\label{anexo:datos}
+
+Este anexo documenta las decisiones de construcción resumidas en la subsección
+de Datos. Se detallan aquí porque condicionan lo que el diseño puede
+identificar, pero su discusión completa interrumpiría la lectura del cuerpo.
+
+\subsection{Identidad de la estación física}
+
+La unidad de análisis es la estación física y no el identificador
+administrativo de la CNE, porque un mismo local puede aparecer en el registro
+bajo más de un código. Se detectaron dos situaciones, de naturaleza distinta.
+
+\paragraph{Sucesión.} Un identificador nuevo comienza a reportar en el mismo
+punto donde otro dejó de hacerlo. El criterio aplicado es que la primera fecha
+del identificador entrante sea igual o posterior a la última del saliente y que
+ambos disten menos de cincuenta metros. Corresponde típicamente a un cambio de
+operador del mismo local. Si no se fusionaran, el cambio de operador se
+contaría como una salida seguida de una entrada, es decir, se fabricaría un
+evento de tratamiento donde no hubo ninguna alteración de la estructura
+competitiva local.
+
+\paragraph{Duplicación.} Los archivos del régimen antiguo llevan, para 31
+estaciones, un segundo identificador formado agregando el sufijo \texttt{a} al
+código base. La evidencia de que se trata del mismo local es concluyente: en
+los 31 casos el código base también está presente en el registro, en los 31
+casos ambos identificadores coexisten desde el inicio de la serie —no se
+suceden— y los 31 dejan de reportarse cuando la CNE migra al formato actual,
+que incorpora una columna de modalidad de atención. Es decir, lo que el régimen
+antiguo llevaba como dos registros separados, el nuevo lo consolida en un solo
+registro con dos modalidades.
+
+La duplicación es más dañina que la sucesión para este trabajo. Dos registros
+del mismo local aparecen en el panel como dos estaciones distintas separadas
+por una distancia nula, de modo que cada una cuenta a la otra como competidora
+inmediata. Esto no solo infla el número de estaciones del mercado, sino que
+contamina precisamente la variable —el número de competidores en un radio
+dado— que el diseño usa para delimitar los mercados locales.
+
+Ambas situaciones se resuelven encadenando los identificadores hasta una raíz
+común, que define la estación física. Tras la fusión, el registro contiene
+2.030 estaciones físicas.
+
+\subsection{Frecuencia del panel}
+
+El panel se construye a frecuencia semanal sobre la grilla de jueves del MEPCO
+y de ahí se colapsa a frecuencia mensual, tomando la última semana de cada mes.
+
+La elección de la semana responde a dos hechos. El primero es la cadencia
+efectiva de reporte: la mediana es de cincuenta observaciones por estación,
+combustible y año, es decir, aproximadamente una por semana. El segundo es que
+el precio mayorista con MEPCO se fija semanalmente y rige desde el jueves, de
+modo que la semana es la unidad natural del costo.
+
+Construir el panel a frecuencia diaria habría sido posible, pero cerca del
+$85\%$ de sus celdas correspondería a un valor arrastrado desde el último
+reporte, sin información adicional, y con observaciones perfectamente
+correlacionadas dentro de cada semana. En la grilla semanal, en cambio, el
+$81{,}1\%$ de las celdas corresponde a un precio efectivamente informado esa
+semana.
+
+\subsection{Arrastre y ventanas de actividad}
+
+Dentro de cada estación y combustible el precio se arrastra hacia adelante
+hasta un máximo de trece semanas, aproximadamente tres meses. El arrastre
+refleja el hecho de que un precio no informado sigue vigente: la obligación
+legal es informar cada variación, de modo que la ausencia de reporte significa
+que el precio no cambió.
+
+El tope cumple la función opuesta. Un vacío superior a trece semanas deja a la
+estación fuera del panel durante esas semanas, de manera que un precio no se
+arrastra a través de un período en que la estación no operaba o no reportaba.
+Sin este tope, una estación cerrada durante un año seguiría figurando en el
+panel con su último precio conocido, y sería contada como competidora activa de
+sus vecinas.
+
+\subsection{Márgenes}
+
+El margen bruto se define como el precio de venta menos el precio mayorista con
+MEPCO vigente esa semana, conforme a la \Cref{prop:margen}. Al ser el MEPCO una
+referencia nacional fijada por regla, el costo se adjudica por combustible y
+semana y no por estación.
+
+La variable existe para el $82{,}4\%$ de las observaciones del panel. El resto
+se reparte entre dos causas conocidas: la gasolina de 95 octanos, para la que no
+se publica referencia MEPCO, y los meses anteriores a agosto de 2014, cuando el
+mecanismo todavía no operaba. Ninguna de las dos introduce selección, ya que
+ambas son ausencias por combustible y por período, no por estación.
+
+Las series descriptivas de precio y margen del cuerpo excluyen los meses que el
+panel no abarca de extremo a extremo. En la práctica esto descarta julio de
+2026: el registro termina el día 12 de ese mes y el promedio queda construido
+sobre dos semanas que además caen en medio de un traspaso inacabado, ya que el
+precio mayorista había caído 95 pesos por litro el 18 de junio y el precio
+minorista continuaba ajustándose. El margen promedio de ese mes es un artefacto
+de truncamiento, no un resultado de mercado.
+
+\subsection{Restricciones sobre la definición de entrada}
+
+Una entrada se define como el primer mes en que una estación física aparece en
+el registro. Sobre esa definición operan tres restricciones, que son las que
+determinan qué eventos pueden usarse como tratamiento.
+
+\paragraph{Censura por la izquierda.} Las estaciones presentes desde el inicio
+de la serie no constituyen entradas: 1.548 de las 2.030 estaciones ya reportaban
+en 2012 y su fecha de apertura es desconocida. Tratarlas como entrantes en enero
+de 2012 fecharía como evento lo que es apenas el comienzo de la observación.
+
+\paragraph{La cohorte de 2013.} Ese año se registran 79 entradas, contra veinte
+a cincuenta en un año normal, y 43 de ellas corresponden a estaciones de bandera
+blanca, cifra que no se repite en ningún otro año de la serie. Es el patrón de
+una incorporación tardía al sistema de reporte —estaciones pequeñas que se
+suman a Bencina en Línea cuando la plataforma ya está en marcha— y no el de una
+ola de aperturas. Estos eventos se conservan para efectos de contaminación y de
+corte de las ventanas, de modo que un incumbente expuesto a una de ellas no se
+usa como si nada le hubiera ocurrido, pero nunca definen una cohorte de
+tratamiento.
+
+\paragraph{Solo la primera entrada.} De cada incumbente se considera únicamente
+la primera entrada cercana, y las observaciones posteriores a una segunda se
+descartan. El estimando corresponde así al efecto de una primera entrada y no a
+una mezcla de efectos de primera y segunda, que no tienen por qué ser iguales:
+el paso de un competidor a dos altera la estructura del mercado local de manera
+distinta que el paso de dos a tres.
+
+\subsection{Salidas y el quiebre de régimen de reporte}
+
+El diseño empírico se construye exclusivamente sobre entradas, pero conviene
+documentar por qué no se utilizan las salidas.
+
+El cambio entre los archivos del régimen antiguo y los del actual deja una
+cicatriz nítida: cien estaciones dejan de ser informadas en diciembre de 2022,
+contra una o dos al año en todo el período posterior. Una parte de ese salto
+corresponde a las duplicaciones ya descritas. El resto son, con alta
+probabilidad, estaciones que habían dejado de actualizar sus precios en alguna
+fecha anterior no observada y que sobrevivían en los archivos anuales con su
+último precio conocido hasta que la migración las depuró.
+
+La consecuencia es que la fecha de salida de esas estaciones no es
+interpretable: lo único que se observa es el momento en que el sistema dejó de
+listarlas, que no coincide con el momento en que dejaron de operar. Por eso las
+tablas descriptivas reportan diciembre de 2022 en una categoría separada, en
+lugar de diluirlo dentro de un total anual que sugeriría una ola de cierres que
+no ocurrió.
+
+Esta limitación no se traslada al diseño. La primera aparición de una estación
+en el registro sí es una fecha interpretable, porque una estación que no existe
+no puede informar precios. Un ejercicio de verificación confirma que las
+entradas no arrastran el problema: de las 482 entradas identificadas, ninguna
+tiene una estación que haya dejado de reportar dentro de los cincuenta metros
+en los dieciocho meses previos, y solo siete la tienen dentro de doscientos
+metros.
+
+\subsection{Reemplazo de estaciones salientes}
+
+Una precisión sobre cómo debe leerse la información de reemplazo. Dado que la
+fusión de identificadores descrita más arriba ya une a una estación con su
+sucesora en el mismo sitio, un reemplazo en el mismo local no puede aparecer en
+los datos como una salida: aparece como continuidad de la misma estación
+física. La pregunta que sí tiene contenido empírico es, entonces, si el mercado
+local se repuso, y se responde verificando si abrió alguna estación a menos de
+quinientos metros dentro de los veinticuatro meses siguientes al cierre. La
+respuesta es que casi nunca ocurre, lo que resulta consistente con las barreras
+a la entrada que documenta la \textcite{FNE2021informe}.
