@@ -8,13 +8,16 @@ doce años. En ese contexto el estimador de diferencias en diferencias con
 efectos fijos bidireccionales es un promedio ponderado de comparaciones entre
 cohortes en el que unidades ya tratadas actúan como control de unidades tratadas
 más tarde, y las ponderaciones pueden ser negativas cuando el efecto del
-tratamiento varía entre cohortes \parencite{SUNABRAHAM2021}. Es el problema que
-la literatura reciente ha documentado para diseños escalonados.
+tratamiento varía entre cohortes \parencite{CALLAWAYSANTANNA2021, SUNABRAHAM2021,
+DECHAISEMARTIN2020, BORUSYAK2024}. Es el problema que la literatura reciente ha
+documentado para diseños escalonados.
 
 La \Cref{tab:sunab} reestima el efecto promedio con el estimador ponderado por
 interacción de \textcite{SUNABRAHAM2021}, sobre la misma muestra y con los
 mismos efectos fijos, de modo que la única diferencia entre columnas es el
-estimador.
+estimador. Es también el corrector que emplean \textcite{FISCHER2025}, cuyo
+diseño se replica aquí, lo que hace la comparación directamente contrastable con
+su ejercicio.
 
 \begin{table}[H]
 \centering
@@ -35,12 +38,35 @@ del estudio de eventos y no solo al promedio.
 \label{fig:sunab}
 \end{figure}
 
+Conviene precisar que este ejercicio se estima sobre un panel semestral y no
+mensual, y que la figura reporta semestres relativos exactos entre $-4$ y $+4$
+sin agrupar los extremos. Lo primero responde a que el estimador satura la
+regresión en celdas de cohorte por período relativo, lo que con cohortes
+mensuales resulta inmanejable; el semestre es además el ancho de bin de los
+estudios de eventos reportados en el cuerpo. Lo segundo es una condición de
+comparabilidad: agrupar la cola de una serie y no la de la otra haría
+incomparables justamente los dos puntos extremos de la figura, que es donde el
+lector busca divergencias entre estimadores.
+
 El resultado no es sorprendente y tiene una explicación conocida: el sesgo por
-heterogeneidad de efectos entre cohortes se vuelve pequeño cuando la mayoría de
-las unidades de comparación nunca son tratadas, ya que en ese caso las
-comparaciones problemáticas —entre una cohorte tratada y otra ya tratada—
-reciben poco peso. Este diseño está en esa situación, con cerca de seiscientas
-estaciones nunca tratadas frente a algo más de setecientas tratadas.
+heterogeneidad de efectos entre cohortes se vuelve pequeño cuando una fracción
+importante de las unidades nunca es tratada, ya que en ese caso las comparaciones
+problemáticas —entre una cohorte tratada y otra ya tratada— reciben poco peso. El
+argumento es de \textcite{BORUSYAK2024}, y es el que invocan tanto
+\textcite{DAVIS2025}, para justificar el uso de efectos fijos bidireccionales en
+un estudio de entrada en el mercado mexicano de combustibles, como
+\textcite{FISCHER2025} para acompañar su propia verificación.
+
+Este diseño está parcialmente en esa situación, y conviene declarar la magnitud
+con precisión. Algo más de la mitad de las estaciones de la muestra nunca recibe
+una entrada dentro de los 2 kilómetros que definen el tratamiento: 710 de 1.378
+en la gasolina de 93 octanos, esto es un $51{,}5\%$, con cifras casi idénticas en
+los otros tres combustibles. Es una fracción sustancial, pero está bastante por
+debajo del $80\%$ sobre el que \textcite{DAVIS2025} apoya el argumento, de modo
+que aquí no basta por sí solo. Es precisamente por eso que la verificación descansa en la
+\Cref{tab:sunab} y no en la composición de la muestra: el estimador de
+\textcite{SUNABRAHAM2021} nunca usa a una incumbente ya tratada como control, y
+entrega el mismo resultado.
 
 \subsection{Persistencia del tratamiento}
 

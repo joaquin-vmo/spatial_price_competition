@@ -1,17 +1,20 @@
 [0] Config.pm:328> INFO - This is Biber 2.21
 [0] Config.pm:331> INFO - Logfile is 'tesis.blg'
-[33] biber-darwin:342> INFO - === Sat Aug  1, 2026, 11:04:40
-[42] Biber.pm:421> INFO - Reading 'tesis.bcf'
-[97] Biber.pm:1002> INFO - Found 8 citekeys in bib section 0
-[109] Biber.pm:4487> INFO - Processing section 0
-[114] Biber.pm:4678> INFO - Looking for bibtex file 'bibliografia.bib' for section 0
-[115] bibtex.pm:1713> INFO - LaTeX decoding ...
-[123] bibtex.pm:1519> INFO - Found BibTeX data source 'bibliografia.bib'
-[166] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[166] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'variable = shifted' with 'variable = non-ignorable'
-[166] Biber.pm:4307> INFO - Sorting list 'apa/apasortcite//global/global/global' of type 'entry' with template 'apa' and locale 'es-ES'
-[178] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[178] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'variable = shifted' with 'variable = non-ignorable'
-[178] Biber.pm:4307> INFO - Sorting list 'apa/global//global/global/global' of type 'entry' with template 'apa' and locale 'es-ES'
-[186] bbl.pm:676> INFO - Writing 'tesis.bbl' with encoding 'UTF-8'
-[191] bbl.pm:779> INFO - Output to tesis.bbl
+[31] biber-darwin:342> INFO - === Mon Aug  3, 2026, 18:26:28
+[40] Biber.pm:421> INFO - Reading 'tesis.bcf'
+[93] Biber.pm:1002> INFO - Found 20 citekeys in bib section 0
+[103] Biber.pm:4487> INFO - Processing section 0
+[108] Biber.pm:4678> INFO - Looking for bibtex file 'bibliografia.bib' for section 0
+[109] bibtex.pm:1713> INFO - LaTeX decoding ...
+[121] bibtex.pm:1519> INFO - Found BibTeX data source 'bibliografia.bib'
+[192] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'variable = shifted' with 'variable = non-ignorable'
+[193] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[193] Biber.pm:4307> INFO - Sorting list 'apa/apasortcite//global/global/global' of type 'entry' with template 'apa' and locale 'es-ES'
+[216] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'variable = shifted' with 'variable = non-ignorable'
+[216] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[217] Biber.pm:4307> INFO - Sorting list 'apa/global//global/global/global' of type 'entry' with template 'apa' and locale 'es-ES'
+[231] bbl.pm:676> INFO - Writing 'tesis.bbl' with encoding 'UTF-8'
+[241] bbl.pm:779> INFO - Output to tesis.bbl
+[241] Biber.pm:132> WARN - legacy month field 'August' in entry 'HOUDE2012' is not an integer - this will probably not sort properly.
+[241] Biber.pm:132> WARN - legacy month field 'September' in entry 'DECHAISEMARTIN2020' is not an integer - this will probably not sort properly.
+[241] Biber.pm:134> INFO - WARNINGS: 2

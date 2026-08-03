@@ -100,10 +100,10 @@ El supuesto de identificación es que el momento en que la entrada se materializ
 \tabla{tab_att_control}
 \end{table}
 
-Las tres definiciones de control entregan básicamente el mismo resultado. Para elegir el grupo de control hay que considerar los criterios de (i) número de estaciones control, (ii) ausencia de spillovers. Por lo que tanto controles lejanos como nunca-tratadas sirven, se elige nunca-tratadas. El Anexo~\ref{anexo:control} desarrolla esta comparación con el balance de covariables y los tests de tendencias previas de cada grupo.
+Las tres definiciones de control entregan básicamente el mismo resultado. Para elegir el grupo de control hay que considerar dos criterios: el número de estaciones de control y la ausencia de spillovers, esto es, que ninguna estación del grupo de comparación esté ella misma expuesta al efecto de la entrada. El segundo criterio importa porque, como muestra \textcite{BUTTS2023}, cuando el control está parcialmente expuesto al tratamiento el estimador de diferencias en diferencias deja de recuperar el efecto de interés; en este caso la exposición del control tiene el mismo signo que el efecto sobre las tratadas, de modo que el sesgo atenúa la estimación hacia cero. Por lo que tanto controles lejanos como nunca-tratadas sirven, se elige nunca-tratadas. El Anexo~\ref{anexo:control} desarrolla esta comparación con el balance de covariables y los tests de tendencias previas de cada grupo.
 
 La \Cref{fig:es} presenta el estudio de eventos de \eqref{eq:es} bajo la
-especificación principal. Las trayectorias son planas antes de la entrada y caen de manera abrupta en el bin de la entrada, sin revertirse en los cinco bins posteriores, es decir, a lo largo de dos años y medio. La persistencia importa, un efecto que se disipara sería compatible con una reacción transitoria de posicionamiento, mientras que uno persistente indica un cambio en el equilibrio del mercado local, que es lo que predice la \Cref{prop:entrada}.
+especificación principal. Las trayectorias son planas antes de la entrada y caen de manera abrupta en el bin de la entrada, sin revertirse en los cinco bins posteriores, es decir, a lo largo de dos años y medio. La persistencia importa, un efecto que se disipara sería compatible con una reacción transitoria de posicionamiento, mientras que uno persistente indica un cambio en el equilibrio del mercado local, que es lo que predice el \Cref{cor:entrada}.
 
 \begin{figure}[H]
 \centering
@@ -111,16 +111,16 @@ especificación principal. Las trayectorias son planas antes de la entrada y cae
 \caption{Efecto de la entrada sobre el precio de las incumbentes}
 \label{fig:es}
 \end{figure}
-La \Cref{fig:ff} presenta los resultados de precios y márgenes para los bienes disponibles en las bases del MEPCO. 
+La \Cref{fig:ff} presenta el efecto sobre el margen para los bienes disponibles en las bases del MEPCO, con las dos definiciones de mercado local como series. Las dos filas son el mismo objeto en unidades distintas: la superior expresa el efecto en pesos por litro y la inferior como porcentaje del margen previo, de modo que la primera indica cuánto cae el margen y la segunda qué fracción de él se pierde.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{formato_fischer.pdf}
-\caption{Efecto de la entrada sobre el precio y el margen, por combustible}
+\caption{Efecto de la entrada sobre el margen bruto, por combustible}
 \label{fig:ff}
 \end{figure}
 
-En el caso de la gasolina de 97 octanos se exhibe un efecto sistemáticamente menor y menos precisa, a un kilómetro no alcanza significancia convencional ni en precios ni en márgenes, y solo la logra al ampliar el radio a dos. La lectura que se desprende de esto es que a diferencia de la gasolina de 93 octanos la 97 es el combustible premium del mercado. Representa apenas el $3{,}3\%$ de las ventas nacionales de combustibles líquidos frente al $16\%$ de la 93 \parencite{FNE2025informe}, y sus consumidores plausiblemente presentan una demanda menos elástica al precio. Si la demanda que enfrenta la incumbente en ese producto es menos sensible, la llegada de un competidor genera menos presión para ajustarlo. El resultado es entonces informativo, pero conviene no apoyar en él ninguna conclusión que los otros dos combustibles no sostengan por sí solos.
+En el caso de la gasolina de 97 octanos se exhibe un efecto sistemáticamente menor y menos preciso, a un kilómetro no alcanza significancia convencional en ninguna de las dos unidades, y solo la logra al ampliar el radio a dos. La lectura que se desprende de esto es que a diferencia de la gasolina de 93 octanos la 97 es el combustible premium del mercado. Representa apenas el $3{,}3\%$ de las ventas nacionales de combustibles líquidos frente al $16\%$ de la 93 \parencite{FNE2025informe}, y sus consumidores plausiblemente presentan una demanda menos elástica al precio. Si la demanda que enfrenta la incumbente en ese producto es menos sensible, la llegada de un competidor genera menos presión para ajustarlo. El resultado es entonces informativo, pero conviene no apoyar en él ninguna conclusión que los otros dos combustibles no sostengan por sí solos.
 
 La \Cref{hip:distancia} predice que el efecto decrece con la distancia entre la entrante y la incumbente y se anula a partir de un umbral. La
 \Cref{fig:atenuacion} lo contrasta asignando cada estación al anillo de un kilómetro correspondiente a su primera entrada cercana y estimando el efecto por anillo.
@@ -134,14 +134,14 @@ La \Cref{hip:distancia} predice que el efecto decrece con la distancia entre la 
 \label{fig:atenuacion}
 \end{figure}
 
-El perfil decae desde el anillo más cercano y deja de ser distinguible de cero entre los tres y los cuatro kilómetros. Por un lado, el resultado valida la predicción del modelo, y el umbral coincide con la delimitación de mercado geográfico que la \textcite{FNE2021informe} emplea en sus investigaciones. Por otro, es informativo a la hora de decidir utilizar o no controles dentro de los anillos entre 3 a 5km. Si el efecto sigue vivo a dos o tres kilómetros, el anillo de control necesariamente contiene estaciones parcialmente tratadas, lo que explica
+El perfil decae desde el anillo más cercano y deja de ser distinguible de cero entre los tres y los cuatro kilómetros. Por un lado, el resultado valida la predicción del modelo: como se explica en el Anexo~\ref{anexo:modelo}, lo que el perfil recupera es la proporción de incumbentes para las cuales la entrante cae dentro del radio en que la sustitución es efectiva, proporción que se agota a la distancia en que ya casi ninguna estación comparte mercado con la entrante. El umbral así estimado coincide con la delimitación de mercado geográfico que la \textcite{FNE2021informe} emplea en sus investigaciones. Por otro, es informativo a la hora de decidir utilizar o no controles dentro de los anillos entre 3 a 5km. Si el efecto sigue vivo a dos o tres kilómetros, el anillo de control necesariamente contiene estaciones parcialmente tratadas, lo que explica
 por qué su estimación atenúa.
 
 \subsubsection{Heterogeneidad según el margen previo}
 
 \textcite{KOH2022} plantean que la respuesta a la competencia depende del margen con que la incumbente operaba antes de la entrada, una estación con márgenes holgados puede bajar precios, mientras que una que ya opera con márgenes estrechos carece de espacio para hacerlo y responde por otras vías, como reducir su probabilidad de seguir operando. Los autores no pueden contrastar esta hipótesis directamente, ya que no observan el precio mayorista y, por lo tanto, tampoco los márgenes de las estaciones, deben aproximarlos distinguiendo entre áreas metropolitanas y no metropolitanas, limitación que ellos mismos reconocen.
 
-La disponibilidad del MEPCO permite contrastarla de manera directa. La \Cref{hip:margen} formula la misma predicción a partir de la \Cref{prop:margen}. Para contrastarla hace falta una medida del margen con que cada estación operaba antes de la entrada, y esa medida debe cumplir dos condiciones.
+La disponibilidad del MEPCO permite contrastarla de manera directa. La \Cref{hip:margen} formula la misma predicción a partir de la \Cref{prop:margen}, donde el margen previo es una transformación exacta del número de competidoras efectivas de la incumbente. Para contrastarla hace falta una medida del margen con que cada estación operaba antes de la entrada, y esa medida debe cumplir dos condiciones.
 
 La primera es que sea comparable entre estaciones que enfrentan costos y
 mercados distintos. Se construye entonces como la \emph{posición relativa} de la
@@ -200,13 +200,13 @@ grupos son planas, lo que descarta que el resultado sea reversión a la media.
 \label{fig:het}
 \end{figure}
 
-El resultado tiene una lectura que va más allá de la heterogeneidad. Lo que disciplina el precio no es la mera presencia de competidores, sino el margen que la incumbente venía capturando, que es la medida de su poder de mercado local.
+El resultado tiene una lectura que va más allá de la heterogeneidad. Lo que disciplina el precio no es la mera presencia de competidores, sino el margen que la incumbente venía capturando, que es la medida de su poder de mercado local. Es la misma conclusión a la que llega \textcite{BRESNAHAN1991} por otra vía: al inferir la conducta competitiva desde la relación entre número de firmas y tamaño del mercado en mercados locales aislados, encuentra que casi toda la variación ocurre con la entrada de la segunda o la tercera firma y que, una vez que el mercado tiene entre tres y cinco, la siguiente entrante apenas la altera. El efecto de una entrada no es constante, depende de cuán concentrado estaba el mercado que la recibe.
 
 \subsection{Validez del supuesto de identificación}
 
 El supuesto que sostiene el diseño no es que la entrada sea exógena, sino que lo sea el momento en que se materializa, condicional en los efectos fijos de \eqref{eq:es}. Esta subsección reúne la evidencia sobre esa afirmación. Los contrastes de tendencias previas, que son la verificación indirecta habitual, se presentan en el Anexo~\ref{anexo:control} junto con la comparación de grupos de control.
 
-Conviene delimitar la afirmación antes de someterla a prueba, porque la mitad de las objeciones habituales apuntan a algo que el diseño no necesita. Como las cadenas eligen deliberadamente dónde instalarse, resulta inverosímil que la ubicación sea independiente de las condiciones del mercado local. Lo que se supone es que, condicional en el efecto fijo de estación y en los efectos de tiempo, la fecha precisa de apertura no responde a la evolución de los precios de las incumbentes.
+Conviene delimitar la afirmación antes de someterla a prueba, porque la mitad de las objeciones habituales apuntan a algo que el diseño no necesita. Como las cadenas eligen deliberadamente dónde instalarse, resulta inverosímil que la ubicación sea independiente de las condiciones del mercado local. La teoría lo anticipa desde el origen mismo de este marco: \textcite{HOTELLING1929} muestra que la competencia espacial genera un incentivo a instalarse cerca del rival y no lejos de él, y la evidencia estructural para este mismo mercado confirma que entrar y salir son decisiones dinámicas que responden a la rentabilidad esperada del mercado local y al marco regulatorio de precios que lo rige \parencite{HOUDE2005}. Los datos de este trabajo son consistentes con ambas cosas: el $72{,}6\%$ de las entradas ocurre teniendo al menos una estación vecina dentro de 2 kilómetros. Lo que se supone, entonces, no es que la ubicación sea exógena, sino que, condicional en el efecto fijo de estación y en los efectos de tiempo, la fecha precisa de apertura no responde a la evolución de los precios de las incumbentes.
 
 Esta separación tiene un fundamento institucional en el caso chileno. La decisión de instalar una estación es endógena, pero entre esa decisión y la apertura media un rezago largo, variable y de naturaleza administrativa: adquisición o arriendo del terreno, permiso de edificación, exigencias del plan regulador comunal, autorización de la Superintendencia de Electricidad y Combustibles y recepción de obras. La \textcite{FNE2021informe} documenta que la escasez de terrenos aptos, precisamente por las exigencias de los planos reguladores en las zonas urbanas más saturadas, constituye la principal barrera a la entrada del mercado. Es ese rezago el que hace que el momento de apertura sea, desde la perspectiva de la incumbente, un evento cuya fecha no está ligada a su propia conducta de precios.
 

@@ -1,243 +1,282 @@
-\section{Derivación del modelo de competencia espacial}
+\section{El modelo de competencia espacial: desarrollo y fuentes}
 \label{anexo:modelo}
 
-Este anexo desarrolla en detalle el modelo presentado en la
-\Cref{prop:margen,prop:entrada,prop:libre}. Se construye desde el problema del
-consumidor hasta los resultados de estática comparativa, siguiendo la estructura
-de \textcite{SALOP1979} y generalizándola a espaciamiento desigual entre
-estaciones, que es la variante relevante para esta aplicación.
+Este anexo desarrolla el modelo que la \Cref{prop:margen} y el
+\Cref{cor:entrada} resumen en el cuerpo. Ninguno de los resultados es original:
+todos provienen de \textcite{SALOP1979} y el anexo indica, para cada uno, la
+ecuación y la página del artículo de las que se obtiene.\footnote{El artículo se
+publicó en el \emph{Bell Journal of Economics}, vol.~10, n.º~1, pp.~141--156.
+Conviene advertir que Salop no enuncia sus resultados como proposiciones ni
+teoremas numerados, sino como ecuaciones dentro del desarrollo del texto; la
+numeración empleada aquí y en el cuerpo es propia de este trabajo y sirve
+únicamente para referirse a ellos.} El propósito del anexo es doble: dejar
+trazable el origen de cada expresión y reunir las limitaciones del marco, que en
+el cuerpo se omiten por brevedad.
 
 \subsection{El problema del consumidor}
 
-El mercado local se representa por una circunferencia de perímetro unitario.
-Sobre ella se distribuyen uniformemente $L$ consumidores, cada uno con demanda
-unitaria e inelástica por combustible, de modo que la densidad de consumidores
-por unidad de longitud es $L$. Operan $n$ estaciones de servicio ubicadas en
-posiciones dadas sobre la circunferencia.
-
-Un consumidor localizado a distancia $x$ de la estación $i$ obtiene un excedente
+El mercado local se representa por una circunferencia de perímetro unitario
+sobre la que se distribuyen uniformemente $L$ consumidores, cada uno con demanda
+unitaria e inelástica por combustible. Operan $n$ estaciones equiespaciadas, de
+modo que la distancia entre dos contiguas es $1/n$. Un consumidor localizado a
+distancia $x$ de la estación $i$ obtiene un excedente
 \begin{equation}
     U_i(x) = v - p_i - c\,x ,
     \label{eq:anexo-utilidad}
 \end{equation}
 donde $v$ es el precio de reserva efectivo —la valoración del combustible neta
-del excedente que otorga el bien externo— y $c>0$ el costo de desplazamiento por
-unidad de distancia. El consumidor compra una unidad en la estación que le
-entregue el mayor excedente, siempre que este sea no negativo.
+del excedente que otorga el bien externo, ecuación (4) de
+\textcite[142]{SALOP1979}— y $c>0$ el costo de desplazamiento por unidad de
+distancia. El consumidor compra una unidad en la estación que le entregue el
+mayor excedente, siempre que este sea no negativo.
 
-La formulación \eqref{eq:anexo-utilidad} recoge dos rasgos del mercado chileno.
-Primero, la homogeneidad del producto: dos EDS que cobran el mismo precio son
-indiferentes para el consumidor, y solo la distancia las separa. Segundo, la
-observabilidad de precios, que permite tratar al consumidor como informado sobre
-$p_i$ en todo el mercado local; el levantamiento de este supuesto se discute en
-los alcances de la subsección correspondiente del cuerpo.
+La formulación \eqref{eq:anexo-utilidad} recoge dos rasgos del mercado chileno
+descritos en el cuerpo. Primero, la homogeneidad del producto: dos EDS que cobran
+el mismo precio son indiferentes para el consumidor, y solo la distancia las
+separa. Segundo, la observabilidad de precios, que permite tratar al consumidor
+como informado sobre $p_i$ en todo el mercado local.
 
-\subsection{Regiones de la curva de demanda}
+\subsection{Las tres regiones de la curva de demanda}
 
-\textcite{SALOP1979} distingue tres regiones según cuán agresivo sea el precio de
-la estación representativa en relación con sus vecinas.
+\textcite[143--145]{SALOP1979} distingue tres regiones según cuán agresivo sea el
+precio de la estación representativa en relación con sus vecinas, ilustradas en
+su Figura~1.
 
 \paragraph{Región de monopolio local.} Si el precio de $i$ es suficientemente
 alto, la estación solo atrae a los consumidores para quienes el excedente
 \eqref{eq:anexo-utilidad} es no negativo, sin llegar a disputar clientes a sus
-vecinas. El consumidor marginal se ubica a una distancia $\hat{x}$ tal que
-$v - p_i - c\hat{x} = 0$, es decir
+vecinas. El consumidor marginal se ubica a una distancia $\hat{x}=(v-p_i)/c$, de
+modo que la demanda es
 \begin{equation}
-    \hat{x} = \frac{v - p_i}{c} ,
+    q^{m} = \frac{2L}{c}\,(v - p_i) ,
+    \label{eq:anexo-qm}
 \end{equation}
-y la demanda es $q_i^{m} = 2L\hat{x} = \frac{2L}{c}(v - p_i)$. En esta región la
-estación compite contra el bien externo —no comprar, o abastecerse fuera del
-mercado local— y no contra sus vecinas.
+que es la ecuación (6) de \textcite[143]{SALOP1979}. En esta región la estación
+compite contra el bien externo —no comprar, o abastecerse fuera del mercado
+local— y no contra sus vecinas.
 
 \paragraph{Región competitiva.} Si el precio es lo bastante bajo como para que
 los mercados potenciales de estaciones contiguas se traslapen, el consumidor
 marginal ya no es aquel indiferente entre comprar y no comprar, sino aquel
-indiferente entre dos estaciones. Esta es la región relevante para el análisis y
-se desarrolla en detalle a continuación.
+indiferente entre dos estaciones. La demanda es entonces
+\begin{equation}
+    q^{c} = \frac{L}{c}\left(\bar{p} + \frac{c}{n} - p_i\right) ,
+    \label{eq:anexo-qc}
+\end{equation}
+donde $\bar{p}$ es el precio de las vecinas; es la ecuación (9) de
+\textcite[144]{SALOP1979}. Esta es la región relevante para el análisis, pues es
+la que corresponde a los mercados urbanos donde ocurre la mayoría de las
+entradas.
 
 \paragraph{Región supracompetitiva.} Con precios aún menores la estación captura
-la totalidad del mercado de su vecina. No se considera aquí, pues corresponde a
+la totalidad del mercado de su vecina, situación que aparece bajo la ecuación
+(12) de \textcite[145]{SALOP1979}. No se considera aquí, pues corresponde a
 comportamientos predatorios ajenos al fenómeno estudiado.
 
-La distinción entre las dos primeras regiones tiene una consecuencia empírica
-directa, recogida en la \Cref{hip:distancia}: una entrada lo bastante lejana como
-para no generar traslape deja a la incumbente en la región de monopolio local, y
-en tal caso el efecto sobre su precio es exactamente nulo. El modelo no predice
-una atenuación asintótica sino la existencia de un umbral.
+Derivando \eqref{eq:anexo-qm} y \eqref{eq:anexo-qc} se obtienen las pendientes de
+la demanda en cada región, $-2L/c$ y $-L/c$ respectivamente, que son las
+ecuaciones (10) y (11) de \textcite[144]{SALOP1979}. La distinción entre las dos
+primeras regiones tiene una consecuencia empírica directa, que la
+\Cref{hip:distancia} recoge y que la \Cref{prop:monopolio} formaliza más abajo.
 
-\subsection{Demanda en la región competitiva}
-
-Sea $j$ la estación contigua a $i$ hacia un lado, situada a distancia $d_R$ y
-cobrando $p_j$, y sea $k$ la contigua hacia el otro lado, a distancia $d_L$ y
-cobrando $p_k$. Se aparta aquí del supuesto de equiespaciamiento de
-\textcite{SALOP1979}: en el mercado chileno las EDS no están uniformemente
-distribuidas, y esa asimetría es justamente la fuente de heterogeneidad que se
-explota empíricamente.
-
-El consumidor indiferente entre $i$ y $j$ se ubica a una distancia $x$ de $i$ que
-iguala ambos excedentes,
-\begin{equation}
-    v - p_i - c\,x = v - p_j - c\,(d_R - x) ,
-\end{equation}
-de donde, despejando,
-\begin{equation}
-    x = \frac{p_j - p_i + c\,d_R}{2c} .
-    \label{eq:anexo-indiferente}
-\end{equation}
-Un razonamiento simétrico entrega la frontera hacia el lado de $k$. Como la
-densidad de consumidores es $L$, la demanda de la estación $i$ es la suma de los
-dos segmentos que captura,
-\begin{equation}
-    q_i(p_i, p_j, p_k) = L\left[\frac{p_j - p_i + c\,d_R}{2c} +
-                                \frac{p_k - p_i + c\,d_L}{2c}\right] .
-    \label{eq:anexo-demanda}
-\end{equation}
-
-Derivando \eqref{eq:anexo-demanda} respecto del precio propio se obtiene la
-pendiente de la demanda en esta región,
-\begin{equation}
-    \frac{\partial q_i}{\partial p_i} = -\frac{L}{c} ,
-    \label{eq:anexo-pendiente}
-\end{equation}
-que es constante y no depende del espaciamiento. La intuición es que un peso
-adicional de precio desplaza al consumidor marginal una distancia $1/(2c)$ en
-cada uno de los dos frentes, con densidad $L$.
-
-\subsection{Equilibrio de Nash en precios}
+\subsection{El margen de equilibrio}
 
 Cada estación elige $p_i$ tomando como dados los precios de sus vecinas y
-maximizando
+maximizando $(p_i - m)\,q_i - F$, donde $m$ es el costo marginal, común a todas
+las estaciones por el argumento del MEPCO expuesto en el cuerpo, y $F$ el costo
+fijo de operación del sitio. Imponiendo la condición de primer orden —ecuación
+(13) de \textcite[147]{SALOP1979}— sobre la pendiente de la demanda competitiva
+se obtiene el resultado de la \Cref{prop:margen},
 \begin{equation}
-    \pi_i = (p_i - m)\,q_i(p_i, p_j, p_k) - F ,
-\end{equation}
-donde $m$ es el costo marginal, común a todas las estaciones por el argumento
-del MEPCO expuesto en el cuerpo, y $F$ el costo fijo de operación del sitio. La
-condición de primer orden es
-\begin{equation}
-    q_i + (p_i - m)\,\frac{\partial q_i}{\partial p_i} = 0 ,
-\end{equation}
-y sustituyendo \eqref{eq:anexo-pendiente} se obtiene una expresión del margen en
-función de la cantidad,
-\begin{equation}
-    \mu_i \equiv p_i - m = \frac{c\,q_i}{L} .
-    \label{eq:anexo-cpo}
-\end{equation}
-
-Evaluando \eqref{eq:anexo-demanda} en un equilibrio en que las vecinas cobran el
-mismo precio que $i$, esto es $p_j = p_k = p_i$, los términos de precio se
-cancelan y la demanda se reduce a
-\begin{equation}
-    q_i = L\left[\frac{c\,d_R}{2c} + \frac{c\,d_L}{2c}\right]
-        = L\,\frac{d_L + d_R}{2} = L\,\bar{d}_i .
-    \label{eq:anexo-q}
-\end{equation}
-Es decir, la estación abastece a los consumidores situados hasta la mitad de
-camino hacia cada una de sus vecinas. Reemplazando \eqref{eq:anexo-q} en
-\eqref{eq:anexo-cpo} se llega al resultado enunciado en la
-\Cref{prop:margen}:
-\begin{equation}
-    \boxed{\;\mu_i = c\,\bar{d}_i\;}
+    p = m + \frac{c}{n} ,
+    \qquad\text{esto es}\qquad
+    \mu = \frac{c}{n} ,
     \label{eq:anexo-margen}
 \end{equation}
+que es la ecuación (18) de \textcite[147]{SALOP1979}. El margen es proporcional
+al costo de desplazamiento e inversamente proporcional al número de competidoras;
+equivalentemente, y puesto que las estaciones están equiespaciadas, es
+proporcional a la distancia $1/n$ que separa a la estación de sus vecinas. Esta
+doble lectura es la que permite que el margen opere en la estrategia empírica
+como medida de aislamiento espacial.
 
-El caso de equiespaciamiento se recupera imponiendo $d_L = d_R = 1/n$, lo que
-entrega $\bar{d}_i = 1/n$ y por tanto $p = m + c/n$, el equilibrio competitivo de
-\textcite{SALOP1979}.
+\subsection{El umbral: monopolio local}
+
+\begin{proposicion}[Monopolio local]
+\label{prop:monopolio}
+Si los mercados de estaciones contiguas no se traslapan, la estación resuelve un
+problema de monopolio frente al bien externo y su precio óptimo es
+\begin{equation}
+    p^{m} = \frac{v + m}{2} ,
+    \label{eq:monopolio}
+\end{equation}
+que no depende de $n$ ni de la ubicación de las vecinas.
+\end{proposicion}
+
+Se obtiene maximizando el beneficio de monopolio de la ecuación (28) de
+\textcite[151]{SALOP1979}, cuya solución es la cantidad $q^{m}=(L/c)(v-m)$ de su
+ecuación (29), y sustituyéndola en la demanda de monopolio
+\eqref{eq:anexo-qm}, que invertida es $p = v - (c/2L)\,q$. Es el único de los
+resultados empleados que Salop no escribe en términos de precio, pues su interés
+en esa sección está en las condiciones de rentabilidad y no en el precio de
+monopolio.
+
+La proposición es la que dota al modelo de un umbral. Mientras no haya traslape
+de mercados, la estructura del mercado local es irrelevante para el precio, de
+modo que una entrada lo bastante lejana deja a la incumbente exactamente donde
+estaba. El modelo no predice, a nivel de estación, una atenuación asintótica sino
+la existencia de un umbral.
 
 \subsection{Entrada libre}
 
-Bajo entrada libre, las estaciones ingresan hasta agotar los beneficios. Con
-equiespaciamiento, la condición de beneficio nulo es
+\begin{proposicion}[Entrada libre]
+\label{prop:libre}
+Bajo libre entrada, el número de estaciones y el margen de equilibrio son
 \begin{equation}
-    (p - m)\,q = F ,
+    n^{*} = \sqrt{cL/F} ,
+    \qquad
+    \mu^{*} = \frac{c}{n^{*}} = \sqrt{cF/L} ,
+    \label{eq:entrada-libre}
 \end{equation}
-donde $q = L/n$ por simetría y $p - m = c/n$ por \eqref{eq:anexo-margen}. Se
-obtiene entonces
-\begin{equation}
-    \frac{c}{n}\cdot\frac{L}{n} = F
-    \quad\Longleftrightarrow\quad
-    n^{2} = \frac{cL}{F} ,
-\end{equation}
-y por lo tanto el resultado de la \Cref{prop:libre},
-\begin{equation}
-    n^{*} = \sqrt{cL/F} .
-    \label{eq:anexo-libre}
-\end{equation}
+de modo que el número de estaciones es creciente en la densidad de consumidores
+del mercado local y decreciente en el costo fijo de instalación, y el margen se
+mueve en sentido inverso.
+\end{proposicion}
 
-El número de estaciones crece con la densidad de consumidores $L$ y con el costo
-de desplazamiento $c$, y decrece con el costo fijo $F$. Sustituyendo
-\eqref{eq:anexo-libre} en \eqref{eq:anexo-margen} se obtiene el margen de
-equilibrio de largo plazo,
-\begin{equation}
-    \mu^{*} = \frac{c}{n^{*}} = \sqrt{\frac{cF}{L}} ,
-\end{equation}
-decreciente en la densidad del mercado. Mercados más densos sostienen más
-estaciones y márgenes menores.
+Son las ecuaciones (19), p.~147, y (22), p.~148, de \textcite{SALOP1979}, que el
+autor obtiene de la condición de beneficio nulo (14) evaluada en el equilibrio
+competitivo; la expresión para $n^{*}$ se repite como su ecuación (23). Mercados
+más densos sostienen más estaciones y márgenes menores.
 
-\subsection{Estática comparativa: el efecto de una entrada}
+Conviene señalar que estas dos predicciones —la \Cref{prop:margen} y la
+\Cref{prop:libre}— ya han sido contrastadas de manera directa en este mismo
+mercado. \textcite{CLEMENZGUGLER2006} toman el modelo de \textcite{SALOP1979}
+como marco teórico explícito y derivan de él dos hipótesis: que las estaciones se
+ubican más densamente donde la densidad de población es mayor, y que el precio de
+equilibrio es menor mientras mayor sea la densidad de estaciones. Encuentran
+apoyo para ambas en el mercado minorista austríaco. La densidad de población
+explica más del $95\%$ de la variación entre distritos en la densidad de
+estaciones, y el coeficiente de la densidad de estaciones sobre el precio tiene el
+signo predicho y es significativo al $5\%$ o mejor en todas sus especificaciones;
+estimar el sistema como ecuaciones simultáneas no altera sus conclusiones y
+sugiere que la causalidad corre desde la densidad hacia el precio, que es la
+dirección que este trabajo explota usando una entrada como fuente de variación.
 
-Considérese una incumbente $i$ con vecinas a distancias $d_L$ y $d_R$, y
-supóngase que una nueva EDS se instala del lado derecho, a una distancia
-$a < d_R$ de $i$. La entrante pasa a ser la competidora contigua por ese
-costado, de modo que la distancia relevante cae de $d_R$ a $a$ y la distancia
-promedio pasa a ser
-\begin{equation}
-    \bar{d}_i' = \frac{d_L + a}{2} .
-\end{equation}
+Dos detalles de ese trabajo importan aquí. El primero es que predicen que la
+densidad de estaciones crece de manera \emph{cóncava} en la densidad de
+población, porque la mayor proximidad reduce el precio de equilibrio y con ello
+el beneficio que sostiene a cada sitio. Es exactamente la raíz cuadrada de
+\eqref{eq:entrada-libre}. El segundo es la lectura de competencia que le dan a su
+segunda hipótesis: la ausencia de una relación negativa entre densidad y precio
+sería señal de que las estaciones coordinan sus precios en lugar de competir. Que
+en este trabajo una entrada reduzca el margen de las incumbentes es, bajo esa
+lectura, evidencia de que la competencia local opera y no está suprimida por
+coordinación.
 
-Aplicando \eqref{eq:anexo-margen} antes y después del evento,
+Conviene además situar el ejercicio en la tradición que inaugura
+\textcite{BRESNAHAN1991}, que infiere la intensidad de la competencia a partir de
+la relación entre el número de firmas y el tamaño del mercado en mercados locales
+geográficamente aislados. Su hallazgo central es que la conducta competitiva
+cambia rápido con las primeras entradas y casi deja de cambiar después: en
+mercados con cinco firmas o menos, casi toda la variación ocurre con la entrada
+de la segunda o la tercera, y una vez que el mercado tiene entre tres y cinco
+firmas la siguiente entrante casi no altera la conducta. Es el patrón que
+\eqref{eq:anexo-efecto} predice, puesto que $c/(n(n+1))$ decrece rápidamente en
+$n$, y es el mismo mecanismo que sostiene la \Cref{hip:margen}: la incumbente que
+más pierde ante una entrada cercana es la que operaba con pocas competidoras y,
+por lo tanto, con márgenes altos.
+
+\subsection{El efecto de una entrada y las tres hipótesis}
+
+El \Cref{cor:entrada} es la estática comparativa directa de
+\eqref{eq:anexo-margen} respecto de $n$, tratando el número de competidoras como
+un parámetro de corto plazo,
 \begin{equation}
-    \Delta\mu_i = c\,\bar{d}_i' - c\,\bar{d}_i
-                = c\left[\frac{d_L + a}{2} - \frac{d_L + d_R}{2}\right]
-                = -\,\frac{c\,(d_R - a)}{2} ,
+    \Delta\mu = \frac{c}{n+1} - \frac{c}{n} = -\,\frac{c}{n(n+1)} \;<\; 0 .
     \label{eq:anexo-efecto}
 \end{equation}
-que es el resultado de la \Cref{prop:entrada}. Como $a < d_R$ por construcción,
-la expresión es estrictamente negativa.
+No aparece como tal en \textcite{SALOP1979}, cuya sección 4 (pp.~148--149)
+desarrolla las estáticas comparativas respecto de los parámetros
+$\{F, m, v, c, L\}$ y no respecto del número de firmas, que en su análisis de
+largo plazo es endógeno. La diferencia es de horizonte y no de contenido: la
+\Cref{prop:libre} describe hacia dónde converge el mercado en el largo plazo,
+mientras que \eqref{eq:anexo-efecto} describe el ajuste de precios de las
+incumbentes ante un cambio en $n$ que ellas toman como dado, que es el objeto de
+este trabajo.
 
 Dado que $m$ está determinado por una referencia nacional y la entrada es un
 evento local, el costo marginal no se altera y la caída del margen se traslada
-uno a uno al precio:
+uno a uno al precio, $\Delta p = \Delta\mu$. Esta equivalencia es la que permite
+contrastar el modelo tanto con precios como con márgenes, y es consecuencia
+directa del carácter nacional del MEPCO.
+
+\paragraph{Sobre el nivel (\Cref{hip:nivel}).} El signo de
+\eqref{eq:anexo-efecto} es inequívoco para cualquier entrada que aumente el
+número de competidoras efectivas de la incumbente. El efecto es además
+permanente, pues opera sobre el equilibrio del mercado local y no sobre una
+desviación transitoria respecto de él.
+
+\paragraph{Sobre la distancia (\Cref{hip:distancia}).} Por la
+\Cref{prop:monopolio}, una entrada que no genere traslape de mercados deja a la
+incumbente frente al bien externo, donde su precio óptimo \eqref{eq:monopolio} es
+independiente de la estructura del mercado local, y el efecto es exactamente
+nulo. Conviene precisar qué predice el modelo y qué no. Para una estación dada la
+predicción es discontinua: la entrante cuenta en $n_i$ o no cuenta, y el efecto es
+$-c/(n_i(n_i+1))$ o cero. Lo que se estima empíricamente, en cambio, es el efecto
+promedio por anillo de distancia sobre estaciones cuyo radio de mercado difiere.
+Como la proporción de incumbentes para las cuales la entrante cae dentro del
+radio decrece con la distancia, el promedio de umbrales heterogéneos genera un
+perfil que decae de manera suave y se anula más allá de cierta distancia. Es ese
+perfil, y no una atenuación asintótica a nivel de estación, lo que la
+\Cref{hip:distancia} afirma y lo que la \Cref{fig:atenuacion} contrasta.
+
+\paragraph{Sobre el margen previo (\Cref{hip:margen}).} Por
+\eqref{eq:anexo-margen}, el margen es un estadístico suficiente del aislamiento
+espacial de la estación: $\mu$ es alto precisamente cuando las competidoras son
+pocas y están lejos. Invirtiendo \eqref{eq:anexo-margen} como $n = c/\mu$ y
+sustituyendo en \eqref{eq:anexo-efecto}, el efecto de una entrada se expresa
+directamente en función del margen previo,
 \begin{equation}
-    \Delta p_i = \Delta \mu_i .
+    |\Delta\mu| = \frac{\mu^{2}}{c + \mu} ,
+    \qquad
+    \frac{\partial\,|\Delta\mu|}{\partial\mu}
+    = \frac{\mu\,(2c + \mu)}{(c + \mu)^{2}} \;>\; 0 ,
+    \label{eq:het}
 \end{equation}
-Esta equivalencia es la que permite contrastar el modelo tanto con precios como
-con márgenes, y es consecuencia directa del carácter nacional del MEPCO.
+de modo que una incumbente con margen previo elevado es una incumbente aislada y
+es, por lo tanto, la que más pierde ante una entrada cercana. La predicción vale
+además en términos relativos, que es la escala en que se estiman los resultados
+sobre el precio en logaritmo: $|\Delta\mu|/\mu = \mu/(c+\mu)$ es también
+creciente en $\mu$.
 
-\subsubsection*{Implicancias de \eqref{eq:anexo-efecto}}
+Vale la pena notar que la formulación en términos de $\mu$ y no del número de
+competidoras dentro de un radio fijo no es una elección de conveniencia. El
+conteo $n_i(r) = \#\{j : \mathrm{dist}(i,j) \le r\}$ se construye sobre un radio
+$r$ igual para todas las estaciones, mientras que el $n_i$ del modelo es el
+número de competidoras dentro del radio propio de cada mercado local, que no se
+observa. Por \eqref{eq:anexo-margen}, en cambio, $\mu$ es una transformación
+exacta de ese $n_i$. El margen es, en este modelo, el estadístico suficiente del
+poder de mercado local, y el conteo a radio fijo apenas una aproximación gruesa.
 
-De la expresión se desprenden las tres hipótesis del cuerpo.
+\subsection{Limitaciones del marco}
 
-\paragraph{Sobre el nivel (\Cref{hip:nivel}).} El signo es inequívoco para
-cualquier entrada que acorte la distancia a la competidora más cercana.
+Tres limitaciones conviene declarar. La primera es que el equilibrio de
+\textcite{SALOP1979} predice un margen común a todas las estaciones que enfrentan
+el mismo $n$, mientras que los datos muestran dispersión de precios persistente
+dentro de mercados muy estrechos. Leer la circunferencia como el mercado local de
+cada estación, y no como una unidad administrativa, acomoda parte de esa
+dispersión, pues estaciones de una misma comuna enfrentan distinto $n_i$; pero no
+toda. La literatura atribuye el resto a fricciones informativas del lado del
+consumidor \parencite{FISCHER2025}, un canal que este modelo no incorpora.
 
-\paragraph{Sobre la distancia (\Cref{hip:distancia}).} Derivando respecto de la
-ubicación de la entrante,
-\begin{equation}
-    \frac{\partial\,|\Delta\mu_i|}{\partial a} = -\frac{c}{2} < 0 ,
-\end{equation}
-de modo que el efecto se atenúa linealmente a medida que la entrante se aleja.
-Cuando $a \to d_R$ el efecto tiende a cero, y si la entrante se ubica lo bastante
-lejos como para no generar traslape de mercados, la incumbente permanece en la
-región de monopolio local y el efecto es exactamente nulo.
+La segunda es que el equiespaciamiento es un supuesto de conveniencia y no un
+rasgo del mercado chileno. Su función es hacer que $1/n$ sea a la vez el
+espaciamiento y el inverso del número de competidoras, de modo que ambas lecturas
+de \eqref{eq:anexo-margen} coincidan. Con espaciamiento desigual las magnitudes
+cambian, pero no el signo ni el ordenamiento en que descansan las tres hipótesis.
 
-\paragraph{Sobre el margen previo (\Cref{hip:margen}).} Combinando
-\eqref{eq:anexo-margen} y \eqref{eq:anexo-efecto}, y expresando el efecto en
-función del margen previo, para una entrante que se ubica en el punto medio del
-tramo derecho ($a = d_R/2$) se tiene
-\begin{equation}
-    \Delta\mu_i = -\,\frac{c\,d_R}{4} ,
-\end{equation}
-que es creciente en magnitud en $d_R$ y, por \eqref{eq:anexo-margen}, creciente
-en el margen previo de la incumbente. Una estación con margen alto es una
-estación aislada, y es precisamente la que más pierde ante una entrada cercana.
-
-La formulación en términos de $\mu_i$ y no del número de competidoras dentro de
-un radio fijo no es una elección de conveniencia. El conteo
-$n_i(r) = \#\{j : \mathrm{dist}(i,j) \le r\}$ es una función escalonada del
-vector de espaciamientos: dos estaciones con idéntico $n_i(r)$ pueden tener
-$\bar{d}_i$ muy distintos según cómo se distribuyan esas vecinas dentro del
-radio. Por \eqref{eq:anexo-margen}, en cambio, $\mu_i$ es una transformación
-lineal exacta de $\bar{d}_i$. El margen es, en este modelo, el estadístico
-suficiente del poder de mercado local, y el conteo apenas una aproximación
-gruesa.
+La tercera es que la \Cref{prop:libre} describe la entrada como una respuesta a
+la densidad del mercado local, es decir, como una decisión endógena respecto de
+dónde instalarse. La estrategia de identificación desarrollada en el cuerpo no
+requiere negar esa endogeneidad sino únicamente que el momento preciso en que la
+entrada se materializa sea exógeno desde la perspectiva de la incumbente.

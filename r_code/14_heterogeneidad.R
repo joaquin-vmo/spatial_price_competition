@@ -452,9 +452,12 @@ for (tipo in c("precio", "margen")) {
          title = "El efecto de la entrada cae sobre quien tenía margen que ceder",
          subtitle = paste("Grupos según la posición de la estación en la",
                           "distribución de precios de su comuna antes de la entrada")) +
-    tema()
+    tema(16) +
+    # marco por panel, igual que en las demas figuras del documento
+    theme(panel.border = element_rect(colour = "black", fill = NA,
+                                      linewidth = 0.7))
   guardar(p, file.path(FIG, sprintf("het_rank_%s.pdf", tipo)),
-          9.5, if (tipo == "precio") 5.8 else 4.2)
+          11, if (tipo == "precio") 6.4 else 4.9)
 }
 
 # the competitor-count moderator was dropped: it showed no gradient in prices

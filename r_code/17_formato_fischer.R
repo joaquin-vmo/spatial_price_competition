@@ -2,8 +2,10 @@
 # objective: the main specification of this project, presented in the format of
 # figure 3 of fischer, martin & schmidt-dengler (2025): station-level event
 # study with six-month bins, four bins before and five after, endpoints binned,
-# with prices in levels in one panel and logged margins in the other, and the
-# two market definitions as the two series.
+# with the two market definitions as the two series. both panels are the GROSS
+# MARGIN: levels ($/L) on top and logs (effect read as % of the margin) below,
+# so the two rows are the same object in two units and the figure never mixes a
+# price effect with a margin effect.
 #
 # what is kept from the main specification of this project:
 #   - never-treated stations as the control pool (13_grupos_control.R)
@@ -16,9 +18,11 @@
 #   - treatment radii of 1 km and 2 km rather than the 2 km used elsewhere
 #     here, so these numbers are not interchangeable with the other tables
 #   - six-month bins over a +-4 window instead of monthly leads and lags
-#   - prices in LEVELS ($/L) and margins in LOGS (effect read as % of the
-#     margin), which is the opposite transform to the rest of this project and
-#     is what makes the panel comparable to their figure
+#   - the outcome in LEVELS in one panel and in LOGS in the other, which is the
+#     pair of transforms that makes the panel comparable to their figure. what
+#     departs from them is the outcome itself: they put the price in the levels
+#     panel, here it is the margin, so that both rows speak about the same
+#     object
 #
 # their county-level time-varying controls have no counterpart here: chile
 # publishes nothing at comuna level at monthly frequency that matches. region x
@@ -46,9 +50,9 @@ R_EARTH <- 6371
 
 FE <- "station_key + ym_f + region^year + distribuidor^year"
 
-fuels <- list(p93 = list(precio = "p93", margen = "m93", lbl = "Gasolina 93"),
-              p97 = list(precio = "p97", margen = "m97", lbl = "Gasolina 97"),
-              pdi = list(precio = "pdi", margen = "mdi", lbl = "Diésel"))
+fuels <- list(p93 = list(margen = "m93", lbl = "Gasolina 93"),
+              p97 = list(margen = "m97", lbl = "Gasolina 97"),
+              pdi = list(margen = "mdi", lbl = "Diésel"))
 
 mi <- function(d) year(d) * 12L + (month(d) - 1L)
 
@@ -140,16 +144,19 @@ for (nm in names(muestras)) {
 # ==============================================================================
 # 2. estimation
 #
-# panel (a) is the price in LEVELS; panel (b) is log(margin) x 100, so the
-# coefficient reads as a percentage of the margin. margins at or below zero
-# cannot be logged and are dropped -- they are 0.1% of observations, and a
-# negative gross margin against the national mepco quote is almost surely a
-# reporting or matching error rather than a station selling below cost
+# both panels are the margin: (a) in LEVELS ($/L) and (b) as log(margin) x 100,
+# so the coefficient reads as a percentage of the margin. margins at or below
+# zero cannot be logged and are dropped from (b) -- they are 0.1% of
+# observations, and a negative gross margin against the national mepco quote is
+# almost surely a reporting or matching error rather than a station selling
+# below cost. panel (a) keeps them: dropping observations because of a transform
+# used in the other row would be selection with no argument behind it. n_drop
+# reports the gap
 # ==============================================================================
 
 estimar <- function(nm, y, tipo) {
   d <- copy(muestras[[nm]])
-  if (tipo == "margen") {
+  if (tipo == "log") {
     n0 <- nrow(d[!is.na(get(y))])
     d <- d[!is.na(get(y)) & get(y) > 0]
     d[, yv := log(get(y)) * 100]
@@ -185,8 +192,8 @@ estimar <- function(nm, y, tipo) {
 
 res <- rbindlist(lapply(names(muestras), function(nm)
   rbindlist(lapply(names(fuels), function(fk) rbind(
-    estimar(nm, fuels[[fk]]$precio, "precio"),
-    estimar(nm, fuels[[fk]]$margen, "margen"))))))
+    estimar(nm, fuels[[fk]]$margen, "nivel"),
+    estimar(nm, fuels[[fk]]$margen, "log"))))))
 
 fwrite(res[, .(radio, outcome, tipo, bin, estimate, se, ci_low, ci_high)],
        file.path(TAB, "formato_fischer_coefs.csv"))
@@ -195,11 +202,11 @@ att <- unique(res[, .(radio, outcome, tipo, att, att_se, att_p, pre_F, pre_p,
                       n_trat, n_drop)])
 fwrite(att, file.path(TAB, "formato_fischer_att.csv"))
 
-cat("\n=== ATT (precio en $/L, margen en % del margen) ===\n")
+cat("\n=== ATT (margen en $/L y en % del margen) ===\n")
 print(att[, .(radio, outcome, tipo, att = round(att, 3),
               se = round(att_se, 3), p = round(att_p, 4), n_trat)])
 cat("\n=== TEST CONJUNTO DE PRE-TENDENCIAS SOBRE LOS BINS PREVIOS ===\n")
-print(att[, .(radio, outcome, F = round(pre_F, 2), p = round(pre_p, 4))])
+print(att[, .(radio, outcome, tipo, F = round(pre_F, 2), p = round(pre_p, 4))])
 
 # ==============================================================================
 # 3. table and figure
@@ -207,10 +214,10 @@ print(att[, .(radio, outcome, F = round(pre_F, 2), p = round(pre_p, 4))])
 
 for (fk in names(fuels)) {
   f <- fuels[[fk]]
-  w <- dcast(att[outcome %in% c(f$precio, f$margen)], tipo ~ radio,
+  w <- dcast(att[outcome == f$margen], tipo ~ radio,
              value.var = c("att", "att_se", "att_p"))
-  out <- data.table(Resultado = c(margen = "$\\ln$(margen), \\%",
-                                  precio = "Precio, \\$/L")[w$tipo])
+  out <- data.table(Resultado = c(log = "$\\ln$(margen), \\%",
+                                  nivel = "Margen, \\$/L")[w$tipo])
   for (nm in names(muestras)) {
     out[[nm]] <-
       celda_tex(w[[paste0("att_", nm)]], w[[paste0("att_se_", nm)]],
@@ -237,30 +244,31 @@ panel_plot <- function(d) {
     scale_color_manual(values = pal) +
     scale_shape_manual(values = c(16, 17)) +
     scale_linetype_manual(values = c("solid", "dashed")) +
-    # filas por transformacion y columnas por combustible: las unidades difieren
-    # entre filas ($/L y %), de modo que la escala se libera por fila y se
-    # comparte entre combustibles, que es la comparacion de interes
+    # filas por transformacion y columnas por combustible: ambas filas son el
+    # margen, pero en unidades distintas ($/L y %), de modo que la escala se
+    # libera por fila y se comparte entre combustibles, que es la comparacion
+    # de interes
     facet_grid(tipo_f ~ combustible, scales = "free_y", switch = "y") +
     labs(x = "Bins de seis meses respecto de la entrada", y = NULL,
          color = NULL, shape = NULL, linetype = NULL,
-         title = "Efecto de la entrada sobre el precio y el margen",
+         title = "Efecto de la entrada sobre el margen bruto",
          subtitle = "Control: estaciones nunca tratadas") +
-    tema() +
-    theme(strip.placement = "outside")
+    tema(16) +
+    # marco por panel: con seis facetas y escalas libres por fila, el borde
+    # cierra la grilla y evita que los intervalos de un panel se lean como si
+    # pertenecieran al vecino. local a esta figura, no va en tema()
+    theme(strip.placement = "outside",
+          panel.border = element_rect(colour = "black", fill = NA,
+                                      linewidth = 0.7))
 }
 
 lbl_comb <- vapply(fuels, `[[`, character(1), "lbl")
 res[, combustible := factor(
-  lbl_comb[match(outcome, unlist(lapply(fuels, function(f) c(f$precio, f$margen))) )],
-  levels = lbl_comb)]
-# el match anterior recorre precio y margen de cada combustible en orden
-res[, combustible := factor(
-  fifelse(outcome %in% c("p93", "m93"), "Gasolina 93",
-          fifelse(outcome %in% c("p97", "m97"), "Gasolina 97", "Diésel")),
+  lbl_comb[match(outcome, vapply(fuels, `[[`, character(1), "margen"))],
   levels = unname(lbl_comb))]
-res[, tipo_f := factor(fifelse(tipo == "precio", "Precio ($/L)",
+res[, tipo_f := factor(fifelse(tipo == "nivel", "Margen ($/L)",
                                "ln(margen) (%)"),
-                       levels = c("Precio ($/L)", "ln(margen) (%)"))]
+                       levels = c("Margen ($/L)", "ln(margen) (%)"))]
 
 guardar(panel_plot(res), file.path(FIG, "formato_fischer.pdf"), 11, 6)
 

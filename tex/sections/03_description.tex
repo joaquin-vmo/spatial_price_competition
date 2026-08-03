@@ -27,76 +27,53 @@ En la práctica ha considerado radios de tres a cinco kilómetros, sin descartar
 
 \subsection{Modelo de competencia espacial}
 
-El marco natural para este mercado es el modelo de ciudad circular de \textcite{SALOP1979}.\footnote{Se prefiere \textcite{SALOP1979} por sobre Hotelling puesto que las proposiciones sobre el efecto del número de competidores sobre el precio son más directas.} Los combustibles son un bien homogéneo, los precios son observables y la regulación impide diferenciación relevante en el producto, de modo que la única fuente sustantiva de diferenciación es la ubicación. Un consumidor prefiere la EDS más cercana salvo que otra compense la distancia con un precio menor. En esta sección se presenta una acotada adaptación del modelo de ciudad circular para poder establecer hipótesis falseables bajo un marco teórico. Las derivaciones completas se desarrollan en el
-Anexo~\ref{anexo:modelo}.
+El marco natural para este mercado es el modelo de ciudad circular de \textcite{SALOP1979}.\footnote{El modelo de \textcite{SALOP1979} es una variante del de \textcite{HOTELLING1929}, del que hereda todo lo que esta aplicación necesita: consumidores distribuidos uniformemente sobre un espacio, demanda unitaria e inelástica, un costo de desplazamiento $c$ por unidad de distancia y ninguna preferencia entre vendedores que no sea el precio más el costo de llegar hasta ellos. Se prefiere la versión circular porque la recta de \textcite{HOTELLING1929} tiene extremos y, con ellos, posiciones asimétricas que impiden un equilibrio simétrico con más de dos firmas. La circunferencia elimina ese problema y permite obtener el resultado en el número de competidoras, $p = m + c/n$, que es justamente la estática comparativa que este trabajo contrasta.} Los combustibles son un bien homogéneo, los precios son observables y la regulación impide diferenciación relevante en el producto, de modo que la única fuente sustantiva de diferenciación es la ubicación. Un consumidor prefiere la EDS más cercana salvo que otra compense la distancia con un precio menor. Esta subsección recoge únicamente lo indispensable para plantear las hipótesis. Los resultados no son una adaptación del modelo sino el modelo mismo, y el Anexo~\ref{anexo:modelo} los desarrolla, indica la ecuación y la página de \textcite{SALOP1979} de las que proviene cada uno y discute las limitaciones del marco.
 
-\subsubsection*{Estructura y notación}
-
-Un mercado local se representa por una circunferencia de perímetro unitario sobre la cual se distribuyen uniformemente $L$ consumidores de demanda unitaria. Sobre ella operan $n$ EDS. Un consumidor situado a distancia $x$ de la estación $i$ incurre en un costo de desplazamiento $cx$, con $c>0$, de modo que su desembolso efectivo es $p_i + cx$. Cada EDS enfrenta un costo marginal constante $m$ y un costo fijo $F$ de operación del sitio. Se denota por $d_L$ y $d_R$ las distancias de la estación $i$ a sus dos competidoras contiguas, y por $\bar{d}_i \equiv (d_L + d_R)/2$ su promedio.
-
-El supuesto que distingue a esta aplicación del tratamiento habitual del modelo es que $m$ es común a todas las estaciones. El costo mayorista relevante queda determinado por el precio de paridad de ENAP corregido por el MEPCO. En una fecha dada todas las EDS enfrentan el mismo $m$, con independencia de su ubicación o de su distribuidor.\footnote{Si bien los costos mayoristas sí difieren en la realidad entre estaciones, se hace este supuesto de igual costo mayorista tanto para el modelo teórico como para la parte empírica.} Definiendo el margen bruto
+El mercado local de una estación se representa por una circunferencia de perímetro unitario sobre la que se distribuyen uniformemente $L$ consumidores de demanda unitaria y operan $n$ EDS equiespaciadas, de modo que la distancia entre dos contiguas es $1/n$. Un consumidor que se desplaza una distancia $x$ incurre en un costo $cx$, con $c>0$. Cada estación enfrenta un costo fijo $F$ y un costo marginal $m$ que, por ser el MEPCO una referencia nacional, es común a todas ellas en una fecha dada.\footnote{Si bien los costos mayoristas sí difieren en la realidad entre estaciones, se hace este supuesto de igual costo mayorista tanto para el modelo teórico como para la parte empírica.} El margen bruto
 \begin{equation}
-    \mu_i \equiv p_i - m,
+    \mu_i \equiv p_i - m
     \label{eq:def-margen}
 \end{equation}
-se sigue que toda la variación de precios entre estaciones en un mismo instante es variación de márgenes. El componente competitivo del precio es exactamente $\mu_i$.
-
-El análisis se sitúa en la región competitiva de la curva de demanda, aquella en que los mercados de estaciones contiguas se traslapan, que es la empíricamente pertinente en los mercados urbanos donde ocurre la mayoría de las entradas.
+recoge entonces toda la variación de precios entre estaciones en un mismo instante y es, entendido así, el componente competitivo del precio. Como el número de competidoras dentro del radio en que la sustitución es efectiva difiere entre estaciones de una misma comuna, cada EDS enfrenta su propio $n_i$, y es esa variación la que el modelo traduce en variación de márgenes.
 
 \begin{proposicion}[Margen de equilibrio]
 \label{prop:margen}
-En el equilibrio de Nash en precios de la región competitiva, el margen de la estación $i$ es
+En el equilibrio de Nash en precios de la región competitiva, con $n$ estaciones
+equiespaciadas,
 \begin{equation}
-    \mu_i = c\,\bar{d}_i .
+    \mu = \frac{c}{n} .
     \label{eq:margen}
 \end{equation}
-Con estaciones equiespaciadas, $\bar{d}_i = 1/n$ y la expresión se reduce al equilibrio competitivo de \textcite{SALOP1979}, $p = m + c/n$.
 \end{proposicion}
 
-\begin{proposicion}[Efecto de una entrada]
-\label{prop:entrada}
-Si una nueva EDS se instala del lado derecho de $i$ a una distancia
-$a < d_R$, el margen de equilibrio de la incumbente varía en
+\begin{corolario}[Efecto de una entrada]
+\label{cor:entrada}
+La llegada de una competidora al mercado local de la incumbente altera su margen
+de equilibrio en
 \begin{equation}
-    \Delta\mu_i = -\,\frac{c\,(d_R - a)}{2} \;<\; 0 ,
+    \Delta\mu = \frac{c}{n+1} - \frac{c}{n} = -\,\frac{c}{n(n+1)} \;<\; 0 ,
     \label{eq:efecto}
 \end{equation}
 y, dado que $m$ no se altera, el precio cae en la misma magnitud.
-\end{proposicion}
+\end{corolario}
 
-\begin{proposicion}[Entrada libre]
-\label{prop:libre}
-Bajo libre entrada, el número de estaciones de equilibrio es
-\begin{equation}
-    n^{*} = \sqrt{cL/F} ,
-    \label{eq:entrada-libre}
-\end{equation}
-creciente en la densidad de consumidores del mercado local y decreciente en el
-costo fijo de instalación.
-\end{proposicion}
+\paragraph{Hipótesis contrastables} De \eqref{eq:margen} y \eqref{eq:efecto} se desprenden las tres hipótesis que la estrategia empírica somete a prueba.
 
-\paragraph{Hipótesis contrastables} Las \Cref{prop:margen,prop:entrada} organizan las tres hipótesis que la estrategia empírica somete a prueba.
 \begin{hipotesis}[Efecto disciplinador]
 \label{hip:nivel}
 La entrada de un competidor reduce el precio y el margen de las incumbentes del
 mercado local.
 \end{hipotesis}
-El signo de \eqref{eq:efecto} es siempre negativo toda entrada que acorte la distancia a la competidora más cercana reduce el margen de equilibrio.
+El signo de \eqref{eq:efecto} es inequívoco, y el efecto es permanente porque opera sobre el equilibrio y no sobre una desviación transitoria.
 
 \begin{hipotesis}[Atenuación espacial]
 \label{hip:distancia}
 El efecto decrece en magnitud con la distancia entre la entrante y la incumbente, y se anula a partir de un umbral.
 \end{hipotesis}
-
-Para $d_R$ dado, $|\Delta\mu_i|$ decrece en $a$, una entrada lejana desplaza menos al consumidor indiferente.
+Si la entrante queda fuera del radio en que la sustitución es efectiva, la incumbente sigue enfrentando el mismo $n_i$ y el efecto es exactamente nulo. La predicción a nivel de estación es entonces discontinua; el perfil suave que se estima por anillos de distancia resulta de promediar ese umbral sobre estaciones con radios de mercado distintos.
 
 \begin{hipotesis}[Heterogeneidad por margen previo]
 \label{hip:margen}
 El efecto es mayor sobre las incumbentes cuyo margen previo a la entrada era más alto en relación con su mercado local.
 \end{hipotesis}
-
-Por \eqref{eq:margen}, el margen es un estadístico suficiente del aislamiento local: $\mu_i$ es alto precisamente cuando $\bar{d}_i$ es grande. Combinando \eqref{eq:margen} y \eqref{eq:efecto}, una EDS con margen previo elevado es una EDS con vecinas lejanas y, por lo tanto, con más que perder ante una entrada cercana.
-
-Dos limitaciones del marco conviene declararlas desde ya. La primera es que el equilibrio simétrico de \textcite{SALOP1979} predice un margen común a todas las estaciones del mercado, mientras que los datos muestran dispersión de precios persistente dentro de mercados muy estrechos. La generalización a espaciamiento desigual de la \Cref{prop:margen} acomoda parte de esa dispersión, pero no toda, la literatura atribuye el resto a fricciones informativas del lado del consumidor \parencite{FISCHER2025}, un canal que este modelo no incorpora.
-
-La segunda es que la \Cref{prop:libre} describe la entrada como una respuesta a la densidad del mercado local, es decir, como una decisión endógena respecto de dónde instalarse. La estrategia de identificación desarrollada más adelante no requiere negar esa endogeneidad sino únicamente que el momento preciso en que la entrada se materializa sea exógeno desde la perspectiva de la incumbente.
+Por \eqref{eq:margen} el margen es un estadístico suficiente del aislamiento espacial de la estación. Invirtiendo esa expresión como $n = c/\mu$ y sustituyéndola en \eqref{eq:efecto} se obtiene $|\Delta\mu| = \mu^{2}/(c+\mu)$, creciente en el margen previo tanto en niveles como en términos relativos.

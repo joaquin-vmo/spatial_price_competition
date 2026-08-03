@@ -1,15 +1,23 @@
 
 # objective: two robustness exercises for the annex.
 #
-#   A. staggered difference-in-differences. with 403 entry cohorts spread over
+#   A. staggered difference-in-differences. with 25 semester cohorts spread over
 #      twelve years, the two-way fixed effects estimator is a weighted average
 #      of cohort-time comparisons in which already-treated units act as controls
 #      for later-treated ones, and the weights can be negative when treatment
 #      effects vary across cohorts \parencite{SUNABRAHAM2021}. the
 #      interaction-weighted estimator of sun & abraham is estimated here on the
-#      same sample and reported next to the twfe one. it is the natural choice
-#      in this setting because the design already has a large never-treated
-#      pool, which is what the estimator uses as its comparison group.
+#      same sample and reported next to the twfe one. it is the estimator that
+#      fischer, martin & schmidt-dengler (2025) use for the same correction,
+#      and it is the natural choice here because the design already has a large
+#      never-treated pool, which is what it uses as its comparison group.
+#
+#      both series are plotted over the SAME relative periods, -4 to +4 exactly,
+#      with no endpoint binning. binning the tails of the twfe series while
+#      leaving sun-abraham unbinned -- as an earlier version did -- makes the two
+#      endpoints of the figure incomparable: one accumulates everything beyond
+#      the window and the other does not, which is precisely where a reader
+#      looks for divergence between estimators.
 #
 #   B. persistence of the treatment. the design assumes that an entry is a
 #      discrete and lasting increase in the number of competitors of the local
@@ -40,8 +48,8 @@ NSEM  <- 4L          # semesters kept each side; endpoints binned
 NUNCA <- 1000000L    # cohort code for the never treated
 R_EARTH <- 6371
 
-precios <- c(p93 = "gasolina 93", p95 = "gasolina 95",
-             p97 = "gasolina 97", pdi = "diesel")
+precios <- c(p93 = "Gasolina 93", p95 = "Gasolina 95",
+             p97 = "Gasolina 97", pdi = "Diésel")
 
 mi <- function(d) year(d) * 12L + (month(d) - 1L)
 sem_i <- function(m) m %/% 6L          # continuous six-month index
@@ -62,9 +70,12 @@ guardar_tabla_tex <- function(d, archivo) {
   )
 }
 
-etiquetas <- c(sprintf("≤−%d", NSEM),
-               as.character(-(NSEM - 1):(NSEM - 1)),
-               sprintf("≥%d", NSEM))
+# exercise A truncates the window, so its endpoints are plain semesters;
+# exercise B still bins them, and keeps the <= / >= labels
+etiquetas     <- as.character(-NSEM:NSEM)
+etiquetas_bin <- c(sprintf("≤−%d", NSEM),
+                   as.character(-(NSEM - 1):(NSEM - 1)),
+                   sprintf("≥%d", NSEM))
 
 panel <- fread("data/processed/panel_mensual.csv")
 panel[, `:=`(ym = as.IDate(ym), g_entry = as.IDate(g_entry),
@@ -105,8 +116,9 @@ corre_sa <- function(fv) {
   sc <- if (en_log) 100 else 1
   dq <- colapsar(fv, en_log)
   dq[, treated := as.integer(cohorte < NUNCA)]
-  dq[, rel := fifelse(treated == 1L,
-                      pmax(-NSEM, pmin(NSEM, periodo - cohorte)), -1L)]
+  # no endpoint binning: rel is the exact relative semester, and the window is
+  # truncated when plotting so that the three estimators share a definition
+  dq[, rel := fifelse(treated == 1L, periodo - cohorte, -1L)]
   # sunab needs the never treated flagged with an infinite cohort
   dq[, coh_sa := fifelse(cohorte == NUNCA, 10000L, as.integer(cohorte))]
 
@@ -137,6 +149,7 @@ corre_sa <- function(fv) {
                     att_sa = at[1, 1] * sc, se_sa = at[1, 2] * sc, p_sa = at[1, 4],
                     att_tw = aw[1, 1] * sc, se_tw = aw[1, 2] * sc, p_tw = aw[1, 4],
                     n_cohortes = uniqueN(dq[treated == 1L, cohorte]),
+                    n_trat = uniqueN(dq[treated == 1L, station_key]),
                     n_nunca = uniqueN(dq[treated == 0L, station_key]))
   list(es = es, att = att)
 }
@@ -151,7 +164,8 @@ fwrite(att_sa, file.path(TAB, "sunab_att.csv"))
 cat("\n=== ATT: SUN-ABRAHAM vs TWFE (% del precio) ===\n")
 print(att_sa[, .(outcome, sa = round(att_sa, 3), se_sa = round(se_sa, 3),
                  twfe = round(att_tw, 3), se_tw = round(se_tw, 3),
-                 n_cohortes, n_nunca)])
+                 n_cohortes, n_trat, n_nunca,
+                 pct_nunca = round(100 * n_nunca / (n_trat + n_nunca), 1))])
 
 tab <- data.table(
   Combustible = unname(precios[att_sa$outcome]),
@@ -160,21 +174,32 @@ tab <- data.table(
 guardar_tabla_tex(tab, "tab_sunab.tex")
 
 es_sa[, combustible := factor(outcome, levels = names(precios), labels = precios)]
-p_sa <- ggplot(es_sa, aes(rel, estimate, colour = estimador, fill = estimador)) +
+es_sa[, estimador := factor(estimador, levels = c("TWFE", "Sun-Abraham (IW)"))]
+# barras de error con dodge y no bandas: con dos series superpuestas las bandas
+# se ensucian, y los semestres son discretos
+pal_est <- c("TWFE" = GRIS, "Sun-Abraham (IW)" = AZUL)
+p_sa <- ggplot(es_sa, aes(rel, estimate, colour = estimador, shape = estimador,
+                          linetype = estimador)) +
   geom_hline(yintercept = 0, linetype = "dotted") +
   geom_vline(xintercept = -0.5, linetype = "dashed", colour = "grey55") +
-  geom_ribbon(aes(ymin = ci_low, ymax = ci_high), alpha = 0.10, colour = NA) +
-  geom_line() + geom_point(size = 1) +
+  geom_errorbar(aes(ymin = ci_low, ymax = ci_high), width = 0.18,
+                linetype = "solid", position = position_dodge(width = 0.45)) +
+  geom_line(position = position_dodge(width = 0.45)) +
+  geom_point(size = 1.5, position = position_dodge(width = 0.45)) +
   facet_wrap(~combustible, scales = "free_y") +
   scale_x_continuous(breaks = -NSEM:NSEM, labels = etiquetas) +
-  scale_colour_manual(values = c("Sun-Abraham (IW)" = AZUL, "TWFE" = NARANJO_OSC)) +
-  scale_fill_manual(values = c("Sun-Abraham (IW)" = AZUL, "TWFE" = NARANJO_OSC)) +
-  labs(x = "semestres desde la entrada (extremos agrupados)",
-       y = "efecto sobre el precio (%)", colour = NULL, fill = NULL,
-       title = "estimador de sun-abraham frente a twfe",
-       subtitle = "misma muestra y mismos efectos fijos; solo cambia el estimador") +
-  tema()
-guardar(p_sa, file.path(FIG, "sunab_vs_twfe.pdf"), 9.5, 5.8)
+  scale_colour_manual(values = pal_est) +
+  scale_shape_manual(values = c(15, 16)) +
+  scale_linetype_manual(values = c("dotted", "solid")) +
+  labs(x = "Semestres desde la entrada",
+       y = "Efecto sobre el precio (%)", colour = NULL, shape = NULL,
+       linetype = NULL,
+       title = "Estimador de Sun y Abraham frente a TWFE",
+       subtitle = "Misma muestra y mismos efectos fijos; solo cambia el estimador") +
+  tema(16) +
+  theme(panel.border = element_rect(colour = "black", fill = NA,
+                                    linewidth = 0.7))
+guardar(p_sa, file.path(FIG, "sunab_vs_twfe.pdf"), 11, 6.4)
 
 # ==============================================================================
 # B. PERSISTENCE OF THE TREATMENT
@@ -254,7 +279,7 @@ p_per <- ggplot(persist, aes(rel, estimate)) +
   geom_ribbon(aes(ymin = ci_low, ymax = ci_high), alpha = 0.15, fill = AZUL) +
   geom_line(colour = AZUL) + geom_point(colour = AZUL, size = 1.2) +
   facet_wrap(~serie) +
-  scale_x_continuous(breaks = -NSEM:NSEM, labels = etiquetas) +
+  scale_x_continuous(breaks = -NSEM:NSEM, labels = etiquetas_bin) +
   labs(x = "semestres desde la entrada (extremos agrupados)",
        y = "cambio en el número de estaciones a 2 km",
        title = "persistencia del tratamiento",

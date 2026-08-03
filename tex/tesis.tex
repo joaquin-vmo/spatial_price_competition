@@ -1,29 +1,25 @@
 \documentclass[12pt,a4paper,oneside]{article}
 
 \usepackage[spanish]{babel}
-% 'es-tabla' choca con biblatex-apa
 \addto\captionsspanish{\renewcommand{\tablename}{Tabla}}
-\usepackage{caption} % define \@makecaption limpiamente (babel-spanish no lo hace)
+\usepackage{caption} 
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{palatino}
+\usepackage{mathpazo} 
+
 
 \usepackage{csquotes}
-
 \usepackage[dvipsnames]{xcolor}
-
 \usepackage{graphicx}
-\usepackage{booktabs}   % \toprule, \midrule y \bottomrule de las tablas generadas en R
+\usepackage{booktabs}   
 \usepackage{float}
-% las figuras y tablas las genera el codigo R en results/, fuera de tex/
 \graphicspath{{../results/figures/}}
 \newcommand{\tabla}[1]{\input{../results/tables/#1.tex}}
 
 \usepackage{amsmath}
 \usepackage{amsthm}
 
-% entornos para los resultados del modelo teorico; las demostraciones van al anexo
 \theoremstyle{plain}
 \newtheorem{proposicion}{Proposición}
 \theoremstyle{definition}
@@ -31,18 +27,17 @@
 \newtheorem{hipotesis}{Hipótesis}
 \renewcommand\proofname{Demostración}
 
-\usepackage{hyperref}
+% hyperfootnotes=false evita que el \blfootnote de más abajo desincronice los
+% anclajes de nota al pie de hyperref (pdfTeX: "Hfootnote.N ... does not exist").
+\usepackage[hyperfootnotes=false]{hyperref}
 \hypersetup{
     colorlinks=true,
-    linkcolor=Blue,
-    citecolor=Blue,
-    urlcolor=
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
 }
 \usepackage{cleveref}
 
-% cleveref necesita saber como nombrar los entornos definidos arriba
-% cleveref no toma las conjunciones de babel-spanish por si solo, y las define
-% recien al abrir el documento, de ahi el \AtBeginDocument
 \AtBeginDocument{%
   \renewcommand{\crefpairconjunction}{ y }%
   \renewcommand{\creflastconjunction}{ y }%
@@ -64,32 +59,74 @@
 \crefname{hipotesis}{hipótesis}{hipótesis}
 \Crefname{hipotesis}{Hipótesis}{Hipótesis}
 
-
+% 1. Ajuste de márgenes (simétricos de 2.5cm)
 \usepackage[
-    top=2.5cm,
-    bottom=2.5cm,
-    left=3.5cm,
-    right=2.5cm,
+    margin=2.5cm,
     headsep=10mm,
     footskip=12mm
 ]{geometry}
 
+% 2. Mayor interlineado
+\usepackage{setspace}
+\onehalfspacing % Puedes usar \doublespacing si requieres aún más espacio
+
+
+\usepackage{titlesec}
+
+% Formato para las secciones principales
+\titleformat{\section}[block]
+  {\normalfont\Large\bfseries\centering} % Centrado, fuente grande y negrita
+  {\thesection.} % Agrega un punto después del número (ej. "1.")
+  {0.8em} % Espacio entre el número y el título
+  {}
+
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{\thesubsection}{0.8em}{}
+
+% 3. Sin sangría y con separación entre párrafos
+\usepackage{parskip}
+
+% 4. Mejora de justificación automática
+\usepackage{microtype}
+
+
 \usepackage[backend=biber, style=apa]{biblatex}
 \addbibresource{bibliografia.bib}
 
-\title{Medición del efecto disciplinador de la entrada de un nuevo competidor en el mercado de combustible minorista en Chile}
-\author{Joaquín Martínez\footnote{Facultad de Economía y Negocios, Universidad de Chile. Correo: \texttt{joamartine@fen.uchile.cl}}\footnote{Agradecimientos}}
-\date{\today}
+\makeatletter
+\def\blfootnote{\xdef\@thefnmark{}\@footnotetext}
+\makeatother
 
+\title{\vspace{1.5cm}\textbf{Efecto de la entrada sobre la competencia local}\textsuperscript{*}}
+\author{Joaquín Martínez\textsuperscript{\dag}}
+\date{Borrador: Agosto, 2026}
 
 \begin{document}
 
 \maketitle
 
+\blfootnote{\textsuperscript{*}Agradezco a Paola Bordón por su guía, apoyo y paciencia en este proceso. También quisiera agradecer a Alejandro Micco, Pablo Muñoz y Joaquín Hidalgo por la provechosa discusión alrededor de esta investigación. Cualquier error es mi responsabilidad.}
+\blfootnote{\textsuperscript{\dag}Facultad de Economía y Negocios, Universidad de Chile. Correo: \href{mailto:joamartine@fen.uchile.cl}{\texttt{joamartine@fen.uchile.cl}}}
+
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\setcounter{footnote}{0}
+
 \begin{abstract}
 \noindent
-La sana competencia en el mercado minorista de combustible es crítica para el bienestar de los hogares y las cadenas productivas. Este trabajo estima el efecto disciplanador sobre los precios que induce la entrada de una nueva estación de servicio en un mercado local. Utilizando bases de datos administrativas, oficiales y públicamente disponibles se aproximan los márgenes de venta. Mediante un estudio de eventos se captura la respuesta en precios y márgenes frente a la entrada de un nuevo competidor en el mercado local. Se encuentra un efecto causal de alrededor del $4\%$ sobre los márgenes de venta en gasolina de 93 octanos y diesel a la vez que un efecto nulo en la gasolina de 97 octanos. La respuesta es mayor en estaciones que ex-ante presentan los mayores márgenes con respecto a su comuna. 
+La sana competencia en el mercado minorista de combustible es crítica en el bienestar de los hogares y los costos de cadenas productivas. Este trabajo estima el efecto disciplinador sobre los precios que induce la entrada de una nueva estación de servicio en un mercado local. Utilizando bases de datos administrativas, oficiales y públicamente disponibles se aproximan los márgenes de venta e identifican entradas. Mediante un estudio de eventos se captura la respuesta en precios y márgenes frente a la entrada de un nuevo competidor en el mercado local. Se encuentra un efecto causal de alrededor del $4\%$ sobre los márgenes de venta en gasolina de 93 octanos y diesel a la vez que un efecto nulo en la gasolina de 97 octanos. La respuesta es mayor en estaciones que ex-ante presentan los mayores márgenes con respecto a su comuna. 
 \end{abstract}
+
+\vspace{0.5cm}
+\noindent \textbf{Códigos JEL:} L13, L81, L11. \\
+\noindent \textbf{Palabras clave:} Competencia local, Mercado de combustibles, Estudio de eventos. 
+
+
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\setcounter{footnote}{0}
+
+
+
+\newpage
 
 \input{sections/01_introduction.tex}
 
@@ -120,6 +157,5 @@ La sana competencia en el mercado minorista de combustible es crítica para el b
 \input{sections/A5_mercado.tex}
 
 \input{sections/A6_moderador.tex}
-
 
 \end{document}

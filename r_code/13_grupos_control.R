@@ -383,7 +383,11 @@ plot_grupo <- function(d, ylab, subt, color_var = NULL) {
          y = ylab, colour = NULL, fill = NULL,
          title = "Efecto de la entrada de un competidor",
          subtitle = subt) +
-    tema()
+    tema() +
+    # marco por panel, igual que en 17_formato_fischer.R: cierra la grilla y
+    # separa visualmente las facetas, que llevan escalas libres
+    theme(panel.border = element_rect(colour = "black", fill = NA,
+                                      linewidth = 0.7))
 }
 
 for (tp in names(salidas)) {
