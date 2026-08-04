@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber tesis"] 1785795987.045 "tesis.bcf" "tesis.bbl" "tesis" 1785796112.89447 0
-  "bibliografia.bib" 1785795653.32835 16016 47913c9b392005f25535802bf1aad0ab ""
-  "tesis.bcf" 1785796112.79558 144122 71e7fcc0c1b81681765f16544baf4088 "pdflatex"
+["biber tesis"] 1785799309.75493 "tesis.bcf" "tesis.bbl" "tesis" 1785799316.42763 0
+  "bibliografia.bib" 1785798541.86065 16819 272912ad745fd5a7f8bd8b0871274fd6 ""
+  "tesis.bcf" 1785799316.33284 145952 0adc6ddc34f34968418b8fc33945ca45 "pdflatex"
   (generated)
   "tesis.bbl"
   "tesis.blg"
   (rewritten before read)
-["pdflatex"] 1785796110.53247 "/Users/joaquin/Desktop/spatial_price_competition/tex/tesis.tex" "tesis.pdf" "tesis" 1785796112.8949 0
+["pdflatex"] 1785799314.25684 "tesis.tex" "tesis.pdf" "tesis" 1785799316.42797 0
   "../results/figures/atenuacion_distancia.pdf" 1785557305.31198 22212 a19d912603d6e26638698b1c1dcb1235 ""
   "../results/figures/desc_entradas_por_anio.pdf" 1785554483.01129 19377 9766ae0444298ff769b9d2ff4663f026 ""
   "../results/figures/desc_margen_promedio.pdf" 1785554483.42882 22450 009f8b7031f8e486378b0b730c291345 ""
@@ -28,7 +28,6 @@
   "../results/tables/tab_het_rank.tex" 1785795776.27483 639 1bec22ee5f7265699010d042247181d7 ""
   "../results/tables/tab_pretend_control.tex" 1785791241.01821 757 450108af508de76ba7db741012c3ee6c ""
   "../results/tables/tab_sunab.tex" 1785793159.50347 371 b31cf4a31f3753cce0c70f0580dbb833 ""
-  "/Users/joaquin/Desktop/spatial_price_competition/tex/tesis.tex" 1785796109.99394 5045 1ae947b37b430cb6b154fc5ec638623c ""
   "/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -176,10 +175,10 @@
   "/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1777772243 5573038 b99aad5e4898a9034e953632f940512b ""
   "/usr/local/texlive/2026/texmf-var/web2c/pdftex/pdflatex.fmt" 1774209607 3636776 dc5fa9b6b1453b9d196cd42edf876004 ""
   "/usr/local/texlive/2026/texmf.cnf" 1774209515 577 648cd9f92f9c0eac486f4c71c85cfbbe ""
-  "sections/01_introduction.tex" 1785795530.11011 5463 474a393ef5cf17ddefd1e2a82e55f5c8 ""
+  "sections/01_introduction.tex" 1785797661.34862 7507 7f76c336bc92c075ad6fe42f6b886c48 ""
   "sections/02_revision_literatura.tex" 1785764388.25678 34 c86ac27505598f08296f97a54fdc3b06 ""
-  "sections/03_description.tex" 1785794615.54599 12060 9fd971b046c67858b8260d23da8d93f8 ""
-  "sections/04_methodology.tex" 1785795080.53973 23727 63b751ba84aacc9fe513e105bf2c6966 ""
+  "sections/03_description.tex" 1785798577.79433 13846 62c46e8aaf7a2c1070250e8bc86f1eef ""
+  "sections/04_methodology.tex" 1785799303.48556 24696 1a0b8664de861a127bc1945def5fa113 ""
   "sections/05_conclusion.tex" 1785760008.3125 3427 aa051eed52356b3818e4438e00744f7a ""
   "sections/A1_modelo_espacial.tex" 1785795071.26139 15798 b6956954d31e525e9f9e224b6b2ac7a5 ""
   "sections/A2_construccion_datos.tex" 1785553248.21155 9394 860b84cbb218c49540ffa5c6e257c8bf ""
@@ -187,11 +186,11 @@
   "sections/A4_robustez.tex" 1785793867.59197 5608 90250ec0986cd886571b25dbb7afbefe ""
   "sections/A5_mercado.tex" 1785556344.17031 4302 9e1780ce61c7d76535b4b66758e49cbf ""
   "sections/A6_moderador.tex" 1785759971.125 6910 a50f68af1e45c999d66951b67c06f54b ""
-  "tesis.aux" 1785796112.78612 38889 2b805d7fd933404434d3aa32ed2a2ded "pdflatex"
-  "tesis.bbl" 1785795988.95705 87270 1c00782e92f01db48136f80fb27e5f6a "biber tesis"
-  "tesis.out" 1785796112.79436 9760 7c10585425da3d23f64780cb3792663a "pdflatex"
-  "tesis.run.xml" 1785796112.79646 2368 af8643fa711d951294af5a65e16b3cf3 "pdflatex"
-  "tesis.tex" 1785796109.99394 5045 1ae947b37b430cb6b154fc5ec638623c ""
+  "tesis.aux" 1785799316.32344 41860 6f18eb7a999aa1bd4fda651941880b30 "pdflatex"
+  "tesis.bbl" 1785799312.06053 93844 f5b4de3f363ea356c8a7750c4cbfeb35 "biber tesis"
+  "tesis.out" 1785799316.33172 9760 7c10585425da3d23f64780cb3792663a "pdflatex"
+  "tesis.run.xml" 1785799316.33394 2368 af8643fa711d951294af5a65e16b3cf3 "pdflatex"
+  "tesis.tex" 1785797663.79432 5045 1ae947b37b430cb6b154fc5ec638623c ""
   (generated)
   "tesis.aux"
   "tesis.bcf"

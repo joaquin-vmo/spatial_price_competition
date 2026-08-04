@@ -84,6 +84,8 @@ El efecto promedio se obtiene de la versión estática de \eqref{eq:es},
 %
 donde $\mathrm{Post}_{it}$ vale uno para una estación tratada desde el mes de la entrada en adelante.
 
+Ambas especificaciones se estiman por efectos fijos bidireccionales sobre un diseño de adopción escalonada, situación en la que el estimador es un promedio ponderado de comparaciones entre cohortes que puede recibir ponderaciones negativas cuando el efecto del tratamiento varía entre ellas \parencite{CALLAWAYSANTANNA2021, SUNABRAHAM2021, DECHAISEMARTIN2020, BORUSYAK2024}. El Anexo~\ref{anexo:robustez} reestima el efecto promedio con el estimador de \textcite{SUNABRAHAM2021}, que nunca emplea como control a una incumbente ya tratada, y obtiene el mismo resultado; es la misma verificación que realizan \textcite{FISCHER2025} sobre su propio diseño.
+
 Dos elementos de \eqref{eq:es} merecen justificación. El efecto fijo de estación absorbe todo atributo invariante del local tales como su ubicación, tamaño, y posición relativa dentro del mercado local, de modo que la identificación proviene únicament  de la variación dentro de cada estación. El efecto fijo de marca por año, que \textcite{FISCHER2025} no incorpora, responde a un rasgo propio del caso
 chileno documentado en la sección anterior.\footnote{Bajo el modelo de consignación el precio de venta al público lo determina la compañía mayorista, y con tres cadenas que concentran cerca del $80\%$ de las EDS, un movimiento nacional de cualquiera de ellas es un confusor que ni el efecto fijo de estación ni el de región por año absorben.}
 
@@ -154,11 +156,14 @@ combustibles.
 
 La segunda es que no esté construida sobre la misma variable que el resultado.
 La medida es entonces un \emph{promedio ponderado} de la posición de la estación
-en cada combustible, con ponderadores iguales a la participación de cada uno en
-el volumen nacional de ventas —$19{,}6\%$ la gasolina de 93 octanos, $11{,}9\%$
-la de 95, $4{,}0\%$ la de 97 y $64{,}4\%$ el diésel, según
+en cada combustible, con ponderadores iguales a la participación relativa de cada
+uno dentro de los cuatro combustibles analizados —$19{,}6\%$ la gasolina de 93
+octanos, $11{,}9\%$ la de 95, $4{,}0\%$ la de 97 y $64{,}4\%$ el diésel,
+calculados a partir de las ventas nacionales de 2017 que reporta
 \textcite{FNE2025informe}— y \emph{excluyendo el combustible que se analiza en
-cada caso}. Al estimar el efecto sobre el precio del diésel, por ejemplo, el
+cada caso}.\footnote{Los cuatro combustibles analizados concentran el $81{,}5\%$
+de las ventas nacionales de combustibles líquidos, de modo que los ponderadores
+son las participaciones informadas por la FNE renormalizadas sobre ese total.} Al estimar el efecto sobre el precio del diésel, por ejemplo, el
 moderador se construye solo con las tres gasolinas.
 
 La exclusión no es un refinamiento menor. El precio observado de una estación

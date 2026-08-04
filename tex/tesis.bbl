@@ -585,6 +585,47 @@
       \verb https://doi.org/10.1093/jeea/jvaf061
       \endverb
     \endentry
+    \entry{GENAKOS2022}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=996d1de70762ca914de2c5069212d812}{%
+           family={Genakos},
+           familyi={G\bibinitperiod},
+           given={Christos},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=eed475bbc23cb9a7321cee72794d28e4}{%
+           family={Pagliero},
+           familyi={P\bibinitperiod},
+           given={Mario},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{6d573eebd1db8bd7c4ce1c02954e6313}
+      \strng{fullhash}{6d573eebd1db8bd7c4ce1c02954e6313}
+      \strng{fullhashraw}{6d573eebd1db8bd7c4ce1c02954e6313}
+      \strng{bibnamehash}{6d573eebd1db8bd7c4ce1c02954e6313}
+      \strng{authorbibnamehash}{6d573eebd1db8bd7c4ce1c02954e6313}
+      \strng{authornamehash}{6d573eebd1db8bd7c4ce1c02954e6313}
+      \strng{authorfullhash}{6d573eebd1db8bd7c4ce1c02954e6313}
+      \strng{authorfullhashraw}{6d573eebd1db8bd7c4ce1c02954e6313}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Economic Journal: Applied Economics}
+      \field{number}{4}
+      \field{title}{Competition and Pass-Through: Evidence from Isolated Markets}
+      \field{volume}{14}
+      \field{year}{2022}
+      \field{pages}{35\bibrangedash 57}
+      \range{pages}{23}
+      \verb{doi}
+      \verb 10.1257/app.20200863
+      \endverb
+    \endentry
     \entry{HOTELLING1929}{article}{}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=628a6bd9bb208bfcbeb8394b69088107}{%
@@ -776,6 +817,7 @@
       \strng{authornamehash}{cebe14c45771db4bb892353f5a668fc5}
       \strng{authorfullhash}{cebe14c45771db4bb892353f5a668fc5}
       \strng{authorfullhashraw}{cebe14c45771db4bb892353f5a668fc5}
+      \field{extraname}{1}
       \field{sortinit}{M}
       \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
       \field{extradatescope}{labelyear}
@@ -794,6 +836,44 @@
       \endverb
       \verb{url}
       \verb https://bcn.cl/3mf3h
+      \endverb
+    \endentry
+    \entry{LEY21537}{legislation}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=cebe14c45771db4bb892353f5a668fc5}{%
+           family={{Ministerio de Hacienda}},
+           familyi={M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Chile}%
+      }
+      \strng{namehash}{cebe14c45771db4bb892353f5a668fc5}
+      \strng{fullhash}{cebe14c45771db4bb892353f5a668fc5}
+      \strng{fullhashraw}{cebe14c45771db4bb892353f5a668fc5}
+      \strng{bibnamehash}{cebe14c45771db4bb892353f5a668fc5}
+      \strng{authorbibnamehash}{cebe14c45771db4bb892353f5a668fc5}
+      \strng{authornamehash}{cebe14c45771db4bb892353f5a668fc5}
+      \strng{authorfullhash}{cebe14c45771db4bb892353f5a668fc5}
+      \strng{authorfullhashraw}{cebe14c45771db4bb892353f5a668fc5}
+      \field{extraname}{2}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{24}
+      \field{month}{1}
+      \field{title}{Ley N°21.537. Modifica el mecanismo de estabilización de precios de los combustibles para evitar fluctuaciones semanales, y extiende el beneficio de reintegro parcial del impuesto específico a los combustibles para transportistas de carga}
+      \field{type}{Ley}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://bcn.cl/3l26v
+      \endverb
+      \verb{url}
+      \verb https://bcn.cl/3l26v
       \endverb
     \endentry
     \entry{SALOP1979}{article}{}{}
@@ -1483,6 +1563,47 @@
       \verb https://doi.org/10.1093/jeea/jvaf061
       \endverb
     \endentry
+    \entry{GENAKOS2022}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=996d1de70762ca914de2c5069212d812}{%
+           family={Genakos},
+           familyi={G\bibinitperiod},
+           given={Christos},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=eed475bbc23cb9a7321cee72794d28e4}{%
+           family={Pagliero},
+           familyi={P\bibinitperiod},
+           given={Mario},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{6d573eebd1db8bd7c4ce1c02954e6313}
+      \strng{fullhash}{6d573eebd1db8bd7c4ce1c02954e6313}
+      \strng{fullhashraw}{6d573eebd1db8bd7c4ce1c02954e6313}
+      \strng{bibnamehash}{6d573eebd1db8bd7c4ce1c02954e6313}
+      \strng{authorbibnamehash}{6d573eebd1db8bd7c4ce1c02954e6313}
+      \strng{authornamehash}{6d573eebd1db8bd7c4ce1c02954e6313}
+      \strng{authorfullhash}{6d573eebd1db8bd7c4ce1c02954e6313}
+      \strng{authorfullhashraw}{6d573eebd1db8bd7c4ce1c02954e6313}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Economic Journal: Applied Economics}
+      \field{number}{4}
+      \field{title}{Competition and Pass-Through: Evidence from Isolated Markets}
+      \field{volume}{14}
+      \field{year}{2022}
+      \field{pages}{35\bibrangedash 57}
+      \range{pages}{23}
+      \verb{doi}
+      \verb 10.1257/app.20200863
+      \endverb
+    \endentry
     \entry{HOTELLING1929}{article}{}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=628a6bd9bb208bfcbeb8394b69088107}{%
@@ -1674,6 +1795,7 @@
       \strng{authornamehash}{cebe14c45771db4bb892353f5a668fc5}
       \strng{authorfullhash}{cebe14c45771db4bb892353f5a668fc5}
       \strng{authorfullhashraw}{cebe14c45771db4bb892353f5a668fc5}
+      \field{extraname}{1}
       \field{sortinit}{M}
       \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
       \field{extradatescope}{labelyear}
@@ -1692,6 +1814,44 @@
       \endverb
       \verb{url}
       \verb https://bcn.cl/3mf3h
+      \endverb
+    \endentry
+    \entry{LEY21537}{legislation}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=cebe14c45771db4bb892353f5a668fc5}{%
+           family={{Ministerio de Hacienda}},
+           familyi={M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Chile}%
+      }
+      \strng{namehash}{cebe14c45771db4bb892353f5a668fc5}
+      \strng{fullhash}{cebe14c45771db4bb892353f5a668fc5}
+      \strng{fullhashraw}{cebe14c45771db4bb892353f5a668fc5}
+      \strng{bibnamehash}{cebe14c45771db4bb892353f5a668fc5}
+      \strng{authorbibnamehash}{cebe14c45771db4bb892353f5a668fc5}
+      \strng{authornamehash}{cebe14c45771db4bb892353f5a668fc5}
+      \strng{authorfullhash}{cebe14c45771db4bb892353f5a668fc5}
+      \strng{authorfullhashraw}{cebe14c45771db4bb892353f5a668fc5}
+      \field{extraname}{2}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{24}
+      \field{month}{1}
+      \field{title}{Ley N°21.537. Modifica el mecanismo de estabilización de precios de los combustibles para evitar fluctuaciones semanales, y extiende el beneficio de reintegro parcial del impuesto específico a los combustibles para transportistas de carga}
+      \field{type}{Ley}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://bcn.cl/3l26v
+      \endverb
+      \verb{url}
+      \verb https://bcn.cl/3l26v
       \endverb
     \endentry
     \entry{SALOP1979}{article}{}{}
